@@ -37,7 +37,17 @@ var App;
                     return CrudTabela_NomesService.buscar('', 1, 'TIPO', false, 15, '');
                 }
             }
-        }).state('produto_fatopesaida', {
+        }).state('cad_cond_pagamento', {
+            url: '',
+            templateUrl: 'features/CAD/Cad_Cond_Pagamento/edit.html',
+            controller: 'CrudCad_Cond_PagamentoCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (CrudCad_Cond_PagamentoService) {
+                    return CrudCad_Cond_PagamentoService.buscar('', 1, 'NOME', false, 15, '');
+                }
+            }
+       
         }).state('cad_empresa', {
             url: '',
             templateUrl: 'features/CAD/cad_empresa/edit.html',
@@ -46,6 +56,16 @@ var App;
             resolve: {
                 lista: function (CrudCad_EmpresaService) {
                     return CrudCad_EmpresaService.buscar('', 1, 'NOME', false, 15, '');
+                }
+            }
+        }).state('fat_contrato', {
+            url: '',
+            templateUrl: 'features/FAT/fat_contrato/edit.html',
+            controller: 'CrudFat_ContratoCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (CrudFat_ContratoService) {
+                    return CrudFat_ContratoService.buscar('', 1, 'CODIGO', false, 15, '');
                 }
             }
         }).state("otherwise",

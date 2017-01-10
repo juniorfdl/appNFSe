@@ -1,0 +1,51 @@
+﻿<luar-crud crud="ctrl" title="Contratos">
+
+    <luar-list list="ctrl.lista" ng-show="!Cadastro">
+        <column id="CODIGO" title="Código" searchable="true"></column>
+        <column id="DESCRICAO" title="Descrição" searchable="true"></column>
+        <column id="COD_CADCOLABORADOR" title="Colaborador" searchable="true"></column>
+        <column id="DATA_INICIAL" title="Data Inicial" searchable="true"></column>
+        <column id="DATA_FINAL" title="Data Final" searchable="true"></column>
+        <column id="DATA_REAJUSTE" title="Data Reajuste" searchable="false"></column>
+
+
+        <luar-table></luar-table>
+    </luar-list>
+
+    <luar-main-form ng-show="Cadastro">
+        <tabset>
+            <tab heading="Dados Gerais">
+                <tab-heading> Dados Gerais </tab-heading>
+                <fieldset>
+                    <div class="row">
+                        <luar-text container-class="col-md-3" label="Código" name="codigo" ng-model="ctrl.currentRecord.CODIGO"></luar-text>
+                    </div>
+
+                    <div class="row">
+                        <luar-text container-class="col-md-10" label="Descrição" name="descricao" ng-model="ctrl.currentRecord.DESCRICAO"></luar-text>
+                    </div>
+                    <div class="row">
+                        <luar-text container-class="col-md-3" label="Colaborador" required name="colaborador" ng-model="ctrl.currentRecord.COD_CADCOLABORADOR"></luar-text>
+                    </div>
+                    <div class="row">
+                        <luar-text type="date" container-class="col-md-3" label="Data Inicial" name="dataInicial" ng-model="ctrl.currentRecord.DATA_INICIAL"></luar-text>
+
+                        <luar-text type="date" container-class="col-md-3" label="Data Final" name="dataFinal" ng-model="ctrl.currentRecord.DATA_FINAL"></luar-text>
+
+                        <luar-text type="date" container-class="col-md-3" label="Data Reajuste" name="dataReajuste" ng-model="ctrl.currentRecord.DATA_REAJUSTE"></luar-text>
+                    </div>
+                    <div class="row">
+                        <luar-text type="currency" container-class="col-md-3" label="Valor Contrato" required name="valorContrato" ng-model="ctrl.currentRecord.VALOR_CONTRATO"></luar-text>
+                    </div>
+
+                </fieldset>
+            </tab>
+        </tabset>
+
+    </luar-main-form>
+
+</luar-crud>
+
+
+
+

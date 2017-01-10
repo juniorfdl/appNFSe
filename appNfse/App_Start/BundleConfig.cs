@@ -58,9 +58,15 @@ namespace appBase
                 "~/features/CAD/Tabela_Nomes/ctrl.js",
                 "~/features/CAD/Tabela_Nomes/services.js",
                 
-                
                 "~/features/CAD/cad_empresa/ctrl.js",
-                "~/features/CAD/cad_empresa/services.js"
+                "~/features/CAD/cad_empresa/services.js",
+
+                "~/features/CAD/cad_cond_pagamento/ctrl.js",
+                "~/features/CAD/cad_cond_pagamento/services.js",
+
+                "~/features/FAT/fat_contrato/ctrl.js",
+                "~/features/FAT/fat_contrato/services.js"
+
                 ));
         }
     }
