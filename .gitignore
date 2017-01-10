@@ -240,6 +240,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-Banco/BANCONFSe.FDB
-*.FDB
-Banco/BANCONFSe.FDB
+
+*.fdb
+.BANCOS/
