@@ -14,7 +14,7 @@ var App;
         var CrudCad_EmpresaService = (function (_super) {
             __extends(CrudCad_EmpresaService, _super);
 
-            function CrudCad_EmpresaService($q, api) {
+            function CrudCad_EmpresaService($q, api, $rootScope) {
                 _super.apply(this, arguments);                
             }
 

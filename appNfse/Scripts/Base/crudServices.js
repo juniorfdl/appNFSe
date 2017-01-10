@@ -111,6 +111,7 @@ var App;
                     params.filtrosBaseNome = filtrosBaseNome;
                     params.filtrosBaseValor = filtrosBaseValor;
                 }
+                                
                 
                 if (this.apiConsulta != null)
                     var results = this.apiConsulta.all(params);
@@ -190,6 +191,12 @@ var App;
              */
             CrudBaseService.prototype.salvar = function (entity) {
                 debugger;
+
+                if (this.$rootScope != null)
+                    if (entity.CEMP != null & entity.CEMP == "") {
+                    entity.CEMP = this.$rootScope.currentUser.userCEMP;
+                }
+
                 return this.api.save(entity);
             };
             /**
