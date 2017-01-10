@@ -26,16 +26,16 @@
         [Required]
         public DateTime DATA_FINAL{ get; set; }
         [Required]
-        public string CEMP { get; set; }
-        [Required]
-        public double VALOR_CONTRATO { get; set; }
+        public double? VALOR_CONTRATO { get; set; }
         public DateTime DATA_REAJUSTE { get; set; }
-        public char CALC_INSS { get; set; }
-        public char CAL_ISS { get; set; }
-        public char CAL_IRFF { get; set; }
-        public char CAL_PIS { get; set; }
-        public char CAL_COFINS { get; set; }
-        public char CAL_CSSL { get; set; }
-        public char EXIGE_QUANTIDADE { get; set; }
+        public string CALC_INSS { get; set; }
+        public string CAL_ISS { get; set; }
+        public string CAL_IRFF { get; set; }
+        public string CAL_PIS { get; set; }
+        public string CAL_COFINS { get; set; }
+        public string CAL_CSSL { get; set; }
+        public string EXIGE_QUANTIDADE { get; set; }
+        public string CEMP { get; set; }
+
     }
 }

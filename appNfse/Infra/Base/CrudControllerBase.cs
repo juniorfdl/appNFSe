@@ -448,7 +448,7 @@
             {
                 var MENU = db.Set<SIS_MENU>().Where(b => b.DLL == NomeMenu).FirstOrDefault();
 
-                if (MENU != null & MENU.EMP == "S")
+                if (MENU != null && MENU.EMP == "S")
                 {
                     foreach (var prop in item.GetType().GetProperties())
                     {
