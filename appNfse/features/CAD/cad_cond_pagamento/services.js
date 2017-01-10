@@ -14,7 +14,7 @@ var App;
         var CrudCad_Cond_PagamentoService = (function (_super) {
             __extends(CrudCad_Cond_PagamentoService, _super);
 
-            function CrudCad_Cond_PagamentoService($q, api) {
+            function CrudCad_Cond_PagamentoService($q, api, $rootScope) {
                 _super.apply(this, arguments);
 
             }

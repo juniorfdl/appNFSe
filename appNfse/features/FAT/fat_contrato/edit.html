@@ -4,9 +4,9 @@
         <column id="CODIGO" title="Código" searchable="true"></column>
         <column id="DESCRICAO" title="Descrição" searchable="true"></column>
         <column id="COD_CADCOLABORADOR" title="Colaborador" searchable="true"></column>
-        <column id="DATA_INICIAL" title="Data Inicial" searchable="true"></column>
-        <column id="DATA_FINAL" title="Data Final" searchable="true"></column>
-        <column id="DATA_REAJUSTE" title="Data Reajuste" searchable="false"></column>
+        <column id="DATA_INICIAL" title="Data Inicial" searchable="true" type="date"></column>
+        <column id="DATA_FINAL" title="Data Final" searchable="true" type="date"></column>
+        <column id="DATA_REAJUSTE" title="Data Reajuste" searchable="false" type="date"></column>
 
 
         <luar-table></luar-table>
@@ -28,14 +28,14 @@
                         <luar-text container-class="col-md-3" label="Colaborador" required name="colaborador" ng-model="ctrl.currentRecord.COD_CADCOLABORADOR"></luar-text>
                     </div>
                     <div class="row">
-                        <luar-text type="date" container-class="col-md-3" label="Data Inicial" name="dataInicial" ng-model="ctrl.currentRecord.DATA_INICIAL"></luar-text>
+                        <luar-text type="date" wt-iso-date required container-class="col-md-3" label="Data Inicial" name="dataInicial" ng-model="ctrl.currentRecord.DATA_INICIAL"></luar-text>
 
-                        <luar-text type="date" container-class="col-md-3" label="Data Final" name="dataFinal" ng-model="ctrl.currentRecord.DATA_FINAL"></luar-text>
+                        <luar-text type="date" wt-iso-date required container-class="col-md-3" label="Data Final" name="dataFinal" ng-model="ctrl.currentRecord.DATA_FINAL"></luar-text>
 
-                        <luar-text type="date" container-class="col-md-3" label="Data Reajuste" name="dataReajuste" ng-model="ctrl.currentRecord.DATA_REAJUSTE"></luar-text>
+                        <luar-text type="date" wt-iso-date container-class="col-md-3" label="Data Reajuste" name="dataReajuste" ng-model="ctrl.currentRecord.DATA_REAJUSTE"></luar-text>
                     </div>
                     <div class="row">
-                        <luar-text type="currency" container-class="col-md-3" label="Valor Contrato" required name="valorContrato" ng-model="ctrl.currentRecord.VALOR_CONTRATO"></luar-text>
+                        <luar-text type="number" wt-number container-class="col-md-3" label="Valor Contrato" required name="valorContrato" ng-model="ctrl.currentRecord.VALOR_CONTRATO"></luar-text>
                     </div>
 
                 </fieldset>

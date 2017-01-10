@@ -145,7 +145,7 @@
                 var NomeMenu = Item.ReturnType.Name.ToUpper() + ".DLL";
                 var MENU = db.Set<SIS_MENU>().Where(b => b.DLL == NomeMenu).FirstOrDefault();
 
-                if (MENU != null & MENU.EMP != "S")
+                if (MENU == null || MENU.EMP != "S")
                   queryOriginal = this.Filtrar(queryOriginal, empresa, "CEMP");
             }
 
@@ -376,8 +376,16 @@
 
             if (item.id == 0)
             {
-                var fb = new FuncoesBanco(db);
-                item.id = fb.BuscarPKRegistro(item.GetType().Name);
+                try
+                {
+                    var fb = new FuncoesBanco(db);
+                    item.id = fb.BuscarPKRegistro(item.GetType().Name);
+                }
+                catch
+                {
+                    return Content(HttpStatusCode.Accepted, new { mensagem_erro = "Problema com generator da tabela " + item.GetType().Name });
+                    //throw new InvalidOperationException(string.Format("Problema com generator da tabela " + item.GetType().Name));
+                }
             }
 
             ConfCEMP(item);
@@ -454,7 +462,7 @@
                     {
                         if (prop.Name == "CEMP")
                         {
-                            prop.SetValue(prop, "0");
+                            prop.SetValue(item, "0");
                         }
                     }
                 }

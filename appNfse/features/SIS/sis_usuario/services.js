@@ -14,7 +14,7 @@ var App;
         var CrudSis_UsuarioService = (function (_super) {
             __extends(CrudSis_UsuarioService, _super);
 
-            function CrudSis_UsuarioService($q, api) {
+            function CrudSis_UsuarioService($q, api, $rootScope) {
                 _super.apply(this, arguments);
 
                 //this.apiVendedor = api("CAD_VENDEDOR");

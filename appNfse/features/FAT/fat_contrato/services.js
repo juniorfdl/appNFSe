@@ -14,7 +14,7 @@ var App;
         var CrudFat_ContratoService = (function (_super) {
             __extends(CrudFat_ContratoService, _super);
 
-            function CrudFat_ContratoService($q, api) {
+            function CrudFat_ContratoService($q, api, $rootScope) {
                 _super.apply(this, arguments);
 
             }

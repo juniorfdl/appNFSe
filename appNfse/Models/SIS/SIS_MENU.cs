@@ -19,5 +19,8 @@
         public string DLL { get; set; }
 
         public string EMP { get; set; }
+
+        [NotMapped]
+        public string CEMP { get; set; }
     }
 }

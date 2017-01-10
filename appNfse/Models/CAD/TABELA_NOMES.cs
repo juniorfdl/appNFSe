@@ -24,5 +24,8 @@
         [Required]
         public string SISTEMA { get; set; }
 
+        [NotMapped]
+        public string CEMP { get; set; }
+
     }
 }

@@ -192,10 +192,11 @@ var App;
             CrudBaseService.prototype.salvar = function (entity) {
                 debugger;
 
-                if (this.$rootScope != null)
-                    if (entity.CEMP != null & entity.CEMP == "") {
-                    entity.CEMP = this.$rootScope.currentUser.userCEMP;
-                }
+                if (this.$rootScope != null) {
+                    if (entity.CEMP == null || entity.CEMP == "") {
+                        entity.CEMP = this.$rootScope.currentUser.userCEMP;
+                    }
+                }                   
 
                 return this.api.save(entity);
             };
