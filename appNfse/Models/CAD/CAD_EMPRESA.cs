@@ -13,12 +13,16 @@
     {
         [Key]
         [Column("COD_CADEMPRESA")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
         [Required]
         public string NOME { get; set; }
         [Required]
         public string FANTASIA { get; set; }
         [Required]
-        public string CEMP { get; set; }        
+        public string CEMP { get; set; }
+        [Required]
+        public string MATRIZ_FILIAL { get; set; }
+        
     }
 }

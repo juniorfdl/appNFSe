@@ -17,16 +17,6 @@ var App;
             data: {
                 title: "Entrar"
             }
-        }).state('romaneio', {
-            url: '',
-            templateUrl: 'features/FAT/Fat_Romaneio_Pao/edit.html',
-            controller: 'CrudRomaneioCtrl',
-            controllerAs: 'ctrl',
-            resolve: {
-                lista: function (CrudRomaneioService) {
-                    return CrudRomaneioService.buscar('', 1, 'CODIGO', false, 15, ''); //'01', 5, 'CODIGO', false, 20, 'CEMP'
-                }
-            }
         }).state('usuario', {
             url: '',
             templateUrl: 'features/SIS/Sis_Usuario/edit.html',
@@ -37,22 +27,21 @@ var App;
                     return CrudSis_UsuarioService.buscar('', 1, 'NOME', false, 15, '');
                 }
             }
-        }).state('produto_fatopesaida', {
+        }).state('cad_empresa', {
             url: '',
-            templateUrl: 'features/CAD/Cad_Produto_FatOpeSaida/edit.html',
-            controller: 'CrudCad_Produto_FatOpeSaidaCtrl',
+            templateUrl: 'features/CAD/cad_empresa/edit.html',
+            controller: 'CrudCad_EmpresaCtrl',
             controllerAs: 'ctrl',
             resolve: {
-                lista: function (CrudCad_Produto_FatOpeSaidaService) {
-                    return CrudCad_Produto_FatOpeSaidaService.buscar('', 1, 'PRODUTO', false, 15, '');
+                lista: function (CrudCad_EmpresaService) {
+                    return CrudCad_EmpresaService.buscar('', 1, 'NOME', false, 15, '');
                 }
             }
-        }
-        ).state("otherwise",
+        }).state("otherwise",
           {
               url: '/home',
               templateUrl: 'views/index.html'
-          }        
+          }
         );
 
     });

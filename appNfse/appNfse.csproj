@@ -247,6 +247,9 @@
     <Content Include="Content\sweetalert.css" />
     <Content Include="Content\toaster.css" />
     <Content Include="favicon.ico" />
+    <Content Include="features\CAD\cad_empresa\ctrl.js" />
+    <Content Include="features\CAD\cad_empresa\edit.html" />
+    <Content Include="features\CAD\cad_empresa\services.js" />
     <Content Include="features\LOGIN\ctrl.js" />
     <Content Include="features\SIS\sis_usuario\ctrl.js" />
     <Content Include="features\SIS\sis_usuario\edit.html" />
