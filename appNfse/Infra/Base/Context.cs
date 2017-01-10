@@ -1,4 +1,5 @@
 ﻿using FirebirdSql.Data.FirebirdClient;
+using Models.FAT;
 using Models.Cadastros;
 using System;
 using System.Collections.Generic;
@@ -36,10 +37,12 @@ namespace Infra.Base
         #region Entidades tipo Cadastros        
         public virtual DbSet<CAD_EMPRESA> CAD_EMPRESA { get; set; }
         public virtual DbSet<TABELA_NOMES> TABELA_NOMES { get; set; }
+        public virtual DbSet<CAD_COND_PAGAMENTO> CAD_COND_PAGAMENTO { get; set; }
 
         #endregion
 
         #region Entidades tipo FAT
+        public virtual DbSet<FAT_CONTRATO> FAT_CONTRATO { get; set; }
         #endregion
 
 

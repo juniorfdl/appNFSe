@@ -1,0 +1,45 @@
+﻿<luar-crud crud="ctrl" title="Condições de Pagamento">
+
+    <luar-list list="ctrl.lista" ng-show="!Cadastro">
+        <column id="NOME" title="Nome" searchable="true"></column>
+        <column id="CEMP" title="Código Empresa" searchable="true"></column>
+        <column id="TIPO" title="Tipo" searchable="true"></column>
+        <column id="ACRESCIMO_DESCONTO" title="Acréscimo/Desconto" searchable="true"></column>
+        <column id="PERC_ACRES_DESCONTO" title="Perc Acréscimo/Desconto" searchable="true"></column>
+
+        <luar-table></luar-table>
+    </luar-list>
+
+    <luar-main-form ng-show="Cadastro">
+        <tabset>
+            <tab heading="Dados Gerais">
+                <tab-heading> Dados Gerais </tab-heading>
+                <fieldset>
+                    <div class="row">
+                        <luar-text container-class="col-md-3" label="Nome" name="nome" ng-model="ctrl.currentRecord.NOME"></luar-text>
+                    </div>
+
+                    <div class="row">
+                        <luar-text container-class="col-md-3" label="Código Empresa" name="codigoEmpresa" ng-model="ctrl.currentRecord.CEMP"></luar-text>
+                    </div>
+                    <div class="row">
+                        <luar-text container-class="col-md-3" label="Tipo" required name="tipo" ng-model="ctrl.currentRecord.TIPO"></luar-text>
+                    </div>
+                    <div class="row">
+                        <luar-text container-class="col-md-3" label="Acrescimo/Desconto" name="acrescimoDesconto" ng-model="ctrl.currentRecord.ACRESCIMO_DESCONTO"></luar-text>
+                    </div>
+                    <div class="row">
+                        <luar-text container-class="col-md-3" label="Perc Acrescimo/Desconto" name="perAcrescimoDesconto" ng-model="ctrl.currentRecord.PERC_ACRES_DESCONTO"></luar-text>
+                    </div>
+
+                </fieldset>
+            </tab>
+        </tabset>
+
+    </luar-main-form>
+
+</luar-crud>
+
+
+
+
