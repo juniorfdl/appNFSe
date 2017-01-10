@@ -27,6 +27,17 @@ var App;
                     return CrudSis_UsuarioService.buscar('', 1, 'NOME', false, 15, '');
                 }
             }
+        }).state('tabela_nomes', {
+            url: '',
+            templateUrl: 'features/CAD/Tabela_Nomes/edit.html',
+            controller: 'CrudTabela_NomesCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (CrudTabela_NomesService) {
+                    return CrudTabela_NomesService.buscar('', 1, 'TIPO', false, 15, '');
+                }
+            }
+        }).state('produto_fatopesaida', {
         }).state('cad_empresa', {
             url: '',
             templateUrl: 'features/CAD/cad_empresa/edit.html',

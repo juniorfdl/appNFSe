@@ -35,6 +35,8 @@ namespace Infra.Base
 
         #region Entidades tipo Cadastros        
         public virtual DbSet<CAD_EMPRESA> CAD_EMPRESA { get; set; }
+        public virtual DbSet<TABELA_NOMES> TABELA_NOMES { get; set; }
+
         #endregion
 
         #region Entidades tipo FAT

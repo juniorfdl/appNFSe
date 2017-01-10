@@ -54,6 +54,11 @@ namespace appBase
                 "~/features/Login/ctrl.js",
                 "~/features/SIS/Sis_Usuario/ctrl.js",
                 "~/features/SIS/Sis_Usuario/services.js",
+
+                "~/features/CAD/Tabela_Nomes/ctrl.js",
+                "~/features/CAD/Tabela_Nomes/services.js"
+
+                "~/features/SIS/Sis_Usuario/services.js",
                 
                 "~/features/CAD/cad_empresa/ctrl.js",
                 "~/features/CAD/cad_empresa/services.js"
