@@ -15,8 +15,7 @@
         [Column("COD_FATCONTRATO")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
-        [Required]
-        public string CODIGO { get; set; }
+        public int CODIGO { get; set; }
         [Required]
         public string DESCRICAO { get; set; }
         [Required]

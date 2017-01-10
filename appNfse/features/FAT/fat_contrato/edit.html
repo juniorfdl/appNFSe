@@ -18,16 +18,13 @@
                 <tab-heading> Dados Gerais </tab-heading>
                 <fieldset>
                     <div class="row">
-                        <luar-text container-class="col-md-3" label="Código" name="codigo" ng-model="ctrl.currentRecord.CODIGO"></luar-text>
+                        <luar-text container-class="col-md-2" label="Código" readonly name="codigo" ng-model="ctrl.currentRecord.CODIGO"></luar-text>
+                        <luar-text container-class="col-md-10" label="Descrição" name="descricao" ng-model="ctrl.currentRecord.DESCRICAO"></luar-text>
+
                     </div>
 
                     <div class="row">
-                        <luar-text container-class="col-md-10" label="Descrição" name="descricao" ng-model="ctrl.currentRecord.DESCRICAO"></luar-text>
-                    </div>
-                    <div class="row">
                         <luar-text container-class="col-md-3" label="Colaborador" required name="colaborador" ng-model="ctrl.currentRecord.COD_CADCOLABORADOR"></luar-text>
-                    </div>
-                    <div class="row">
                         <luar-text type="date" wt-iso-date required container-class="col-md-3" label="Data Inicial" name="dataInicial" ng-model="ctrl.currentRecord.DATA_INICIAL"></luar-text>
 
                         <luar-text type="date" wt-iso-date required container-class="col-md-3" label="Data Final" name="dataFinal" ng-model="ctrl.currentRecord.DATA_FINAL"></luar-text>
@@ -36,6 +33,7 @@
                     </div>
                     <div class="row">
                         <luar-text type="number" wt-number container-class="col-md-3" label="Valor Contrato" required name="valorContrato" ng-model="ctrl.currentRecord.VALOR_CONTRATO"></luar-text>
+                        <input luar-check label="IRRF" ng-false-value="'N'" ng-true-value="'S'" ng-model="ctrl.currentRecord.CALC_IRRF" />
                     </div>
 
                 </fieldset>
