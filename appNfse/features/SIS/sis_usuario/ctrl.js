@@ -31,14 +31,14 @@ var App;
                 _this.removeItens = removeItens;
                 _this.AddAlterItem = AddAlterItem;
 
-                VendedorLook();
+                //VendedorLook();
                 EmpresaLook();
 
-                function VendedorLook() {
-                    _this.crudSvc.VendedorLook().then(function (lista) {
-                        _this.VendedorLook = lista;
-                    });
-                }
+                //function VendedorLook() {
+                //    _this.crudSvc.VendedorLook().then(function (lista) {
+                //        _this.VendedorLook = lista;
+                //    });
+                //}
 
                 function EmpresaLook() {
                     _this.crudSvc.EmpresaLook().then(function (lista) {

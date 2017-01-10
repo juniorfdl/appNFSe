@@ -23,15 +23,6 @@
 
         protected override void BeforeReturn(SIS_USUARIO item)
         {
-            if (item.COD_CADVENDEDOR != null)
-            {
-                var ven = db.CAD_VENDEDOR
-                        .Where(b => b.id == item.COD_CADVENDEDOR)
-                        .FirstOrDefault();
-
-                item.VENDEDOR = ven.FANTASIA;
-            }
-
             var itens = db.Set<SIS_USUARIO_EMPRESA>().Where(b => b.CODIGOSISUSUARIO == item.id);
             var empresa = db.Set<CAD_EMPRESA>();
 
@@ -60,16 +51,7 @@
             if (item == null)
             {
                 return NotFound();
-            }
-
-            if (item.COD_CADVENDEDOR != null)
-            {
-                var ven = db.CAD_VENDEDOR
-                        .Where(b => b.id == item.COD_CADVENDEDOR)
-                        .FirstOrDefault();
-
-                item.VENDEDOR = ven.FANTASIA;
-            }
+            }           
 
             return Ok(item);            
         }

@@ -17,15 +17,15 @@ var App;
             function CrudSis_UsuarioService($q, api) {
                 _super.apply(this, arguments);
 
-                this.apiVendedor = api("CAD_VENDEDOR");
-                this.VendedorLook = VendedorLook;
+                //this.apiVendedor = api("CAD_VENDEDOR");
+                //this.VendedorLook = VendedorLook;
                 this.EmpresaLook = EmpresaLook;
             }
 
-            function VendedorLook() {
-                var params = { Empresa: '', campoOrdenacao: 'FANTASIA', direcaoAsc: true };
-                return this.apiVendedor.all(params);
-            };
+            //function VendedorLook() {
+            //    var params = { Empresa: '', campoOrdenacao: 'FANTASIA', direcaoAsc: true };
+            //    return this.apiVendedor.all(params);
+            //};
 
             function EmpresaLook() {
                 var params = { Empresa: '', campoOrdenacao: 'FANTASIA', direcaoAsc: true };
