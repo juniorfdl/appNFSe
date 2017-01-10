@@ -16,7 +16,17 @@ var App;
             controllerAs: 'ctrl',
             data: {
                 title: "Entrar"
-            }       
+            }
+        }).state('romaneio', {
+            url: '',
+            templateUrl: 'features/FAT/Fat_Romaneio_Pao/edit.html',
+            controller: 'CrudRomaneioCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (CrudRomaneioService) {
+                    return CrudRomaneioService.buscar('', 1, 'CODIGO', false, 15, ''); //'01', 5, 'CODIGO', false, 20, 'CEMP'
+                }
+            }
         }).state('usuario', {
             url: '',
             templateUrl: 'features/SIS/Sis_Usuario/edit.html',
@@ -27,7 +37,18 @@ var App;
                     return CrudSis_UsuarioService.buscar('', 1, 'NOME', false, 15, '');
                 }
             }
-        }).state("otherwise",
+        }).state('produto_fatopesaida', {
+            url: '',
+            templateUrl: 'features/CAD/Cad_Produto_FatOpeSaida/edit.html',
+            controller: 'CrudCad_Produto_FatOpeSaidaCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (CrudCad_Produto_FatOpeSaidaService) {
+                    return CrudCad_Produto_FatOpeSaidaService.buscar('', 1, 'PRODUTO', false, 15, '');
+                }
+            }
+        }
+        ).state("otherwise",
           {
               url: '/home',
               templateUrl: 'views/index.html'
@@ -74,7 +95,12 @@ var App;
 
             if (checkSession === void 0) { checkSession = true; }
             var loginusr = localStorage.getItem("luarusr");
-            var loginpass = localStorage.getItem("luarpass");            
+            var loginpass = localStorage.getItem("luarpass");
+
+            if (localStorage.getItem("userEmpresa") != null) {
+                var logo = "app/Logo" + localStorage.getItem("userEmpresa") + ".jpg";
+                $rootScope.EmpresaSelecionadaLogo = logo;
+            }
 
             if (loginusr == null || loginpass == null) {
                 $location.path('/login');
@@ -83,7 +109,7 @@ var App;
                 security.login(loginusr, loginpass).then(function () {
                     $rootScope.currentUser.userEmpresa = localStorage.getItem("userEmpresa");
                     $rootScope.currentUser.userCEMP = localStorage.getItem("userCEMP");
-                });                
+                });
             }
         }
 
@@ -139,7 +165,7 @@ var App;
                 // Sets the layout name, which can be used to display different layouts (header, footer etc.)
                 // based on which page the user is located
                 $rootScope.layout = toState.layout;
-                var title = "luar";
+                var title = "Romaneio";
                 if (toState.data && toState.data.title) {
                     title += " | " + toState.data.title;
                 }

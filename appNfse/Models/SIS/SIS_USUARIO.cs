@@ -20,5 +20,10 @@
         [Required]
         public string PWD { get; set; }
         public string ADMIN { get; set; }
+        public int? COD_CADVENDEDOR { get; set; }
+        [NotMapped]
+        public string VENDEDOR { get; set; }
+        [NotMapped]
+        public virtual dynamic Empresas { get; set; }
     }
 }

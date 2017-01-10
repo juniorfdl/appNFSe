@@ -1,4 +1,4 @@
-﻿namespace Models.CAD
+﻿namespace Models.Cadastros
 {
     using Infra.Base.Interface;
     using System.ComponentModel.DataAnnotations;

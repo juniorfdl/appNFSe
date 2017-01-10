@@ -52,11 +52,26 @@
                         null,
                         Expression.Constant(termoDePesquisa));
                 }
-
                 else if (propertyInfo.PropertyType == typeof(DateTime))
                 {
                     var asDateTime = Convert.ToDateTime(termoDePesquisa);
                     body = Expression.Equal(property, Expression.Constant(asDateTime));
+                }
+                else
+                if (propertyInfo.PropertyType == typeof(Nullable<int>))
+                {
+                   // //var myInstance = new myClass();
+                   // var equalsMethod = typeof(Int32?).GetMethod("Equals", new[] { typeof(Int32?) });
+                   // int? nullableInt = Convert.ToInt32(termoDePesquisa);
+                   // var nullableIntExpr = System.Linq.Expressions.Expression.Constant(nullableInt);
+                   // //var myInstanceExpr = System.Linq.Expressions.Expression.Constant(myInstance);
+                   // var propertyExpr = property;
+                   //// body = Expression.Call(propertyExpr, equalsMethod, nullableIntExpr); // This line throws the exception.     
+
+                   // var converted = Expression.Convert(nullableIntExpr, typeof(int?));
+                   // body = Expression.Call(propertyExpr, equalsMethod, converted);                    
+
+
                 }
             }
             catch (FormatException)
@@ -111,7 +126,9 @@
 
         // GET: api/T
         [HttpGet]
-        public ResultadoDaBusca<TProjecao> Get(string empresa, string termo = null, string campoOrdenacao = null, bool direcaoAsc = true, int pagina = 1, int itensPorPagina = 0, string campoPesquisa = "")
+        public ResultadoDaBusca<TProjecao> Get(string empresa, string termo = null, string campoOrdenacao = null, bool direcaoAsc = true,
+            int pagina = 1, int itensPorPagina = 0, string campoPesquisa = "",
+            [FromUri] List<string> filtrosBaseNome = null, [FromUri] List<string> filtrosBaseValor = null)
         {
             var queryOriginal = db.Set<T>().AsQueryable().Select(this.Selecionar());
 
@@ -123,6 +140,16 @@
             if (!string.IsNullOrWhiteSpace(empresa))
             {
                 queryOriginal = this.Filtrar(queryOriginal, empresa, "CEMP");
+            }
+
+            for (var i = 0; i < filtrosBaseNome.Count; i++)
+            {
+                string valor = filtrosBaseValor[i];
+                string nome = filtrosBaseNome[i];
+
+
+                if (valor != null && filtrosBaseNome[i] != null)
+                    queryOriginal = this.Filtrar(queryOriginal, valor, nome);
             }
 
             var queryRetorno = queryOriginal;
@@ -312,6 +339,11 @@
                     //db.LogarEntidades(db.ChangeTracker.Entries());
                     throw;
                 }
+                catch (InvalidOperationException e)
+                {
+                    dbContextTransaction.Rollback();
+                    return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.Message });
+                }
             }
 
             BeforeReturn(item);
@@ -331,7 +363,7 @@
             //    ModelState["item.Flag"].Errors.Clear();
             //}
 
-            ExecutarAntesPost(item);
+            ExecutarAntesPost(item);            
 
             if (item.id == 0)
             {
@@ -385,6 +417,11 @@
                         return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.InnerException.InnerException.Message });
                     else
                         return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.Message });
+                }
+                catch(InvalidOperationException e)
+                {
+                    dbContextTransaction.Rollback();
+                    return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.Message });
                 }
             }
 
