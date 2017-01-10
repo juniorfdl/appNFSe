@@ -430,21 +430,7 @@ var App;
 
                     this.NovoRegistro = (_this.currentRecord.id == null);
 
-                    var result = this.internalSalvar();
-
-                    //if (result) {                       
-
-                    //debugger;
-                    //var index = _this._lista.indexOf(_this.currentRecord);
-
-                    //if (index === -1) {
-                    //    _this._lista.push(_this.currentRecord);
-                    //}
-                    //this.crudSvc.buscar('', 1, 'id', false, 15, '').then(function (lista) {
-                    //    debugger;
-                    //    _this._lista = lista;
-                    //});
-                    //}
+                    var result = this.internalSalvar();                    
                 }
             };
             CrudBaseEditCtrl.prototype.tratarErros = function (form, erros) {

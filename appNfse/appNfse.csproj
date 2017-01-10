@@ -208,6 +208,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CAD\tabela_nomesController.cs" />
     <Compile Include="Controllers\CAD\cad_empresaController.cs" />
+    <Compile Include="Controllers\SIS\sis_menuController.cs" />
     <Compile Include="Controllers\SIS\sis_usuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -220,8 +221,10 @@
     <Compile Include="Infra\Base\ResultadoDaBusca.cs" />
     <Compile Include="Infra\Interface\ICrudBase.cs" />
     <Compile Include="Infra\Interface\IEntidadeBase.cs" />
+    <Compile Include="Models\CAD\CAD_SERVICO.cs" />
     <Compile Include="Models\CAD\TABELA_NOMES.cs" />
     <Compile Include="Models\CAD\CAD_EMPRESA.cs" />
+    <Compile Include="Models\SIS\SIS_MENU.cs" />
     <Compile Include="Models\SIS\SIS_USUARIO.cs" />
     <Compile Include="Models\SIS\SIS_USUARIO_EMPRESA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

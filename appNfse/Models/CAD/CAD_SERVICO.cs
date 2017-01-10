@@ -9,17 +9,24 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class CAD_EMPRESA : IEntidadeBase
+    public class CAD_SERVICO : IEntidadeBase
     {
         [Key]
-        [Column("COD_CADEMPRESA")]
+        [Column("COD_CADSERVICO")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
         [Required]
-        public string NOME { get; set; }
-        [Required]
-        public string FANTASIA { get; set; }
-        [Required]
-        public string CEMP { get; set; }        
+        public string NOME { get; set; }        
+        
+        public string CEMP { get; set; }
+        
+        public string DESCRICAO_NOTA { get; set; }
+
+        public string CODIGO_SERVICO { get; set; }
+
+        public int? REGIMEESPECIALTRIBUTACAO { get; set; }
+
+        public int? CODIGOTRIBUTACAOMUNICIPIO { get; set; }
+
     }
 }
