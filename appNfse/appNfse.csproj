@@ -262,9 +262,9 @@
     <Content Include="features\CAD\tabela_nomes\ctrl.js" />
     <Content Include="features\CAD\tabela_nomes\edit.html" />
     <Content Include="features\CAD\tabela_nomes\services.js" />
-    <Content Include="features\FAT\ctrl.js" />
-    <Content Include="features\FAT\edit.html" />
-    <Content Include="features\FAT\services.js" />
+    <Content Include="features\FAT\fat_contrato\ctrl.js" />
+    <Content Include="features\FAT\fat_contrato\edit.html" />
+    <Content Include="features\FAT\fat_contrato\services.js" />
     <Content Include="features\LOGIN\ctrl.js" />
     <Content Include="features\SIS\sis_usuario\ctrl.js" />
     <Content Include="features\SIS\sis_usuario\edit.html" />
