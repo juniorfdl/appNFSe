@@ -206,6 +206,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CAD\tabela_nomesController.cs" />
     <Compile Include="Controllers\CAD\cad_empresaController.cs" />
     <Compile Include="Controllers\SIS\sis_usuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,6 +220,7 @@
     <Compile Include="Infra\Base\ResultadoDaBusca.cs" />
     <Compile Include="Infra\Interface\ICrudBase.cs" />
     <Compile Include="Infra\Interface\IEntidadeBase.cs" />
+    <Compile Include="Models\CAD\TABELA_NOMES.cs" />
     <Compile Include="Models\CAD\CAD_EMPRESA.cs" />
     <Compile Include="Models\SIS\SIS_USUARIO.cs" />
     <Compile Include="Models\SIS\SIS_USUARIO_EMPRESA.cs" />
@@ -247,6 +249,9 @@
     <Content Include="Content\sweetalert.css" />
     <Content Include="Content\toaster.css" />
     <Content Include="favicon.ico" />
+    <Content Include="features\CAD\tabela_nomes\ctrl.js" />
+    <Content Include="features\CAD\tabela_nomes\edit.html" />
+    <Content Include="features\CAD\tabela_nomes\services.js" />
     <Content Include="features\LOGIN\ctrl.js" />
     <Content Include="features\SIS\sis_usuario\ctrl.js" />
     <Content Include="features\SIS\sis_usuario\edit.html" />
