@@ -15,8 +15,7 @@ namespace Infra.Base
     public class Context : DbContext
     {        
         public Context() : 
-            base(new FbConnection(@"database=localhost:NFSE;Port=3050;user=sysdba;password=masterkey"), true)
-          //base("Name=BASE")
+            base(new FbConnection(@"database=localhost:NFSE;Port=3050;user=sysdba;password=masterkey"), true)         
         {            
             Database.SetInitializer<Context>(null);
             Database.Initialize(false);
@@ -24,7 +23,6 @@ namespace Infra.Base
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //Database.Log = d => System.Diagnostics.Debug.WriteLine(d);
             base.OnModelCreating(modelBuilder);
         }
 
