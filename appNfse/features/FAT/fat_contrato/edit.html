@@ -33,7 +33,11 @@
                     </div>
                     <div class="row">
                         <luar-text type="number" wt-number container-class="col-md-3" label="Valor Contrato" required name="valorContrato" ng-model="ctrl.currentRecord.VALOR_CONTRATO"></luar-text>
+                    </div>
+                    <div class="row">
                         <input luar-check label="IRRF" ng-false-value="'N'" ng-true-value="'S'" ng-model="ctrl.currentRecord.CALC_IRRF" />
+                        <input luar-check label="ISSQN" ng-false-value="'N'" ng-true-value="'S'" ng-model="ctrl.currentRecord.CAL_ISS" />
+
                     </div>
 
                 </fieldset>
