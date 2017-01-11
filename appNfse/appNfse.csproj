@@ -337,7 +337,7 @@
     <Content Include="Scripts\Base\base.js" />
     <Content Include="Scripts\Base\basics.js" />
     <Content Include="Scripts\Base\common.js" />
-    <Content Include="Scripts\Base\config.js" />
+    <Content Include="Scripts\SIS\config.js" />
     <Content Include="Scripts\Base\ConstConf.js" />
     <Content Include="Scripts\Base\crud.js" />
     <Content Include="Scripts\Base\crudHttpRedirect.js" />
@@ -381,6 +381,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SIS\states.js" />
     <Content Include="Views\404.html" />
     <Content Include="Views\error-messages.html" />
     <Content Include="Views\header1.html" />
