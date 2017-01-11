@@ -92,6 +92,7 @@ var App;
                     itensPorPagina: itensPorPagina ? itensPorPagina : 15, //luarApp.ITENS_POR_PAGINA                    
                     campoOrdenacao: campoOrdenacao,
                     direcaoAsc: direcaoAsc,
+                    campoPesquisa: campoPesquisa
                 };
 
                 if (_this.$rootScope != null)
