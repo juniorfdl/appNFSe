@@ -211,8 +211,8 @@
     <Compile Include="Controllers\CAD\tabela_nomesController.cs" />
     <Compile Include="Controllers\CAD\cad_empresaController.cs" />
     <Compile Include="Controllers\FAT\fat_parametroNfsController.cs" />
-    <Compile Include="Controllers\SIS\sis_menuController.cs" />
     <Compile Include="Controllers\FAT\fat_contratoController.cs" />
+    <Compile Include="Controllers\SIS\sis_menuController.cs" />
     <Compile Include="Controllers\SIS\sis_usuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -281,6 +281,9 @@
     <Content Include="features\SIS\sis_usuario\ctrl.js" />
     <Content Include="features\SIS\sis_usuario\edit.html" />
     <Content Include="features\SIS\sis_usuario\services.js" />
+    <Content Include="features\SIS\sis_menu\ctrl.js" />
+    <Content Include="features\SIS\sis_menu\edit.html" />
+    <Content Include="features\SIS\sis_menu\services.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

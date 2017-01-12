@@ -19,7 +19,7 @@
         protected override IOrderedQueryable<SIS_MENU> Ordenar(IQueryable<SIS_MENU> query)
         {
             return query.OrderBy(e => e.id);
-        }       
+        }        
 
     }
 }

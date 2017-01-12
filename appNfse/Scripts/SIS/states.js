@@ -87,6 +87,16 @@
                     return Crudcad_servicoService.buscar('', 1, 'CODIGO_SERVICO', false, 15, '');
                 }
             }
+        }).state('sis_menu', {
+            url: '',
+            templateUrl: 'features/SIS/sis_menu/edit.html',
+            controller: 'Crudsis_menuCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (Crudsis_menuService) {
+                    return Crudsis_menuService.buscar('', 1, 'GRUPO', false, 15, '');
+                }
+            }
         }).state("otherwise",
           {
               url: '/home',
