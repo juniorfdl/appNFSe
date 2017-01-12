@@ -66,6 +66,17 @@
                     return CrudFat_ContratoService.buscar('', 1, 'CODIGO', false, 15, '');
                 }
             }
+        }).state('fat_parametro_nfs', {
+            url: '',
+            templateUrl: 'features/FAT/fat_parametro_nfs/edit.html',
+            controller: 'CrudFat_ParametroNfsCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (CrudFat_ParametroNfsService) {
+                    return CrudFat_ParametroNfsService.buscar('', 1, 'CODIGO_MUNICIPIO', false, 15, '');
+                }
+            }
+
         }).state("otherwise",
           {
               url: '/home',

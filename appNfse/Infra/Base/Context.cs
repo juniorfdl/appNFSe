@@ -41,6 +41,7 @@ namespace Infra.Base
 
         #region Entidades tipo FAT
         public virtual DbSet<FAT_CONTRATO> FAT_CONTRATO { get; set; }
+        public virtual DbSet<FAT_PARAMETRO_NFS> FAT_PARAMETRO_NFS { get; set; }
         #endregion
 
 

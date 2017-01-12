@@ -1,0 +1,30 @@
+﻿<luar-crud crud="ctrl" title="Contratos">
+
+    <luar-list list="ctrl.lista" ng-show="!Cadastro">
+        <column id="CODIGO_MUNICIPIO" title="Código Município" searchable="true"></column>
+        <column id="CEMP" title="Descrição" searchable="Empresa"></column>
+        <column id="CERTIFICADO_SERIE" title="Certificado" searchable="true"></column>
+        <luar-table></luar-table>
+    </luar-list>
+
+    <luar-main-form ng-show="Cadastro">
+        <tabset>
+            <tab heading="Dados Gerais">
+                <tab-heading> Dados Gerais </tab-heading>
+                <fieldset>
+                    <div class="row">
+                        <luar-text container-class="col-md-2" label="Código Município" name="codigomunicipio" ng-model="ctrl.currentRecord.CODIGO_MUNICIPIO"></luar-text>
+                        <luar-text container-class="col-md-2" label="Optante Simples" name="optantesimples" ng-model="ctrl.currentRecord.OPTANTESIMPLESNACIONAL" maxlengt="1"></luar-text>
+                    </div>
+
+                </fieldset>
+            </tab>
+        </tabset>
+
+    </luar-main-form>
+
+</luar-crud>
+
+
+
+

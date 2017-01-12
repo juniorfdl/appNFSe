@@ -66,7 +66,11 @@ namespace appBase
                 "~/features/CAD/cad_cond_pagamento/services.js",
 
                 "~/features/FAT/fat_contrato/ctrl.js",
-                "~/features/FAT/fat_contrato/services.js"
+                "~/features/FAT/fat_contrato/services.js",
+
+                "~/features/FAT/fat_parametro_nfs/ctrl.js",
+                "~/features/FAT/fat_parametro_nfs/services.js"
+
 
                 ));
         }

@@ -209,6 +209,7 @@
     <Compile Include="Controllers\CAD\cad_cond_pagamentoController.cs" />
     <Compile Include="Controllers\CAD\tabela_nomesController.cs" />
     <Compile Include="Controllers\CAD\cad_empresaController.cs" />
+    <Compile Include="Controllers\FAT\fat_parametroNfsController.cs" />
     <Compile Include="Controllers\SIS\sis_menuController.cs" />
     <Compile Include="Controllers\FAT\fat_contratoController.cs" />
     <Compile Include="Controllers\SIS\sis_usuarioController.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Models\CAD\CAD_SERVICO.cs" />
     <Compile Include="Models\CAD\TABELA_NOMES.cs" />
     <Compile Include="Models\CAD\CAD_EMPRESA.cs" />
+    <Compile Include="Models\FAT\FAT_PARAMETRO_NFS.cs" />
     <Compile Include="Models\FAT\FAT_CONTRATO.cs" />
     <Compile Include="Models\SIS\SIS_MENU.cs" />
     <Compile Include="Models\SIS\SIS_USUARIO.cs" />
@@ -268,6 +270,9 @@
     <Content Include="features\FAT\fat_contrato\ctrl.js" />
     <Content Include="features\FAT\fat_contrato\edit.html" />
     <Content Include="features\FAT\fat_contrato\services.js" />
+    <Content Include="features\FAT\fat_parametro_nfs\ctrl.js" />
+    <Content Include="features\FAT\fat_parametro_nfs\edit.html" />
+    <Content Include="features\FAT\fat_parametro_nfs\services.js" />
     <Content Include="features\LOGIN\ctrl.js" />
     <Content Include="features\SIS\sis_usuario\ctrl.js" />
     <Content Include="features\SIS\sis_usuario\edit.html" />
