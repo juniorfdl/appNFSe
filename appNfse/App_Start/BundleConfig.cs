@@ -69,7 +69,7 @@ namespace appBase
                 "~/features/FAT/fat_contrato/services.js",
 
                 "~/features/CAD/cad_servico/ctrl.js",
-                "~/features/CAD/cad_servico/services.js"
+                "~/features/CAD/cad_servico/services.js",
 
                 "~/features/FAT/fat_parametro_nfs/ctrl.js",
                 "~/features/FAT/fat_parametro_nfs/services.js"
