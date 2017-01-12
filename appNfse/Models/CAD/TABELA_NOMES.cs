@@ -16,14 +16,21 @@
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
         [Required]
+        [StringLength(3)]
+        [Display(Name = "Tipo")]
         public string TIPO { get; set; }
         [Required]
+        [StringLength(3)]
+        [Display(Name = "Código")]
         public string CODIGO { get; set; }
         [Required]
+        [Display(Name = "Descrição")]
+        [StringLength(200)]
         public string DESCRICAO { get; set; }
         [Required]
+        [Display(Name = "Sistema")]
+        [StringLength(3)]
         public string SISTEMA { get; set; }
-
         [NotMapped]
         public string CEMP { get; set; }
 

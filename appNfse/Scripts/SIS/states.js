@@ -66,6 +66,16 @@
                     return CrudFat_ContratoService.buscar('', 1, 'CODIGO', false, 15, '');
                 }
             }
+        }).state('cad_servico', {
+            url: '',
+            templateUrl: 'features/CAD/cad_servico/edit.html',
+            controller: 'Crudcad_servicoCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (Crudcad_servicoService) {
+                    return Crudcad_servicoService.buscar('', 1, 'CODIGO_SERVICO', false, 15, '');
+                }
+            }
         }).state("otherwise",
           {
               url: '/home',

@@ -14,17 +14,17 @@
                 <tab-heading> Dados Gerais </tab-heading>
                 <fieldset>
                     <div class="row">
-                        <luar-text container-class="col-md-3" label="Tipo" name="tipo" ng-model="ctrl.currentRecord.TIPO"></luar-text>
+                        <luar-text container-class="col-md-3" label="Tipo" name="tipo" maxlength="3" ng-model="ctrl.currentRecord.TIPO"></luar-text>
                     </div>
 
                     <div class="row">
-                        <luar-text container-class="col-md-3" label="Código" name="codigo" ng-model="ctrl.currentRecord.CODIGO"></luar-text>
+                        <luar-text container-class="col-md-3" label="Código" maxlength="3" name="codigo" ng-model="ctrl.currentRecord.CODIGO"></luar-text>
                     </div>
                     <div class="row">
-                        <luar-text container-class="col-md-3" label="Descrição" style='text-transform:uppercase' name="descricao" ng-model="ctrl.currentRecord.DESCRICAO"></luar-text>
+                        <luar-text container-class="col-md-3" label="Descrição" maxlength="200" style='text-transform:uppercase' name="descricao" ng-model="ctrl.currentRecord.DESCRICAO"></luar-text>
                     </div>
                     <div class="row">
-                        <luar-text container-class="col-md-3" label="Sistema" name="sistema" ng-model="ctrl.currentRecord.SISTEMA"></luar-text>
+                        <luar-text container-class="col-md-3" label="Sistema" maxlength="3" name="sistema" ng-model="ctrl.currentRecord.SISTEMA"></luar-text>
                     </div>
                 </fieldset>
             </tab>

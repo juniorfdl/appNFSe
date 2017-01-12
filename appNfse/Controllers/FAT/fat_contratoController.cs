@@ -21,7 +21,8 @@
 
         protected override void ExecutarAntesPost(FAT_CONTRATO item)
         {
-            var max = db.Set<FAT_CONTRATO>().Max(c => c.CODIGO);
+            var max = db.Set<FAT_CONTRATO>().Max(c => c.CODIGO);           
+
             item.CODIGO = max + 1;
 
         }

@@ -207,6 +207,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CAD\cad_cond_pagamentoController.cs" />
+    <Compile Include="Controllers\CAD\cad_servicoController.cs" />
     <Compile Include="Controllers\CAD\tabela_nomesController.cs" />
     <Compile Include="Controllers\CAD\cad_empresaController.cs" />
     <Compile Include="Controllers\SIS\sis_menuController.cs" />
@@ -215,7 +216,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infra\Base\Context.cs" />
+    <Compile Include="Context\Context.cs" />
     <Compile Include="Infra\Base\ControllerBase.cs" />
     <Compile Include="Infra\Base\CrudControllerBase.cs" />
     <Compile Include="Infra\Base\FuncoesBanco.cs" />
@@ -262,6 +263,9 @@
     <Content Include="features\CAD\cad_empresa\ctrl.js" />
     <Content Include="features\CAD\cad_empresa\edit.html" />
     <Content Include="features\CAD\cad_empresa\services.js" />
+    <Content Include="features\CAD\cad_servico\ctrl.js" />
+    <Content Include="features\CAD\cad_servico\edit.html" />
+    <Content Include="features\CAD\cad_servico\services.js" />
     <Content Include="features\CAD\tabela_nomes\ctrl.js" />
     <Content Include="features\CAD\tabela_nomes\edit.html" />
     <Content Include="features\CAD\tabela_nomes\services.js" />

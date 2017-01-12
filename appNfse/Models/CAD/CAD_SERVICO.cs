@@ -16,14 +16,21 @@
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
         [Required]
+        [Display(Name = "Nome")]
+        [StringLength(80)]
         public string NOME { get; set; }        
         
         public string CEMP { get; set; }
-        
+
+        [Display(Name = "Descrição da Nota")]
+        [StringLength(255)]
         public string DESCRICAO_NOTA { get; set; }
 
+        [Required]
+        [Display(Name = "Código do Serviço")]
+        [StringLength(10)]
         public string CODIGO_SERVICO { get; set; }
-
+                
         public int? REGIMEESPECIALTRIBUTACAO { get; set; }
 
         public int? CODIGOTRIBUTACAOMUNICIPIO { get; set; }
