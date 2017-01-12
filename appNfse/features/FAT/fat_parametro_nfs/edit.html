@@ -52,20 +52,21 @@
 
                     </div>
                     
+                    <div class="row">
+                        <luar-check-group container-class="col-md-3">
+                            <input luar-check label="Optante Simples Nacional" ng-false-value="'N'" ng-true-value="'S'" required ng-model="ctrl.currentRecord.OPTANTESIMPLESNACIONAL" />
+                            <input luar-check label="Incentivador Cultural" ng-false-value="'N'" ng-true-value="'S'" required ng-model="ctrl.currentRecord.INCENTIVADORCULTURAL" />
+                            <input luar-check label="Produção" ng-false-value="'N'" ng-true-value="'S'" required ng-model="ctrl.currentRecord.PRODUCAO" />
+                        </luar-check-group>
 
-                    <luar-check-group container-class="col-md-3">
-                        <input luar-check label="Optante Simples Nacional" ng-false-value="'N'" ng-true-value="'S'" required ng-model="ctrl.currentRecord.OPTANTESIMPLESNACIONAL" />
-                        <input luar-check label="Incentivador Cultural" ng-false-value="'N'" ng-true-value="'S'" required ng-model="ctrl.currentRecord.INCENTIVADORCULTURAL" />
-                        <input luar-check label="Produção" ng-false-value="'N'" ng-true-value="'S'" required ng-model="ctrl.currentRecord.PRODUCAO" />
-                    </luar-check-group>
+                        <luar-check-group container-class="col-md-3">
+                            <input luar-check label="Tipo RPS" ng-false-value="'N'" ng-true-value="'S'" ng-model="ctrl.currentRecord.TIPO_RPS" />
+                            <input luar-check label="Use Certificado" ng-false-value="'N'" ng-true-value="'S'" ng-model="ctrl.currentRecord.USECERTIFICADO" />
+                            <input luar-check label="ISS Retido" ng-false-value="'N'" ng-true-value="'S'" ng-model="ctrl.currentRecord.ISSRETIDO" />
+                            <input luar-check label="Imprimir Parcelas" ng-false-value="'N'" ng-true-value="'S'" ng-model="ctrl.currentRecord.IMPRIMIR_LISTA_PARCELAS" />
 
-                    <luar-check-group container-class="col-md-3">
-                        <input luar-check label="Tipo RPS" ng-false-value="'N'" ng-true-value="'S'"  ng-model="ctrl.currentRecord.TIPO_RPS" />
-                        <input luar-check label="Use Certificado" ng-false-value="'N'" ng-true-value="'S'"  ng-model="ctrl.currentRecord.USECERTIFICADO" />
-                        <input luar-check label="ISS Retido" ng-false-value="'N'" ng-true-value="'S'"  ng-model="ctrl.currentRecord.ISSRETIDO" />
-                        <input luar-check label="Imprimir Parcelas" ng-false-value="'N'" ng-true-value="'S'" ng-model="ctrl.currentRecord.IMPRIMIR_LISTA_PARCELAS" />
-                        
-                    </luar-check-group>
+                        </luar-check-group>
+                    </div>
 
 
                 </fieldset>
