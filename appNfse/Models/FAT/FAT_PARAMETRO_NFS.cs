@@ -68,9 +68,6 @@
         [Display(Name = "Tipo de Serviço")]
         public int TIPO_SERVICO { get; set; }
 
-        [Display(Name = "Discriminação")]
-        public string DISCRIMINACAO { get; set; }
-
         [Display(Name = "Certificado Série")]
         [StringLength(40)]
         public string CERTIFICADO_SERIE { get; set; }
