@@ -75,8 +75,10 @@ namespace appBase
                 "~/features/FAT/fat_parametro_nfs/services.js",
 
                 "~/features/SIS/sis_menu/ctrl.js",
-                "~/features/SIS/sis_menu/services.js"
+                "~/features/SIS/sis_menu/services.js",
 
+                "~/features/CAD/cad_banco/ctrl.js",
+                "~/features/CAD/cad_banco/services.js"
 
                 ));
         }

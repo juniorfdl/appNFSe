@@ -207,6 +207,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CAD\cad_cond_pagamentoController.cs" />
+    <Compile Include="Controllers\CAD\cad_bancoController.cs" />
     <Compile Include="Controllers\CAD\cad_servicoController.cs" />
     <Compile Include="Controllers\CAD\tabela_nomesController.cs" />
     <Compile Include="Controllers\CAD\cad_empresaController.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Infra\Interface\ICrudBase.cs" />
     <Compile Include="Infra\Interface\IEntidadeBase.cs" />
     <Compile Include="Models\CAD\CAD_COND_PAGAMENTO.cs" />
+    <Compile Include="Models\CAD\CAD_BANCO.cs" />
     <Compile Include="Models\CAD\CAD_SERVICO.cs" />
     <Compile Include="Models\CAD\TABELA_NOMES.cs" />
     <Compile Include="Models\CAD\CAD_EMPRESA.cs" />
@@ -259,6 +261,9 @@
     <Content Include="Content\sweetalert.css" />
     <Content Include="Content\toaster.css" />
     <Content Include="favicon.ico" />
+    <Content Include="features\CAD\cad_banco\ctrl.js" />
+    <Content Include="features\CAD\cad_banco\edit.html" />
+    <Content Include="features\CAD\cad_banco\services.js" />
     <Content Include="features\CAD\cad_cond_pagamento\ctrl.js" />
     <Content Include="features\CAD\cad_cond_pagamento\edit.html" />
     <Content Include="features\CAD\cad_cond_pagamento\services.js" />

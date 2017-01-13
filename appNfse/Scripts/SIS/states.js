@@ -97,6 +97,16 @@
                     return Crudsis_menuService.buscar('', 1, 'GRUPO', false, 15, '');
                 }
             }
+        }).state('cad_banco', {
+            url: '',
+            templateUrl: 'features/CAD/cad_banco/edit.html',
+            controller: 'Crudcad_bancoCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (Crudcad_bancoService) {
+                    return Crudcad_bancoService.buscar('', 1, 'CODIGO', false, 15, '');
+                }
+            }
         }).state("otherwise",
           {
               url: '/home',
