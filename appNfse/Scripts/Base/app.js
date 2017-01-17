@@ -2,7 +2,7 @@
 var App;
 (function (App) {
     'use strict';
-    App.modules.App.constant('app', App);    
+    App.modules.App.constant('app', App);
 
     App.modules.App.config(function (uiSelectConfig) {
         uiSelectConfig.resetSearchInput = true;
@@ -112,7 +112,7 @@ var App;
                 // Sets the layout name, which can be used to display different layouts (header, footer etc.)
                 // based on which page the user is located
                 $rootScope.layout = toState.layout;
-                var title = "NFS-e";
+                var title = "Romaneio";
                 if (toState.data && toState.data.title) {
                     title += " | " + toState.data.title;
                 }
