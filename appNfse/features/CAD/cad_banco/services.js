@@ -14,7 +14,7 @@ var App;
         var Crudcad_bancoService = (function (_super) {
             __extends(Crudcad_bancoService, _super);
 
-            function Crudcad_bancoService($q, api) {
+            function Crudcad_bancoService($q, api,$rootScope) {
                 _super.apply(this, arguments);
 
             }

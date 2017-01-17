@@ -30,9 +30,12 @@
                         <luar-text maxlength="40" container-class="col-md-4" label="Usuário Web" name="usuarioweb" ng-model="ctrl.currentRecord.USER_WEB"></luar-text>
                     </div>
                     <div class="row">
-                        <luar-text container-class="col-md-4" label="Natureza Padrão" name="naturezapadrao" required ng-model="ctrl.currentRecord.NATUREZA_PADRAO"></luar-text>
-                        <luar-text container-class="col-md-4" label="Regime Especial Tributação" name="regimeespecialtributacao" required ng-model="ctrl.currentRecord.REGIMEESPECIALTRIBUTACAO"></luar-text>
-                        <luar-text container-class="col-md-4" type="number" label="Condição de Pagamento" name="condicaopagamento" ng-model="ctrl.currentRecord.COD_CADCPAG_PADRAO"></luar-text>
+                        <luar-text container-class="col-md-3" label="Natureza Padrão" name="naturezapadrao" required ng-model="ctrl.currentRecord.NATUREZA_PADRAO"></luar-text>
+                        <luar-text container-class="col-md-3" label="Regime Especial Tributação" name="regimeespecialtributacao" required ng-model="ctrl.currentRecord.REGIMEESPECIALTRIBUTACAO"></luar-text>
+                        <luar-select container-class="col-md-6" label="Condição de Pagamento" name="COD_CADCONDPAGAMENTO" required
+                                     ng-options="item.id as item.NOME for item in ::ctrl.CondPagamentoLook"
+                                     ng-model="ctrl.currentRecord.COD_CADCPAG_PADRAO">
+                        </luar-select>
                     </div>
                     <div class="row">
                         <luar-text container-class="col-md-4" type="number" label="Código CNAE" name="codigocnae" ng-model="ctrl.currentRecord.CODIGOCNAE"></luar-text>

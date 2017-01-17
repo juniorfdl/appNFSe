@@ -16,16 +16,19 @@ var App;
         var CrudFat_ParametroNfsCtrl = (function (_super) {
 
             __extends(CrudFat_ParametroNfsCtrl, _super);
-            function CrudFat_ParametroNfsCtrl($rootScope, api, CrudFat_ParametroNfsService, lista, $q, $scope) {
+            function CrudFat_ParametroNfsCtrl($location, $anchorScroll, $modal, $rootScope, api, CrudFat_ParametroNfsService, lista, $q, $scope) {
                 var _this = this;
                 _super.call(this);
+                this.$location = $location;
+                this.$anchorScroll = $anchorScroll;
+                this.$modal = $modal;
 
                 this.$rootScope = $rootScope;
 
                 this.api = api;
                 this.crudSvc = CrudFat_ParametroNfsService;
                 this.lista = lista;
-
+                CondPagamentoLook();
             }
 
             CrudFat_ParametroNfsCtrl.prototype.crud = function () {
@@ -38,6 +41,11 @@ var App;
 
         App.modules.Controllers.controller('CrudFat_ParametroNfsCtrl', CrudFat_ParametroNfsCtrl);
 
+        function CondPagamentoLook() {
+            _this.crudSvc.CondPagamentoLook().then(function (lista) {
+                _this.CondPagamentoLook = lista;
+            });
+        }
 
     })(Controllers = App.Controllers || (App.Controllers = {}));
 })(App || (App = {}));
