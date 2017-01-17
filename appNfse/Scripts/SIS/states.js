@@ -2,7 +2,8 @@
 (function (App) {
     'use strict';
 
-    App.modules.App.config(function ($stateProvider) {
+    App.modules.App.config(function ($stateProvider) {        
+
         $stateProvider.state('home', {
             url: '/home',
             templateUrl: 'views/index.html'

@@ -14,9 +14,8 @@ var App;
         var Crudsis_menuService = (function (_super) {
             __extends(Crudsis_menuService, _super);
 
-            function Crudsis_menuService($q, api) {
+            function Crudsis_menuService($q, api, $rootScope) {
                 _super.apply(this, arguments);
-
             }
 
             Object.defineProperty(Crudsis_menuService.prototype, "baseEntity", {

@@ -16,7 +16,7 @@ var App;
                 this.$q = $q;
                 this.api = api(this.baseEntity); 
                 this.cache = {};
-                this.$rootScope = $rootScope;
+                this.$rootScope = $rootScope;                
 
                 if (this.baseEntityConsulta != null && this.baseEntityConsulta != "") {
                     this.apiConsulta = api(this.baseEntityConsulta);
@@ -78,6 +78,9 @@ var App;
              */
             CrudBaseService.prototype.buscar = function (termoDePesquisa, pagina, campoOrdenacao, direcaoAsc, itensPorPagina, campoPesquisa) {
                 var _this = this;
+
+                if (_this.$rootScope != null)
+                    _this.$rootScope.Cadastro = false;
 
                 if (termoDePesquisa === void 0) { termoDePesquisa = ''; }
                 if (arguments.length === 0 && this.cache.result) {
