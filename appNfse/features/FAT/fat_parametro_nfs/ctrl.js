@@ -29,6 +29,13 @@ var App;
                 this.crudSvc = CrudFat_ParametroNfsService;
                 this.lista = lista;
                 CondPagamentoLook();
+
+                function CondPagamentoLook() {
+                    _this.crudSvc.CondPagamentoLook().then(function (lista) {
+                        _this.CondPagamentoLook = lista;
+                    });
+                }
+
             }
 
             CrudFat_ParametroNfsCtrl.prototype.crud = function () {
@@ -39,13 +46,7 @@ var App;
         })(Controllers.CrudBaseEditCtrl);
         Controllers.CrudFat_ParametroNfsCtrl = CrudFat_ParametroNfsCtrl;
 
-        App.modules.Controllers.controller('CrudFat_ParametroNfsCtrl', CrudFat_ParametroNfsCtrl);
-
-        function CondPagamentoLook() {
-            _this.crudSvc.CondPagamentoLook().then(function (lista) {
-                _this.CondPagamentoLook = lista;
-            });
-        }
+        App.modules.Controllers.controller('CrudFat_ParametroNfsCtrl', CrudFat_ParametroNfsCtrl);        
 
     })(Controllers = App.Controllers || (App.Controllers = {}));
 })(App || (App = {}));

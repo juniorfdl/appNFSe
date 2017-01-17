@@ -17,9 +17,12 @@ var App;
             function CrudFat_ParametroNfsService($q, api, $rootScope) {
                 _super.apply(this, arguments);
                 this.$rootScope = $rootScope;
-                this.apiCondPagamento = api('Cad_Cond_Pagamento');
                 this.CondPagamentoLook = CondPagamentoLook;
 
+                function CondPagamentoLook() {    
+                    var params = { Empresa: '', campoOrdenacao: 'id', direcaoAsc: true };
+                    return this.api.allLook(params, 'Cad_Cond_Pagamento');
+                }
             }
 
             Object.defineProperty(CrudFat_ParametroNfsService.prototype, "baseEntity", {
@@ -29,13 +32,7 @@ var App;
                 },
                 enumerable: true,
                 configurable: true
-            });            
-
-            function CondPagamentoLook() {
-                var params = { Empresa: '', campoOrdenacao: 'id', direcaoAsc: true };
-
-                return this.apiCondPagamento.all(params);
-            }
+            });   
 
             return CrudFat_ParametroNfsService;
         })(Services.CrudBaseService);
