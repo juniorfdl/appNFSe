@@ -29,10 +29,17 @@ var App;
                 this.crudSvc = CrudFat_ParametroNfsService;
                 this.lista = lista;
                 CondPagamentoLook();
+                cadbancoLook();
 
                 function CondPagamentoLook() {
                     _this.crudSvc.CondPagamentoLook().then(function (lista) {
                         _this.CondPagamentoLook = lista;
+                    });
+                }
+
+                function cadbancoLook() {
+                    _this.crudSvc.cadbancoLook().then(function (lista) {
+                        _this.cadbancoLook = lista;
                     });
                 }
 

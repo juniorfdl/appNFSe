@@ -40,7 +40,10 @@
                     <div class="row">
                         <luar-text container-class="col-md-4" type="number" label="Código CNAE" name="codigocnae" ng-model="ctrl.currentRecord.CODIGOCNAE"></luar-text>
                         <luar-text container-class="col-md-4" type="number" label="Tipo de Serviço" name="tiposervico" ng-model="ctrl.currentRecord.TIPO_SERVICO"></luar-text>
-                        <luar-text container-class="col-md-4" type="number" label="Código Banco" name="codigobanco" ng-model="ctrl.currentRecord.COD_CADBANCO"></luar-text>
+                        <luar-select container-class="col-md-4" label="Código Banco" name="codbanco" required
+                                     ng-options="item.id as item.NOME for item in ::ctrl.cadbancoLook"
+                                     ng-model="ctrl.currentRecord.COD_CADBANCO">
+                        </luar-select>
 
                     </div>
                     <div class="row">

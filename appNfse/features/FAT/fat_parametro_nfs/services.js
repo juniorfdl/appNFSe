@@ -1,5 +1,3 @@
-
-
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -18,10 +16,18 @@ var App;
                 _super.apply(this, arguments);
                 this.$rootScope = $rootScope;
                 this.CondPagamentoLook = CondPagamentoLook;
+                this.cadbancoLook = cadbancoLook;
 
-                function CondPagamentoLook() {    
+                function CondPagamentoLook() {
                     var params = { Empresa: '', campoOrdenacao: 'id', direcaoAsc: true };
                     return this.api.allLook(params, 'Cad_Cond_Pagamento');
+
+
+                }
+                function cadbancoLook() {
+                    var params = { Empresa: '', campoOrdenacao: 'id', direcaoAsc: true };
+                    return this.api.allLook(params, 'cad_banco');
+
                 }
             }
 
@@ -32,7 +38,7 @@ var App;
                 },
                 enumerable: true,
                 configurable: true
-            });   
+            });
 
             return CrudFat_ParametroNfsService;
         })(Services.CrudBaseService);
