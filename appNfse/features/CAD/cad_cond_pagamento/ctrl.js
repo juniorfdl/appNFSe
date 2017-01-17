@@ -1,8 +1,4 @@
-/// <reference path="Itens.html" />
-/// <reference path="Itens.html" />
-/// <reference path="../base.ts" />
-/// <reference path="services.ts" />
-/// <reference path="../tipoimovel/services.ts" />
+
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
