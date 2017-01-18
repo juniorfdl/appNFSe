@@ -38,6 +38,7 @@ namespace Infra.Base
         public virtual DbSet<CAD_COND_PAGAMENTO> CAD_COND_PAGAMENTO { get; set; }
         public virtual DbSet<CAD_SERVICO> CAD_SERVICO { get; set; }
         public virtual DbSet<CAD_BANCO> CAD_BANCO { get; set; }
+        public virtual DbSet<CAD_COLABORADOR> CAD_COLABORADOR { get; set; }
         #endregion
 
         #region Entidades tipo FAT

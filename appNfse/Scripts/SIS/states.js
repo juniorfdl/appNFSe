@@ -36,6 +36,16 @@
                     return CrudTabela_NomesService.buscar('', 1, 'TIPO', false, 15, '');
                 }
             }
+        }).state('cad_colaborador', {
+            url: '',
+            templateUrl: 'features/CAD/cad_colaborador/edit.html',
+            controller: 'Crudcad_colaboradorCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (Crudcad_colaboradorService) {
+                    return Crudcad_colaboradorService.buscar('', 1, 'FANTASIA', false, 15, '');
+                }
+            }
         }).state('cad_cond_pagamento', {
             url: '',
             templateUrl: 'features/CAD/Cad_Cond_Pagamento/edit.html',

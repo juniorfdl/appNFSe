@@ -11,34 +11,28 @@ var App;
     var Services;
     (function (Services) {
         "use strict";
-        var CrudFat_ContratoService = (function (_super) {
-            __extends(CrudFat_ContratoService, _super);
+        var Crudcad_colaboradorService = (function (_super) {
+            __extends(Crudcad_colaboradorService, _super);
 
-            function CrudFat_ContratoService($q, api, $rootScope) {
+            function Crudcad_colaboradorService($q, api,$rootScope) {
                 _super.apply(this, arguments);
-                this.cadcolaboradorLook = cadcolaboradorLook;
 
-                function cadcolaboradorLook(query) {                  
-
-                    var param = { FANTASIA: query };
-                    return this.api.allLook(param, 'cad_colaborador/ClientesLook');
-                }
             }
 
-            Object.defineProperty(CrudFat_ContratoService.prototype, "baseEntity", {
+            Object.defineProperty(Crudcad_colaboradorService.prototype, "baseEntity", {
                 /// @override
                 get: function () {
-                    return 'Fat_Contrato';
+                    return 'cad_colaborador';
                 },
                 enumerable: true,
                 configurable: true
             });            
    
-            return CrudFat_ContratoService;
+            return Crudcad_colaboradorService;
         })(Services.CrudBaseService);
-        Services.CrudFat_ContratoService = CrudFat_ContratoService;
+        Services.Crudcad_colaboradorService = Crudcad_colaboradorService;
         App.modules.Services
-            .service('CrudFat_ContratoService', CrudFat_ContratoService);
+            .service('Crudcad_colaboradorService', Crudcad_colaboradorService);
     })(Services = App.Services || (App.Services = {}));
 })(App || (App = {}));
 //# sourceMappingURL=services.js.map

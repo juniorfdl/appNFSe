@@ -2807,7 +2807,7 @@ md-autocomplete {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   border-radius: 2px;
   display: block;
-  height: 40px;
+  height: 35px;
   position: relative;
   overflow: visible; }
   md-autocomplete md-autocomplete-wrap {
@@ -2842,9 +2842,9 @@ md-autocomplete {
     box-sizing: border-box;
     border: none;
     box-shadow: none;
-    padding: 0 15px;
+    padding: 3px 15px;
     font-size: 14px;
-    line-height: 40px;
+    line-height: 35px;
     height: 40px;
     outline: none;
     z-index: 2;
