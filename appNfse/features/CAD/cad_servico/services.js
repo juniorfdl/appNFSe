@@ -16,6 +16,12 @@ var App;
 
             function Crudcad_servicoService($q, api) {
                 _super.apply(this, arguments);
+                this.tabelanomeLook = tabelanomeLook;
+
+                function tabelanomeLook(tipo, sistema) {
+                    var params = { TIPO: tipo, SISTEMA: sistema };
+                    return this.api.allLook(params, 'tabela_nome/tabelanomeLook');
+                }
 
             }
 

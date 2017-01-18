@@ -21,6 +21,12 @@ var App;
                 this.api = api;
                 this.crudSvc = Crudcad_servicoService;
                 this.lista = lista;
+                regimetributacaoLook();
+                function regimetributacaoLook() {
+                    _this.crudSvc.tabelanomeLook('03', 'FAT').then(function (lista) {
+                        _this.regimetributacaoLook = lista;
+                    });
+                }
 
             }
 
