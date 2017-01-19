@@ -1,6 +1,7 @@
 ﻿using FirebirdSql.Data.FirebirdClient;
 using Models.FAT;
 using Models.Cadastros;
+using Models.END;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,15 +12,15 @@ using System.Threading.Tasks;
 using Models.SIS;
 
 namespace Infra.Base
-{ 
+{
     public class Context : DbContext
-    {        
-        public Context() : 
-            base(new FbConnection(@"database=localhost:NFSE;Port=3050;user=sysdba;password=masterkey"), true)         
-        {            
+    {
+        public Context() :
+            base(new FbConnection(@"database=localhost:NFSE;Port=3050;user=sysdba;password=masterkey"), true)
+        {
             Database.SetInitializer<Context>(null);
             Database.Initialize(false);
-        }        
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -39,6 +40,7 @@ namespace Infra.Base
         public virtual DbSet<CAD_SERVICO> CAD_SERVICO { get; set; }
         public virtual DbSet<CAD_BANCO> CAD_BANCO { get; set; }
         public virtual DbSet<CAD_COLABORADOR> CAD_COLABORADOR { get; set; }
+        public virtual DbSet<CAD_SERVICO_IMPOSTO> CAD_SERVICO_IMPOSTO { get; set; }
         #endregion
 
         #region Entidades tipo FAT
@@ -46,6 +48,9 @@ namespace Infra.Base
         public virtual DbSet<FAT_PARAMETRO_NFS> FAT_PARAMETRO_NFS { get; set; }
         #endregion
 
+        #region
+        public virtual DbSet<END_CIDADES> END_CIDADES { get; set; }
+        #endregion
 
     }
 }

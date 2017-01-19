@@ -108,6 +108,16 @@
                     return Crudsis_menuService.buscar('', 1, 'GRUPO', false, 15, '');
                 }
             }
+        }).state('cad_servico_imposto', {
+            url: '',
+            templateUrl: 'features/CAD/cad_servico_imposto/edit.html',
+            controller: 'Crudcad_servico_impostoCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (Crudcad_servico_impostoService) {
+                    return Crudcad_servico_impostoService.buscar('', 1, 'CODIGO_CIDADE', false, 15, '');
+                }
+            }
         }).state('cad_banco', {
             url: '',
             templateUrl: 'features/CAD/cad_banco/edit.html',
