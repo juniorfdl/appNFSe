@@ -27,18 +27,18 @@ var App;
                 _this.selectedItemChange = selectedItemChange;
 
                 function selectedItemChange(item) {
-
-                    //if (_this.currentRecord != null) {
-                    //    if (item == null) {
-                    //        _this.currentRecord.CLIENTE_CODIGO = null;
-                    //        _this.currentRecord.CLIENTE_NOME = null;
-                    //        _this.currentRecord.COD_CADCOLABORADOR = null;
-                    //    } else {
-                    //        _this.currentRecord.CLIENTE_CODIGO = item.CODIGO;
-                    //        _this.currentRecord.CLIENTE_NOME = item.FANTASIA;
-                    //        _this.currentRecord.COD_CADCOLABORADOR = item.id;
-                    //    }
-                    //}
+                    debugger
+                    if (_this.currentRecord == null) {
+                        //    if (item == null) {
+                        //        _this.currentRecord.CLIENTE_CODIGO = null;
+                        //        _this.currentRecord.CLIENTE_NOME = null;
+                                _this.currentRecord.COD_CADCOLABORADOR = null;
+                            } else {
+                        _this.currentRecord.COD_CADCOLABORADOR = item.id;
+                        //        _this.currentRecord.CLIENTE_NOME = item.FANTASIA;
+                        //        _this.currentRecord.COD_CADCOLABORADOR = item.id;
+                        //    }
+                    }
                 }
 
 
