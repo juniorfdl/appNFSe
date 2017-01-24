@@ -1,6 +1,7 @@
 ﻿using FirebirdSql.Data.FirebirdClient;
 using Models.FAT;
 using Models.Cadastros;
+using Models.END;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,15 +13,15 @@ using Models.SIS;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Infra.Base
-{ 
+{
     public class Context : DbContext
-    {        
-        public Context() : 
-            base(new FbConnection(@"database=localhost:NFSE;Port=3050;user=sysdba;password=masterkey"), true)         
-        {            
+    {
+        public Context() :
+            base(new FbConnection(@"database=localhost:NFSE;Port=3050;user=sysdba;password=masterkey"), true)
+        {
             Database.SetInitializer<Context>(null);
             Database.Initialize(false);
-        }        
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -46,6 +47,8 @@ namespace Infra.Base
         public virtual DbSet<CAD_COND_PAGAMENTO> CAD_COND_PAGAMENTO { get; set; }
         public virtual DbSet<CAD_SERVICO> CAD_SERVICO { get; set; }
         public virtual DbSet<CAD_BANCO> CAD_BANCO { get; set; }
+        public virtual DbSet<CAD_COLABORADOR> CAD_COLABORADOR { get; set; }
+        public virtual DbSet<CAD_SERVICO_IMPOSTO> CAD_SERVICO_IMPOSTO { get; set; }
         public virtual DbSet<CAD_COND_PAGAMENTO_DIAS> CAD_COND_PAGAMENTO_DIAS { get; set; }    
         #endregion
 
@@ -54,6 +57,9 @@ namespace Infra.Base
         public virtual DbSet<FAT_PARAMETRO_NFS> FAT_PARAMETRO_NFS { get; set; }
         #endregion
 
+        #region
+        public virtual DbSet<END_CIDADES> END_CIDADES { get; set; }
+        #endregion
 
     }
 }

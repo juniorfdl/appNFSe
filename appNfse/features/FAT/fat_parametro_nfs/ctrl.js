@@ -26,6 +26,9 @@ var App;
                 this.lista = lista;
                 CondPagamentoLook();
                 cadbancoLook();
+                naturezapadraoLook();
+                tiposervicoLook();
+                regimetributacaoLook();
 
                 function CondPagamentoLook() {
                     _this.crudSvc.CondPagamentoLook().then(function (lista) {
@@ -39,6 +42,22 @@ var App;
                     });
                 }
 
+                function naturezapadraoLook() {
+                    _this.crudSvc.tabelanomeLook('01', 'FAT').then(function (lista) {
+                        _this.naturezapadraoLook = lista;
+                    });
+                }
+                function regimetributacaoLook() {
+                    _this.crudSvc.tabelanomeLook('03', 'FAT').then(function (lista) {
+                        _this.regimetributacaoLook = lista;
+                    });
+                }
+                function tiposervicoLook() {
+                    _this.crudSvc.tiposervicoLook().then(function (lista) {
+                        _this.tiposervicoLook = lista;
+                    });
+                }
+
             }
 
             CrudFat_ParametroNfsCtrl.prototype.crud = function () {
@@ -49,7 +68,7 @@ var App;
         })(Controllers.CrudBaseEditCtrl);
         Controllers.CrudFat_ParametroNfsCtrl = CrudFat_ParametroNfsCtrl;
 
-        App.modules.Controllers.controller('CrudFat_ParametroNfsCtrl', CrudFat_ParametroNfsCtrl);        
+        App.modules.Controllers.controller('CrudFat_ParametroNfsCtrl', CrudFat_ParametroNfsCtrl);
 
     })(Controllers = App.Controllers || (App.Controllers = {}));
 })(App || (App = {}));

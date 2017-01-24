@@ -16,7 +16,13 @@ var App;
 
             function CrudFat_ContratoService($q, api, $rootScope) {
                 _super.apply(this, arguments);
+                this.cadcolaboradorLook = cadcolaboradorLook;
 
+                function cadcolaboradorLook(query) {                  
+
+                    var param = { FANTASIA: query };
+                    return this.api.allLook(param, 'cad_colaborador/ClientesLook');
+                }
             }
 
             Object.defineProperty(CrudFat_ContratoService.prototype, "baseEntity", {

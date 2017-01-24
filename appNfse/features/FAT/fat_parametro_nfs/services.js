@@ -17,18 +17,28 @@ var App;
                 this.$rootScope = $rootScope;
                 this.CondPagamentoLook = CondPagamentoLook;
                 this.cadbancoLook = cadbancoLook;
+                this.tabelanomeLook = tabelanomeLook;
+                this.tiposervicoLook = tiposervicoLook;
 
                 function CondPagamentoLook() {
                     var params = { Empresa: '', campoOrdenacao: 'id', direcaoAsc: true };
                     return this.api.allLook(params, 'Cad_Cond_Pagamento');
-
-
                 }
                 function cadbancoLook() {
                     var params = { Empresa: '', campoOrdenacao: 'id', direcaoAsc: true };
                     return this.api.allLook(params, 'cad_banco');
 
                 }
+                function tiposervicoLook() {
+                    var params = { Empresa: '', campoOrdenacao: 'id', direcaoAsc: true };
+                    return this.api.allLook(params, 'cad_servico');
+                }
+
+                function tabelanomeLook(tipo, sistema) {
+                    var params = { TIPO: tipo, SISTEMA: sistema };
+                    return this.api.allLook(params, 'tabela_nome/tabelanomeLook');
+                }
+
             }
 
             Object.defineProperty(CrudFat_ParametroNfsService.prototype, "baseEntity", {

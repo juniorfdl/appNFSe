@@ -11,34 +11,28 @@ var App;
     var Services;
     (function (Services) {
         "use strict";
-        var Crudcad_servicoService = (function (_super) {
-            __extends(Crudcad_servicoService, _super);
+        var Crudcad_colaboradorService = (function (_super) {
+            __extends(Crudcad_colaboradorService, _super);
 
-            function Crudcad_servicoService($q, api) {
+            function Crudcad_colaboradorService($q, api,$rootScope) {
                 _super.apply(this, arguments);
-                this.tabelanomeLook = tabelanomeLook;
-
-                function tabelanomeLook(tipo, sistema) {
-                    var params = { TIPO: tipo, SISTEMA: sistema };
-                    return this.api.allLook(params, 'tabela_nome/tabelanomeLook');
-                }
 
             }
 
-            Object.defineProperty(Crudcad_servicoService.prototype, "baseEntity", {
+            Object.defineProperty(Crudcad_colaboradorService.prototype, "baseEntity", {
                 /// @override
                 get: function () {
-                    return 'cad_servico';
+                    return 'cad_colaborador';
                 },
                 enumerable: true,
                 configurable: true
             });            
    
-            return Crudcad_servicoService;
+            return Crudcad_colaboradorService;
         })(Services.CrudBaseService);
-        Services.Crudcad_servicoService = Crudcad_servicoService;
+        Services.Crudcad_colaboradorService = Crudcad_colaboradorService;
         App.modules.Services
-            .service('Crudcad_servicoService', Crudcad_servicoService);
+            .service('Crudcad_colaboradorService', Crudcad_colaboradorService);
     })(Services = App.Services || (App.Services = {}));
 })(App || (App = {}));
 //# sourceMappingURL=services.js.map

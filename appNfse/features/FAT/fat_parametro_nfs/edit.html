@@ -30,16 +30,29 @@
                         <luar-text maxlength="40" container-class="col-md-4" label="Usuário Web" name="usuarioweb" ng-model="ctrl.currentRecord.USER_WEB"></luar-text>
                     </div>
                     <div class="row">
-                        <luar-text container-class="col-md-3" label="Natureza Padrão" name="naturezapadrao" required ng-model="ctrl.currentRecord.NATUREZA_PADRAO"></luar-text>
-                        <luar-text container-class="col-md-3" label="Regime Especial Tributação" name="regimeespecialtributacao" required ng-model="ctrl.currentRecord.REGIMEESPECIALTRIBUTACAO"></luar-text>
-                        <luar-select container-class="col-md-6" label="Condição de Pagamento" name="COD_CADCONDPAGAMENTO" required
-                                     ng-options="item.id as item.NOME for item in ::ctrl.CondPagamentoLook"
-                                     ng-model="ctrl.currentRecord.COD_CADCPAG_PADRAO">
+                        <luar-select container-class="col-md-4" label="Natureza Padrão" name="naturezapadrao" required
+                                     ng-options="item.id as (item.CODIGO + ' - ' + item.DESCRICAO)  for item in ::ctrl.naturezapadraoLook"
+                                     ng-model="ctrl.currentRecord.NATUREZA_PADRAO">
                         </luar-select>
+
+                        <luar-select container-class="col-md-4" label="Regime Especial Tributação" name="regimetributacao" required
+                                     ng-options="item.id as (item.CODIGO + ' - ' + item.DESCRICAO)  for item in ::ctrl.regimetributacaoLook"
+                                     ng-model="ctrl.currentRecord.REGIMEESPECIALTRIBUTACAO">
+                        </luar-select>
+                        <luar-select container-class="col-md-4" label="Tipo de Serviço" name="tiposervico" required
+                                     ng-options="item.id as item.NOME for item in ::ctrl.tiposervicoLook"
+                                     ng-model="ctrl.currentRecord.TIPO_SERVICO">
+                        </luar-select>
+
                     </div>
                     <div class="row">
                         <luar-text container-class="col-md-4" type="number" label="Código CNAE" name="codigocnae" ng-model="ctrl.currentRecord.CODIGOCNAE"></luar-text>
-                        <luar-text container-class="col-md-4" type="number" label="Tipo de Serviço" name="tiposervico" ng-model="ctrl.currentRecord.TIPO_SERVICO"></luar-text>
+
+                        <luar-select container-class="col-md-4" label="Condição de Pagamento" name="COD_CADCONDPAGAMENTO" required
+                                     ng-options="item.id as item.NOME for item in ::ctrl.CondPagamentoLook"
+                                     ng-model="ctrl.currentRecord.COD_CADCPAG_PADRAO">
+                        </luar-select>
+
                         <luar-select container-class="col-md-4" label="Código Banco" name="codbanco" required
                                      ng-options="item.id as item.NOME for item in ::ctrl.cadbancoLook"
                                      ng-model="ctrl.currentRecord.COD_CADBANCO">

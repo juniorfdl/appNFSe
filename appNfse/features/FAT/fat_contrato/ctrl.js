@@ -21,6 +21,34 @@ var App;
                 this.api = api;
                 this.crudSvc = CrudFat_ContratoService;
                 this.lista = lista;
+                _this.data = [];
+                _this.selectedItem = null;
+                _this.searchText = null;
+                _this.selectedItemChange = selectedItemChange;
+
+                function selectedItemChange(item) {
+                    debugger
+                    if (_this.currentRecord == null) {
+                        //    if (item == null) {
+                        //        _this.currentRecord.CLIENTE_CODIGO = null;
+                        //        _this.currentRecord.CLIENTE_NOME = null;
+                                _this.currentRecord.COD_CADCOLABORADOR = null;
+                            } else {
+                        _this.currentRecord.COD_CADCOLABORADOR = item.id;
+                        //        _this.currentRecord.CLIENTE_NOME = item.FANTASIA;
+                        //        _this.currentRecord.COD_CADCOLABORADOR = item.id;
+                        //    }
+                    }
+                }
+
+
+                this.querySearch = function (query) {
+
+                    return _this.crudSvc.cadcolaboradorLook(query).then(function (response) {
+                        debugger;
+                        return response;
+                    })
+                }
 
             }
 
