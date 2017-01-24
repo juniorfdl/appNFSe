@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models.SIS;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Infra.Base
 { 
@@ -24,6 +25,13 @@ namespace Infra.Base
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            base.Configuration.LazyLoadingEnabled = false;
+            
+            //modelBuilder.Conventions.Add(new FunctionsConvention<ViaImobDbContext>("dbo"));
+            modelBuilder.Conventions.AddBefore<ForeignKeyIndexConvention>(new ForeignKeyNamingConvention());
+
+            modelBuilder.Entity<CAD_COND_PAGAMENTO>();
+            modelBuilder.Entity<CAD_COND_PAGAMENTO_DIAS>();
         }
 
         #region Entidades tipo sistema
@@ -38,6 +46,7 @@ namespace Infra.Base
         public virtual DbSet<CAD_COND_PAGAMENTO> CAD_COND_PAGAMENTO { get; set; }
         public virtual DbSet<CAD_SERVICO> CAD_SERVICO { get; set; }
         public virtual DbSet<CAD_BANCO> CAD_BANCO { get; set; }
+        public virtual DbSet<CAD_COND_PAGAMENTO_DIAS> CAD_COND_PAGAMENTO_DIAS { get; set; }    
         #endregion
 
         #region Entidades tipo FAT

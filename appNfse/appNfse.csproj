@@ -223,11 +223,14 @@
     <Compile Include="Context\Context.cs" />
     <Compile Include="Infra\Base\ControllerBase.cs" />
     <Compile Include="Infra\Base\CrudControllerBase.cs" />
+    <Compile Include="Infra\Base\ForeignKeyNamingConvention.cs" />
     <Compile Include="Infra\Base\FuncoesBanco.cs" />
     <Compile Include="Infra\Base\QueryableExtensions.cs" />
     <Compile Include="Infra\Base\ResultadoDaBusca.cs" />
     <Compile Include="Infra\Interface\ICrudBase.cs" />
+    <Compile Include="Infra\Interface\IEntidadeDetalhe.cs" />
     <Compile Include="Infra\Interface\IEntidadeBase.cs" />
+    <Compile Include="Models\CAD\CAD_COND_PAGAMENTO_DIAS.cs" />
     <Compile Include="Models\CAD\CAD_COND_PAGAMENTO.cs" />
     <Compile Include="Models\CAD\CAD_BANCO.cs" />
     <Compile Include="Models\CAD\CAD_SERVICO.cs" />

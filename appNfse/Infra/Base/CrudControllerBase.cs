@@ -21,6 +21,7 @@
     using Models.SIS;
     using System.Web.Http.ModelBinding;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Collections.ObjectModel;
 
     public abstract class CrudController<T, TProjecao> : ControllerBase, IDisposable
         where T : class, IEntidadeBase
@@ -97,7 +98,7 @@
         protected virtual IQueryable<T> TrazerDadosParaEdicao(IQueryable<T> query) { return query; }
         protected virtual IQueryable<TProjecao> TrazerDadosParaLista(IQueryable<TProjecao> query) { return query; }
 
-        protected virtual void InternalUpdate(T item) { }
+        protected virtual void InternalUpdate(T item) { }        
 
         private IList<Action> _scheduledActions;
         protected void ExecutarAposTransacao(Action action)
@@ -209,7 +210,7 @@
             if (item == null)
             {
                 return NotFound();
-            }            
+            }
 
             BeforeReturn(item);
             return Ok(item);
@@ -310,20 +311,19 @@
 
             var objetos = EncontrarObjetos(item);
 
-            var colecoes = new Dictionary<PropertyInfo, object>();
-            foreach (var prop in typeof(T).GetProperties().Where(pi => typeof(IEnumerable<object>).IsAssignableFrom(pi.PropertyType)))
-            {
-                colecoes[prop] = prop.GetValue(item);
-                prop.SetValue(item, null);
-            }
-            db.Entry(item).State = EntityState.Modified;
-            foreach (var salvo in colecoes)
-            {
-                salvo.Key.SetValue(item, salvo.Value);
-            }
-
+            //var colecoes = new Dictionary<PropertyInfo, object>();
+            //foreach (var prop in typeof(T).GetProperties().Where(pi => typeof(IEnumerable<object>).IsAssignableFrom(pi.PropertyType)))
+            //{
+            //    colecoes[prop] = prop.GetValue(item);
+            //    prop.SetValue(item, null);
+            //}
             InternalUpdate(item);
-
+            db.Entry(item).State = EntityState.Modified;
+            //foreach (var salvo in colecoes)
+            //{
+            //    salvo.Key.SetValue(item, salvo.Value);
+            //}        
+            
             foreach (var obj in objetos)
             {
                 if (db.Entry(obj.ObjetoPrincipal).State == EntityState.Modified)
@@ -439,7 +439,7 @@
             var result = ValidarEntidade(item);
             if (result != null)
             {
-                return Content(HttpStatusCode.Accepted, new { mensagem_erro = result });                
+                return Content(HttpStatusCode.Accepted, new { mensagem_erro = result });
             }
 
             db.Set<T>().Add(item);
@@ -508,7 +508,7 @@
                     }
                 }
             }
-        }        
+        }
 
         // DELETE: api/T/5
         //[ResponseType(typeof(T))]

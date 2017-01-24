@@ -8,9 +8,15 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Collections.ObjectModel;
 
     public class CAD_COND_PAGAMENTO : IEntidadeBase
     {
+        public CAD_COND_PAGAMENTO()
+        {
+            this.lista_dias = new Collection<CAD_COND_PAGAMENTO_DIAS>();
+        }
+
         [Key]
         [Column("COD_CADCONDPAGAMENTO")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -23,6 +29,8 @@
         public string TIPO { get; set; }
         public string ACRESCIMO_DESCONTO { get; set; }
         public double PERC_ACRES_DESCONTO { get; set; }
+        
+        public virtual ICollection<CAD_COND_PAGAMENTO_DIAS> lista_dias { get; set; }
 
     }
 }

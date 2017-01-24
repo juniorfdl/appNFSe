@@ -18,7 +18,17 @@
         {
             return query.OrderBy(e => e.id);
         }
-       
-    }    
-    
+
+        protected override IQueryable<CAD_COND_PAGAMENTO> TrazerDadosParaEdicao(IQueryable<CAD_COND_PAGAMENTO> query)
+        {
+            return base.TrazerDadosParaEdicao(query).Include(i => i.lista_dias);
+        }
+
+        protected override void InternalUpdate(CAD_COND_PAGAMENTO item)
+        {                    
+            AtualizarRelacionamento(item,item.lista_dias, it => it.id);    
+        }
+
+    }
+
 }
