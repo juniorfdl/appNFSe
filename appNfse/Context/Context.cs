@@ -1,7 +1,7 @@
 ﻿using FirebirdSql.Data.FirebirdClient;
 using Models.FAT;
 using Models.Cadastros;
-using Models.END;
+//using Models.END;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -47,8 +47,8 @@ namespace Infra.Base
         public virtual DbSet<CAD_COND_PAGAMENTO> CAD_COND_PAGAMENTO { get; set; }
         public virtual DbSet<CAD_SERVICO> CAD_SERVICO { get; set; }
         public virtual DbSet<CAD_BANCO> CAD_BANCO { get; set; }
-        public virtual DbSet<CAD_COLABORADOR> CAD_COLABORADOR { get; set; }
-        public virtual DbSet<CAD_SERVICO_IMPOSTO> CAD_SERVICO_IMPOSTO { get; set; }
+        //public virtual DbSet<CAD_COLABORADOR> CAD_COLABORADOR { get; set; }
+        //public virtual DbSet<CAD_SERVICO_IMPOSTO> CAD_SERVICO_IMPOSTO { get; set; }
         public virtual DbSet<CAD_COND_PAGAMENTO_DIAS> CAD_COND_PAGAMENTO_DIAS { get; set; }    
         #endregion
 
@@ -58,7 +58,7 @@ namespace Infra.Base
         #endregion
 
         #region
-        public virtual DbSet<END_CIDADES> END_CIDADES { get; set; }
+        //public virtual DbSet<END_CIDADES> END_CIDADES { get; set; }
         #endregion
 
     }
