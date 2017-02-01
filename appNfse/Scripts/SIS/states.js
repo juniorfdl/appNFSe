@@ -2,7 +2,7 @@
 (function (App) {
     'use strict';
 
-    App.modules.App.config(function ($stateProvider) {        
+    App.modules.App.config(function ($stateProvider) {
 
         $stateProvider.state('home', {
             url: '/home',
@@ -126,6 +126,16 @@
             resolve: {
                 lista: function (Crudcad_bancoService) {
                     return Crudcad_bancoService.buscar('', 1, 'CODIGO', false, 15, '');
+                }
+            }
+        }).state('fat_nf_servico', {
+            url: '',
+            templateUrl: 'features/FAT/fat_nf_servico/edit.html',
+            controller: 'Crudfat_nf_servicoCtrl',
+            controllerAs: 'ctrl',
+            resolve: {
+                lista: function (Crudfat_nf_servicoService) {
+                    return Crudfat_nf_servicoService.buscar('', 1, 'NUMERO', false, 15, '');
                 }
             }
         }).state("otherwise",

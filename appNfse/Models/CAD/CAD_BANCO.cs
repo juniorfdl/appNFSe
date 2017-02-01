@@ -25,10 +25,9 @@
         [Display(Name = "Código")]
         [Required]
         public int CODIGO { get; set; }
-
-        [Required]
+                
         [Display(Name = "Câmara Compensação")]
-        public int COD_CADCAMARACOMPENSACAO { get; set; }
+        public int? COD_CADCAMARACOMPENSACAO { get; set; }
 
         [Required]
         [Display(Name = "Tipo")]

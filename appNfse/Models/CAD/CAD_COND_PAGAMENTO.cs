@@ -28,7 +28,7 @@
         [Required]
         public string TIPO { get; set; }
         public string ACRESCIMO_DESCONTO { get; set; }
-        public double PERC_ACRES_DESCONTO { get; set; }
+        public double? PERC_ACRES_DESCONTO { get; set; }
         
         public virtual ICollection<CAD_COND_PAGAMENTO_DIAS> lista_dias { get; set; }
 

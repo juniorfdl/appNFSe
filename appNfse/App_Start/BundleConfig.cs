@@ -84,8 +84,10 @@ namespace appBase
                 "~/features/CAD/cad_colaborador/services.js",
 
                 "~/features/CAD/cad_servico_imposto/ctrl.js",
-                "~/features/CAD/cad_servico_imposto/services.js"
-                
+                "~/features/CAD/cad_servico_imposto/services.js",
+
+                "~/features/FAT/fat_nf_servico/ctrl.js",
+                "~/features/FAT/fat_nf_servico/services.js"
 
                 ));
         }

@@ -17,6 +17,13 @@ var App;
             function CrudTabela_NomesService($q, api) {
                 _super.apply(this, arguments);
 
+                this.tabelanomeLook = tabelanomeLook;
+
+                function tabelanomeLook(tipo, sistema) {
+                    var params = { TIPO: tipo, SISTEMA: sistema };
+                    return this.api.allLook(params, 'tabela_nome/tabelanomeLook');
+                }
+
             }
 
             Object.defineProperty(CrudTabela_NomesService.prototype, "baseEntity", {

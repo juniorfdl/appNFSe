@@ -107,8 +107,9 @@
             _scheduledActions.Add(action);
         }
 
-        protected virtual void ExecutarAntesPost(T item)
+        protected virtual IHttpActionResult ExecutarAntesPost(T item)
         {
+            return null;
         }
 
         protected virtual string ValidarEntidade(T item)
@@ -414,7 +415,12 @@
             //    ModelState["item.Flag"].Errors.Clear();
             //}
 
-            ExecutarAntesPost(item);
+            var resultpost = ExecutarAntesPost(item);
+
+            if (resultpost != null)
+            {
+                return resultpost;
+            }
 
             if (item.id == 0)
             {
@@ -529,12 +535,7 @@
             db.Set<T>().Remove(item);
             try
             {
-                //using (var scope = new TransactionScope())
-                {
-                    db.SaveChanges();
-
-                    //  scope.Complete();
-                }
+                db.SaveChanges();
             }
             catch (DbUpdateException ex)
             {
@@ -545,9 +546,17 @@
 
                     if (inner is SqlException)
                         return this.BadRequest("Este registro não pode ser excluído pois se encontra em uso pelo sistema.");
+                    else
+                    {
+                        if (inner.InnerException.InnerException != null)
+                        return Content(HttpStatusCode.Accepted, new { mensagem_erro = inner.InnerException.InnerException.Message });
+                    }
+
                 } while (inner != null);
 
-                throw;
+                
+
+               // throw;
             }
 
             return Ok(item);
