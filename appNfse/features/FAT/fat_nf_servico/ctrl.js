@@ -85,6 +85,60 @@ var App;
                         _this.CadServicoLook = lista;
                     });
                 }
+
+                this.removeItens = removeItens;
+                this.AddItem = AddItem;
+                this.ConfirmarItem = ConfirmarItem;
+                this.CancelarItem = CancelarItem;
+                this.ItemOK = ItemOK;
+                this.NovoItem = {};
+                this.EditItem = EditItem;
+                this.bOperacaoItem = 'L' // inicia como lista;
+
+                function ItemOK() {
+                    return _this.NovoItem.DESCRICAO != null && _this.NovoItem.PRECO_UNITARIO > 0;
+                }
+
+                function removeItens(item, SweetAlert) {
+                    //debugger;
+                    var _this = this;
+                    SweetAlert.swal({
+                        title: "Excluir este registro?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Sim, excluir!",
+                        cancelButtonText: "Não, mudei de ideia"
+                    }, function (isConfirm) {
+                        if (isConfirm) {
+                            item.FlagExcOrAlter = "E";
+                        }
+                    });
+                }
+
+                function AddItem() {
+                    _this.bOperacaoItem = 'A';
+                    _this.NovoItem = {};
+                }
+
+                function EditItem(ITEM) {
+                    _this.bOperacaoItem = 'E';
+                    _this.NovoItem = ITEM;
+                }
+
+                function ConfirmarItem() {
+
+                    if (_this.bOperacaoItem == 'A') {
+                        _this.currentRecord.lista_Itens.push(_this.NovoItem);
+                    }
+
+                    _this.bOperacaoItem = 'L';
+                }
+
+                function CancelarItem() {
+                    _this.bOperacaoItem = 'L';
+                    _this.NovoItem = {};
+                }
             }
 
             Crudfat_nf_servicoCtrl.prototype.crud = function () {

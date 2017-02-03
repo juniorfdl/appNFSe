@@ -45,6 +45,16 @@
             item.CLIENTE_CODIGO = cli.CODIGO;
         }
 
+        protected override IQueryable<FAT_NF_SERVICO> TrazerDadosParaEdicao(IQueryable<FAT_NF_SERVICO> query)
+        {
+            return base.TrazerDadosParaEdicao(query).Include(i => i.lista_Itens);
+        }
+
+        protected override void InternalUpdate(FAT_NF_SERVICO item)
+        {
+            AtualizarRelacionamento(item, item.lista_Itens, it => it.id);
+        }
+
     }
 
 }

@@ -33,6 +33,9 @@ namespace Infra.Base
 
             modelBuilder.Entity<CAD_COND_PAGAMENTO>();
             modelBuilder.Entity<CAD_COND_PAGAMENTO_DIAS>();
+
+            modelBuilder.Entity<FAT_NF_SERVICO>();
+            modelBuilder.Entity<FAT_NF_SERVICO_ITEM>();
         }
 
         #region Entidades tipo sistema
@@ -56,6 +59,7 @@ namespace Infra.Base
         public virtual DbSet<FAT_CONTRATO> FAT_CONTRATO { get; set; }
         public virtual DbSet<FAT_PARAMETRO_NFS> FAT_PARAMETRO_NFS { get; set; }
         public virtual DbSet<FAT_NF_SERVICO> FAT_NF_SERVICO { get; set; }
+        public virtual DbSet<FAT_NF_SERVICO_ITEM> FAT_NF_SERVICO_ITEM { get; set; }
         #endregion
 
         #region

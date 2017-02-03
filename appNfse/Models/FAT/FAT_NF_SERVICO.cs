@@ -8,9 +8,15 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Collections.ObjectModel;
 
     public class FAT_NF_SERVICO : IEntidadeBase
     {
+        public FAT_NF_SERVICO()
+        {
+            this.lista_Itens = new Collection<FAT_NF_SERVICO_ITEM>();
+        }
+
         [Key]
         [Column("COD_FATNFSERVICO")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -19,6 +25,7 @@
         public int NUMERO { get; set; }
         [Required]
         [Display(Name = "Série")]
+        [StringLength(5)]
         public string SERIE { get; set; }
         [Required]
         public string CFIL { get; set; }
@@ -93,5 +100,7 @@
         [Required]
         [Display(Name = "Cliente")]
         public int? CLIENTE_CODIGO { get; set; }
+
+        public virtual ICollection<FAT_NF_SERVICO_ITEM> lista_Itens { get; set; }
     }
 }

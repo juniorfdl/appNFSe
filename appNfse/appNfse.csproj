@@ -243,6 +243,7 @@
     <Compile Include="Models\CAD\TABELA_NOMES.cs" />
     <Compile Include="Models\CAD\CAD_EMPRESA.cs" />
     <Compile Include="Models\END\END_CIDADES\END_CIDADES.cs" />
+    <Compile Include="Models\FAT\FAT_NF_SERVICO_ITEM.cs" />
     <Compile Include="Models\FAT\FAT_NF_SERVICO.cs" />
     <Compile Include="Models\FAT\FAT_PARAMETRO_NFS.cs" />
     <Compile Include="Models\FAT\FAT_CONTRATO.cs" />
@@ -256,7 +257,6 @@
   <ItemGroup>
     <Content Include="app\apple-touch-icon-precomposed.png" />
     <Content Include="app\Logo.jpg" />
-    <Content Include="app\style.css" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\angular-dashboard-framework.css" />
