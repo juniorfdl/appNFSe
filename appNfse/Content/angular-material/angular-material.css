@@ -86,7 +86,8 @@ input[type="reset"], input[type="submit"], html input[type="button"], button {
 
 textarea {
   vertical-align: top;
-  overflow: auto; }
+  overflow: auto;
+}
 
 input[type="radio"], input[type="checkbox"] {
   padding: 0;

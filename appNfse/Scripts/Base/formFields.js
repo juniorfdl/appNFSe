@@ -47,7 +47,7 @@ var App;
                 input.attr('id', ctrlId);
                 angular.forEach(tAttrs.$attr, function (domName, angularName) {
                     var attrVal = tAttrs[angularName];
-                    var parentAttrs = [/label/, /luarText/, /luarSelect/, /luarCheck/, /container[A-Z].*/, /ngRepeat/, /ngIf/];
+                    var parentAttrs = [/label/, /luarText/, /luarSelect/, /luarCheck/, /container[A-Z].*/, /ngRepeat/, /ngIf/, /luarTextValor/, /luarTextData/];
                     if (parentAttrs.every(function (regex) { return !regex.test(angularName); })) {
                         input.attr(domName, attrVal !== "" ? attrVal : true);
                     }
@@ -98,6 +98,57 @@ var App;
             };
         }
         Directives.Text = Text;
+
+        function TextValor($compile) {
+            return {
+                restrict: 'EA',
+                priority: FIELDS_PRIORITY,
+                terminal: true,
+                template: function (element, attrs) {
+                    if (attrs.append || attrs.prepend) {
+                        return "\n                        <div class=\"\">\n                            <label class=\"control-label\"></label>\n                            <div class=\"input-group\">\n                                " + (attrs.prepend ? '<span class="input-group-addon">' + attrs.prepend + '</span>' : '') + "\n                                <input type=\"text\" class=\"form-control\">\n                                " + (attrs.append ? '<span class="input-group-addon">' + attrs.append + '</span>' : '') + "\n                            </div>\n                            <div class=\"control--error-list\"></div>\n                        </div>";
+                    }
+                    else {
+                        return "\n                        <div class=\"\">\n                            <label class=\"control-label\"></label>\n                            <input type=\"number\" wt-number class=\"form-control\">\n                            <div class=\"control--error-list\"></div>\n                        </div>";
+                    }
+                },
+                replace: true,
+                compile: function (element, attrs) {
+                    replaceAttr(element, attrs, 'input');
+                    return function postLink(scope, element, attrs) {
+                        var messagesEl = setupErrors(element, attrs);
+                        $compile(element, null, FIELDS_PRIORITY)(scope);
+                    };
+                }
+            };
+        }
+        Directives.TextValor = TextValor;
+
+        function TextData($compile) {
+            return {
+                restrict: 'EA',
+                priority: FIELDS_PRIORITY,
+                terminal: true,
+                template: function (element, attrs) {
+                    if (attrs.append || attrs.prepend) {
+                        return "\n                        <div class=\"\">\n                            <label class=\"control-label\"></label>\n                            <div class=\"input-group\">\n                                " + (attrs.prepend ? '<span class="input-group-addon">' + attrs.prepend + '</span>' : '') + "\n                                <input type=\"text\" class=\"form-control\">\n                                " + (attrs.append ? '<span class="input-group-addon">' + attrs.append + '</span>' : '') + "\n                            </div>\n                            <div class=\"control--error-list\"></div>\n                        </div>";
+                    }
+                    else {
+                        return "\n                        <div class=\"\">\n                            <label class=\"control-label\"></label>\n                            <input type=\"date\" wt-iso-date class=\"form-control\">\n                            <div class=\"control--error-list\"></div>\n                        </div>";
+                    }
+                },
+                replace: true,
+                compile: function (element, attrs) {
+                    replaceAttr(element, attrs, 'input');
+                    return function postLink(scope, element, attrs) {
+                        var messagesEl = setupErrors(element, attrs);
+                        $compile(element, null, FIELDS_PRIORITY)(scope);
+                    };
+                }
+            };
+        }
+        Directives.TextData = TextData;
+
         function TextArea($compile) {
             return {
                 restrict: 'EA',
@@ -115,6 +166,7 @@ var App;
             };
         }
         Directives.TextArea = TextArea;
+
         function Select($compile) {
             return {
                 priority: FIELDS_PRIORITY,
@@ -141,7 +193,9 @@ var App;
                 }
             };
         }
+
         Directives.Select = Select;
+
         function CheckGroup() {
             return {
                 restrict: 'EA',
@@ -155,6 +209,7 @@ var App;
             };
         }
         Directives.CheckGroup = CheckGroup;
+
         function Check($compile) {
             return {
                 restrict: 'EA',
@@ -170,8 +225,11 @@ var App;
             };
         }
         Directives.Check = Check;
+
         App.modules.Directives
             .directive("luarText", Text)
+            .directive("luarTextvalor", TextValor)
+            .directive("luarTextdata", TextData)
             .directive("luarTextarea", TextArea)
             .directive("luarSelect", Select)
             .directive("luarCheckGroup", CheckGroup)

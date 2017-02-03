@@ -552,9 +552,7 @@
                         return Content(HttpStatusCode.Accepted, new { mensagem_erro = inner.InnerException.InnerException.Message });
                     }
 
-                } while (inner != null);
-
-                
+                } while (inner != null);                
 
                // throw;
             }

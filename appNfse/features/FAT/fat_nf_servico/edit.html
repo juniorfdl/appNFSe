@@ -22,12 +22,12 @@
                         </luar-text>
                         <luar-text container-class="col-md-2" label="Nro Nota" readonly name="codigo" ng-model="ctrl.currentRecord.NUMERO">
                         </luar-text>
-                        <luar-text type="date" wt-iso-date required container-class="col-md-2" label="Data Emissão"
+                        <luar-textdata required container-class="col-md-2" label="Data Emissão"
                                    name="dataemissao" ng-model="ctrl.currentRecord.DATA_EMISSAO">
-                        </luar-text>
-                        <luar-text type="date" wt-iso-date required container-class="col-md-2" label="Data Vencimento"
+                        </luar-textdata>
+                        <luar-textdata required container-class="col-md-2" label="Data Vencimento"
                                    name="datavencimento" ng-model="ctrl.currentRecord.DATA_VENCIMENTO">
-                        </luar-text>
+                        </luar-textdata>
                     </div>
 
                     <div class="row">
@@ -52,7 +52,7 @@
                         </luar-select>
 
                     </div>
-
+                    
                     <div class="row">
                         <luar-text container-class="col-md-12" label="Cliente"
                                    name="COD_CADCLI" required style="display:none" ng-model="ctrl.currentRecord.COD_CADCLI">
@@ -77,15 +77,15 @@
                     </div>
 
                     <div class="row">
-                        <luar-text type="number" wt-number container-class="col-md-2" label="Valor Total" required name="valorTotal"
+                        <luar-textvalor container-class="col-md-2" label="Valor Total" required name="valorTotal"
                                    ng-model="ctrl.currentRecord.VALOR_TOTAL">
-                        </luar-text>
-                        <luar-text type="number" wt-number container-class="col-md-2" label="Valor Liquido" required name="valorLiquido"
+                        </luar-textvalor>
+                        <luar-textvalor container-class="col-md-2" label="Valor Liquido" required name="valorLiquido"
                                    ng-model="ctrl.currentRecord.VALOR_LIQUIDO">
-                        </luar-text>
-                        <luar-text type="number" wt-number container-class="col-md-2" label="Valor Desconto" name="valorDesconto"
+                        </luar-textvalor>
+                        <luar-textvalor container-class="col-md-2" label="Valor Desconto" name="valorDesconto"
                                    ng-model="ctrl.currentRecord.VALOR_DESCONTO">
-                        </luar-text>
+                        </luar-textvalor>
 
                         <luar-select container-class="col-md-6" label="Natureza" name="NATUREZA_OPERACAO"
                                      ng-options="item.id as item.DESCRICAO for item in ::ctrl.NaturezaLook"
@@ -100,6 +100,28 @@
                         </luar-select>
                     </div>
 
+                    <tabset>
+                        <tab heading="Observações">
+                            <tab-heading> Observações </tab-heading>
+                            <fieldset>
+                                <luar-textarea container-class="col-md-12" label="Descriminação" required name="DISCRIMINACAO"
+                                           ng-model="ctrl.currentRecord.DISCRIMINACAO">
+                                </luar-textarea>
+                                <luar-textarea container-class="col-md-12" style="height: 150px" readonly name="OBS_MONTADA"
+                                               ng-model="ctrl.currentRecord.OBS_MONTADA">
+                                </luar-textarea>
+                            </fieldset>
+                        </tab>
+
+                        <tab heading="Imposto">
+                            <tab-heading> Imposto </tab-heading>
+                            <fieldset>
+                                <luar-textvalor container-class="col-md-2" label="ISSQN Base" required name="ISSQN_BASE"
+                                           ng-model="ctrl.currentRecord.ISSQN_BASE">
+                                </luar-textvalor>
+                            </fieldset>
+                        </tab>
+                    </tabset>
                 </fieldset>
             </tab>
         </tabset>
