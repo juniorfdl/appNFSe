@@ -64,13 +64,13 @@
                                              md-search-text="ctrl.searchText"
                                              md-selected-item-change="ctrl.selectedItemChange(item)"
                                              md-items="item in ctrl.querySearch(ctrl.searchText)"
-                                             md-item-text="item.FANTASIA"
+                                             md-item-text="item.DESCRICAO"
                                              md-delay="300"
                                              md-min-length="2"
                                              placeholder="Pesquisar Clientes">
                                 <div layout="row" class="item" layout-align="start center">
-                                    <span md-highlight-text="ctrl.searchText">{{item.FANTASIA}}</span>
-                                    <label> &nbsp; - ({{item.CODIGO}})</label>
+                                    <span md-highlight-text="ctrl.searchText">{{item.DESCRICAO}}</span>
+                                    
                                 </div>
                             </md-autocomplete>
                         </div>
@@ -94,9 +94,9 @@
                     </div>
 
                     <div class="row">
-                        <luar-select container-class="col-md-6" label="Tipo de Serviço" name="COD_CADSERVICO"
+                        <luar-select container-class="col-md-6" label="Tipo de Serviço" name="COD_CADSERVICO" ng-disabled="ctrl.DesabilitaServico"
                                      ng-options="item.id as item.NOME for item in ::ctrl.CadServicoLook"
-                                     ng-model="ctrl.currentRecord.COD_CADSERVICO">
+                                     ng-model="ctrl.currentRecord.COD_CADSERVICO" ng-change="ctrl.ChangeCOD_CADSERVICO()">
                         </luar-select>
                     </div>
 
@@ -111,9 +111,11 @@
 
                                 <div ng-if="ctrl.bOperacaoItem != 'L'">
                                     <div class="row">
-                                        <luar-text container-class="col-md-2" label="Contrato" name="Contrato" type="number"
-                                                   ng-model="ctrl.NovoItem.MONTANTE">
-                                        </luar-text>
+                                        <luar-select container-class="col-md-2" label="Contratos" name="MONTANTE"
+                                                     ng-options="item as item.CODIGO for item in ctrl.FatMontanteLook"
+                                                     ng-model="ctrl.ItemSelecionado" ng-change="ctrl.MontanteSelecionado(ctrl.ItemSelecionado)">
+                                        </luar-select>
+
                                         <luar-textvalor container-class="col-md-2" label="Quantidade" name="QUANTIDADE"
                                                         ng-model="ctrl.NovoItem.QUANTIDADE">
                                         </luar-textvalor>
@@ -138,7 +140,7 @@
                                 <table class="table" ng-form="formitens" ng-if="ctrl.bOperacaoItem == 'L'">
                                     <thead>
                                         <tr>
-                                            <th class="text-left">Contrato</th>
+                                            <th class="text-left">MONTANTE</th>
                                             <th class="text-left" width="60%">Discriminação do Serviço</th>
                                             <th class="text-right">Quantidade</th>
                                             <th class="text-right">Preço Unitário</th>
@@ -192,7 +194,8 @@
                             <fieldset>
                                 <div class="row">
                                     <luar-textvalor container-class="col-md-2" label="ISSQN Base" name="ISSQN_BASE"
-                                                    ng-model="ctrl.currentRecord.ISSQN_BASE">
+                                                    ng-model="ctrl.currentRecord.ISSQN_BASE"
+                                                    >
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Alíquota" name="ISSQN_ALIQUOTA"
@@ -242,11 +245,13 @@
 
                                 <div class="row">
                                     <luar-textvalor container-class="col-md-2" label="COFINS Base" name="COFINS_BASE"
-                                                    ng-model="ctrl.currentRecord.COFINS_BASE">
+                                                    ng-model="ctrl.currentRecord.COFINS_BASE"
+                                                    ng-change="ctrl.CalculaCOFINS()">
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Alíquota" name="COFINS_ALIQUOTA"
-                                                    ng-model="ctrl.currentRecord.COFINS_ALIQUOTA">
+                                                    ng-model="ctrl.currentRecord.COFINS_ALIQUOTA"
+                                                    ng-change="ctrl.CalculaCOFINS()">
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Valor" readonly name="COFINS_VALOR"

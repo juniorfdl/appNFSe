@@ -55,7 +55,7 @@
         public decimal VALOR_LIQUIDO { get; set; }
         [Required]
         [Display(Name = "Código do Serviço")]
-        public decimal COD_CADSERVICO { get; set; }
+        public int COD_CADSERVICO { get; set; }
 
         [Display(Name = "Competência")]
         public string COMPETENCIA { get; set; }
@@ -88,8 +88,8 @@
         public string DISCRIMINACAO { get; set; }
         public string OBS_MONTADA { get; set; }
         public string RPSSUBSTITUIDO { get; set; }
-       // public string CIDADE_SERVICO { get; set; }
-        //public string UF_SERVICO { get; set; }
+        public string CID { get; set; }
+        public string EST { get; set; }
         public int? MES_COMPETENCIA { get; set; }
         public int? ANO_COMPETENCIA { get; set; }
         public int? ANO_EMISSAO { get; set; }

@@ -12,16 +12,16 @@
     using System.Web.Http;
     using System.Web.Http.Description;
 
-    public class Fat_contratoController : CrudControllerBase<FAT_CONTRATO>
+    public class Fat_MONTANTEController : CrudControllerBase<FAT_MONTANTE>
     {
-        protected override IOrderedQueryable<FAT_CONTRATO> Ordenar(IQueryable<FAT_CONTRATO> query)
+        protected override IOrderedQueryable<FAT_MONTANTE> Ordenar(IQueryable<FAT_MONTANTE> query)
         {
             return query.OrderBy(e => e.id);
         }
 
-        protected override IHttpActionResult ExecutarAntesPost(FAT_CONTRATO item)
+        protected override IHttpActionResult ExecutarAntesPost(FAT_MONTANTE item)
         {
-            var max = db.Set<FAT_CONTRATO>().Max(c => c.CODIGO);           
+            var max = db.Set<FAT_MONTANTE>().Max(c => c.CODIGO);           
 
             item.CODIGO = max + 1;
 

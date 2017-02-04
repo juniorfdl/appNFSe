@@ -20,10 +20,11 @@ var App;
                 this.CondPagamentoLook = CondPagamentoLook;
                 this.CadBancoLook = CadBancoLook;
                 this.CadServicoLook = CadServicoLook;
+                this.FatMontanteLook = FatMontanteLook;
 
-                function cadcolaboradorLook(query) {   
-                    var param = { FANTASIA: query };
-                    return this.api.allLook(param, 'cad_colaborador/ClientesLook');
+                function cadcolaboradorLook(query) {                    
+                    var param = { NOM: query };
+                    return this.api.allLook(param, 'cad_colaborador/VIEW_CADCLI');
                 }
 
                 function CondPagamentoLook() {
@@ -44,6 +45,16 @@ var App;
                     return this.api.allLook(params, 'cad_servico');
                 }
 
+                function FatMontanteLook(COD_CADCLI) {
+                    var params = { Empresa: this.$rootScope.currentUser.userCEMP, campoOrdenacao: 'DESCRICAO', direcaoAsc: true, termo: COD_CADCLI, campoPesquisa: 'COD_CADCOLABORADOR' };
+                    return this.api.allLook(params, 'fat_montante');
+                }
+
+                this.GetValoresImpostos = GetValoresImpostos;
+                function GetValoresImpostos(COD_CADSERVICO, CID, EST) {
+                    var params = { COD_CADSERVICO: COD_CADSERVICO , CID: CID, EST: EST};
+                    return this.api.allLook(params, 'fat_nf_servico/GetValoresImpostos');
+                }
             }
 
             Object.defineProperty(Crudfat_nf_servicoService.prototype, "baseEntity", {
@@ -53,8 +64,8 @@ var App;
                 },
                 enumerable: true,
                 configurable: true
-            });            
-   
+            });
+
             return Crudfat_nf_servicoService;
         })(Services.CrudBaseService);
         Services.Crudfat_nf_servicoService = Crudfat_nf_servicoService;

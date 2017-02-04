@@ -9,17 +9,17 @@ var App;
     var Controllers;
     (function (Controllers) {
         'use strict';
-        var CrudFat_ContratoCtrl = (function (_super) {
+        var CrudFat_MONTANTECtrl = (function (_super) {
 
-            __extends(CrudFat_ContratoCtrl, _super);
-            function CrudFat_ContratoCtrl($rootScope, api, CrudFat_ContratoService, lista, $q, $scope) {
+            __extends(CrudFat_MONTANTECtrl, _super);
+            function CrudFat_MONTANTECtrl($rootScope, api, CrudFat_MONTANTEService, lista, $q, $scope) {
                 var _this = this;
                 _super.call(this);
 
                 this.$rootScope = $rootScope;
 
                 this.api = api;
-                this.crudSvc = CrudFat_ContratoService;
+                this.crudSvc = CrudFat_MONTANTEService;
                 this.lista = lista;
                 _this.data = [];
                 _this.selectedItem = null;
@@ -52,15 +52,15 @@ var App;
 
             }
 
-            CrudFat_ContratoCtrl.prototype.crud = function () {
-                return "Fat_Contrato";
+            CrudFat_MONTANTECtrl.prototype.crud = function () {
+                return "Fat_MONTANTE";
             };
 
-            return CrudFat_ContratoCtrl;
+            return CrudFat_MONTANTECtrl;
         })(Controllers.CrudBaseEditCtrl);
-        Controllers.CrudFat_ContratoCtrl = CrudFat_ContratoCtrl;
+        Controllers.CrudFat_MONTANTECtrl = CrudFat_MONTANTECtrl;
 
-        App.modules.Controllers.controller('CrudFat_ContratoCtrl', CrudFat_ContratoCtrl);
+        App.modules.Controllers.controller('CrudFat_MONTANTECtrl', CrudFat_MONTANTECtrl);
 
 
     })(Controllers = App.Controllers || (App.Controllers = {}));

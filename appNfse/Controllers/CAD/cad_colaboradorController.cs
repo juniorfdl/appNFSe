@@ -31,6 +31,17 @@
             return cli;
         }
 
+        [Route("api/cad_colaborador/VIEW_CADCLI")]
+        [HttpGet]
+        public dynamic VIEW_CADCLILook([FromUri]VIEW_CADCLI filtros)
+        {
+            var cli = from m in db.Set<VIEW_CADCLI>()
+                      orderby m.NOM
+                      where m.NOM.ToUpper().StartsWith(filtros.NOM.ToUpper()) & m.TCLI.StartsWith("C")
+                      select m;
+            return cli;
+        }
+
     }    
     
 }

@@ -9,10 +9,10 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class FAT_CONTRATO : IEntidadeBase
+    public class FAT_MONTANTE : IEntidadeBase
     {
         [Key]
-        [Column("COD_FATCONTRATO")]
+        [Column("COD_FATMONTANTE")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
         public int CODIGO { get; set; }
@@ -25,7 +25,7 @@
         [Required]
         public DateTime DATA_FINAL{ get; set; }
         [Required]
-        public decimal? VALOR_CONTRATO { get; set; }
+        public decimal? VALOR_MONTANTE { get; set; }
         public DateTime DATA_REAJUSTE { get; set; }
         public string CALC_INSS { get; set; }
         public string CAL_ISS { get; set; }

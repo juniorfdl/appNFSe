@@ -358,22 +358,32 @@
                         //throw new ConcorrenciaException() { Erros = lista };
                     }
                 }
-                catch (DbUpdateException)
+                catch (DbUpdateException e)
                 {
                     dbContextTransaction.Rollback();
-                    throw;
+
+                    if (e.InnerException != null)
+                        return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.InnerException.InnerException.Message });
+                    else
+                        return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.Message });
                 }
-                catch (DbEntityValidationException)
+                catch (DbEntityValidationException e)
                 {
                     dbContextTransaction.Rollback();
                     // TODO: rever implementação
                     //db.LogarEntidades(db.ChangeTracker.Entries());
-                    throw;
+                    if (e.InnerException != null)
+                        return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.InnerException.InnerException.Message });
+                    else
+                        return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.Message });
                 }
                 catch (InvalidOperationException e)
                 {
                     dbContextTransaction.Rollback();
-                    return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.Message });
+                    if (e.InnerException != null)
+                        return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.InnerException.InnerException.Message });
+                    else
+                        return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.Message });
                 }
             }
 
@@ -487,7 +497,11 @@
                 catch (InvalidOperationException e)
                 {
                     dbContextTransaction.Rollback();
-                    return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.Message });
+
+                    if (e.InnerException != null)
+                        return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.InnerException.InnerException.Message });
+                    else
+                        return Content(HttpStatusCode.Accepted, new { mensagem_erro = e.Message });
                 }
             }
 

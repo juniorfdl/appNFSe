@@ -67,14 +67,14 @@
                     return CrudCad_EmpresaService.buscar('', 1, 'NOME', false, 15, '');
                 }
             }
-        }).state('fat_contrato', {
+        }).state('fat_montante', {
             url: '',
-            templateUrl: 'features/FAT/fat_contrato/edit.html',
-            controller: 'CrudFat_ContratoCtrl',
+            templateUrl: 'features/FAT/fat_montante/edit.html',
+            controller: 'CrudFat_MONTANTECtrl',
             controllerAs: 'ctrl',
             resolve: {
-                lista: function (CrudFat_ContratoService) {
-                    return CrudFat_ContratoService.buscar('', 1, 'CODIGO', false, 15, '');
+                lista: function (CrudFat_MONTANTEService) {
+                    return CrudFat_MONTANTEService.buscar('', 1, 'CODIGO', false, 15, '');
                 }
             }
         }).state('fat_parametro_nfs', {

@@ -43,10 +43,15 @@ var App;
                             _this.currentRecord.CLIENTE_CODIGO = null;
                             _this.currentRecord.CLIENTE_NOME = null;
                             _this.currentRecord.COD_CADCLI = null;
+                            this.FatMontanteLook = null;
+                            this.DesabilitaServico = true;
                         } else {
-                            _this.currentRecord.CLIENTE_CODIGO = item.CODIGO;
-                            _this.currentRecord.CLIENTE_NOME = item.FANTASIA;
+                            _this.currentRecord.CLIENTE_CODIGO = item.COD;
+                            _this.currentRecord.CLIENTE_NOME = item.NOM;
                             _this.currentRecord.COD_CADCLI = item.id;
+                            this.FatMontanteLook = null;
+                            this.DesabilitaServico = false;
+                            BuscarMontantes();
                         }
                     }
                 }
@@ -93,7 +98,7 @@ var App;
                 this.ItemOK = ItemOK;
                 this.NovoItem = {};
                 this.EditItem = EditItem;
-                this.bOperacaoItem = 'L' // inicia como lista;
+                this.bOperacaoItem = 'L' // inicia como lista;                
 
                 function ItemOK() {
                     return _this.NovoItem.DESCRICAO != null && _this.NovoItem.PRECO_UNITARIO > 0;
@@ -123,13 +128,26 @@ var App;
 
                 function EditItem(ITEM) {
                     _this.bOperacaoItem = 'E';
-                    _this.NovoItem = ITEM;
+                    _this.NovoItem = angular.copy(ITEM);
+                    _this.ItemEmAlteracao = ITEM;
+
+                    if (ITEM.COD_FATMON > 0)
+                        _this.ItemSelecionado = _this.FatMontanteLook.find(value => value.id === ITEM.COD_FATMON);
+                    else
+                        _this.ItemSelecionado = null;
                 }
 
                 function ConfirmarItem() {
 
                     if (_this.bOperacaoItem == 'A') {
                         _this.currentRecord.lista_Itens.push(_this.NovoItem);
+                    }
+                    else {
+                        _this.ItemEmAlteracao.MONTANTE = _this.NovoItem.MONTANTE;
+                        _this.ItemEmAlteracao.PRECO_UNITARIO = _this.NovoItem.PRECO_UNITARIO;
+                        _this.ItemEmAlteracao.DESCRICAO = _this.NovoItem.DESCRICAO;
+                        _this.ItemEmAlteracao.COD_FATMON = _this.NovoItem.COD_FATMON;
+                        _this.ItemEmAlteracao.QUANTIDADE = _this.NovoItem.QUANTIDADE;
                     }
 
                     _this.bOperacaoItem = 'L';
@@ -139,6 +157,99 @@ var App;
                     _this.bOperacaoItem = 'L';
                     _this.NovoItem = {};
                 }
+
+                this.FatMontanteLook = null;
+                this.BuscarMontantes = BuscarMontantes;
+                function BuscarMontantes() {
+                    if (_this.FatMontanteLook == null && _this.currentRecord.COD_CADCLI > 0) {
+                        _this.crudSvc.FatMontanteLook(_this.currentRecord.COD_CADCLI).then(function (lista) {
+                            _this.FatMontanteLook = lista;
+                        });
+                    }
+                }
+
+                this.MontanteSelecionado = MontanteSelecionado;
+
+                function MontanteSelecionado(item) {
+                    if (item == null) {
+                        _this.NovoItem.MONTANTE = null;
+                        _this.NovoItem.COD_FATMON = null;
+                    } else {
+                        _this.NovoItem.DESCRICAO = item.DESCRICAO;
+                        _this.NovoItem.MONTANTE = item.CODIGO;
+                        _this.NovoItem.PRECO_UNITARIO = item.VALOR_MONTANTE;
+                        _this.NovoItem.COD_FATMON = item.id;
+
+                        if (item.EXIGE_QUANTIDADE == 'S' && _this.NovoItem.QUANTIDADE > 0) {
+                            _this.NovoItem.PRECO_UNITARIO = item.VALOR_MONTANTE * _this.NovoItem.QUANTIDADE;
+                        }
+
+                    }
+                }
+
+                this.ChangeCOD_CADSERVICO = ChangeCOD_CADSERVICO;
+
+                function ChangeCOD_CADSERVICO() {
+                    if (_this.currentRecord.COD_CADSERVICO > 0) {
+                        _this.crudSvc.GetValoresImpostos(_this.currentRecord.COD_CADSERVICO,
+                              _this.currentRecord.CID, _this.currentRecord.EST).then(function (dados) {
+
+                                  if (dados != null) {
+
+                                      if (dados.ISS_PERC > 0)
+                                          _this.currentRecord.ISS_PERC = dados.ISS_PERC;
+
+                                      if (dados.IRR_PERC > 0)
+                                          _this.currentRecord.IRR_PERC = dados.IRR_PERC
+
+                                      if (dados.PIS_PERC > 0)
+                                          _this.currentRecord.PIS_PERC = dados.PIS_PERC
+
+                                      if (dados.CSLL_PERC > 0)
+                                          _this.currentRecord.CSLL_PERC = dados.CSLL_PERC
+
+                                      if (dados.COFINS_PERC > 0)
+                                          _this.currentRecord.COFINS_PERC = dados.COFINS_PERC
+
+                                      if (dados.INSS_PERC > 0)
+                                          _this.currentRecord.INSS_PERC = dados.INSS_PERC
+
+                                      if (dados.ISS_VLR > 0)
+                                          _this.currentRecord.ISSQN_ALIQUOTA = dados.ISS_VLR;
+
+                                      if (dados.IRRF_VLR > 0)
+                                          _this.currentRecord.IRRF_ALIQUOTA = dados.IRR_VLR;
+
+                                      if (dados.CSLL_VLR > 0)
+                                          _this.currentRecord.CSLL_ALIQUOTA = dados.CSLL_VLR;
+
+                                      if (dados.COFINS_VLR > 0)
+                                          _this.currentRecord.COFINS_ALIQUOTA = dados.COFINS_VLR;
+
+                                      if (dados.PIS_VLR > 0)
+                                          _this.currentRecord.PIS_ALIQUOTA = dados.PIS_VLR;
+
+                                      if (dados.INSS_VLR > 0)
+                                          _this.currentRecord.INSS_ALIQUOTA = dados.INSS_VLR;
+
+                                  }
+                              });
+                    }
+                }
+
+
+                this.MontaDescricao = MontaDescricao;
+
+                function MontaDescricao() {
+                }
+
+                this.CalculaCOFINS = CalculaCOFINS;
+
+                function CalculaCOFINS() {
+                    if (_this.currentRecord.COFINS_ALIQUOTA > 0)
+                     _this.currentRecord.COFINS_VALOR = _this.currentRecord.COFINS_BASE * _this.currentRecord.COFINS_ALIQUOTA / 100;
+                }
+
             }
 
             Crudfat_nf_servicoCtrl.prototype.crud = function () {
@@ -146,12 +257,17 @@ var App;
             };
 
             Crudfat_nf_servicoCtrl.prototype.registroAtualizado = function () {
+
+                this.FatMontanteLook = null;
+
                 if (this.currentRecord != null) {
-                    this.data = [{ FANTASIA: this.currentRecord.CLIENTE_NOME }];
                     this.searchText = this.currentRecord.CLIENTE_NOME;
+                    this.BuscarMontantes();
 
                     if (this.currentRecord.id == null) {
-
+                        this.DesabilitaServico = true;
+                    } else {
+                        this.DesabilitaServico = false;
                     }
                 }
             }

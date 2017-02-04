@@ -13,17 +13,17 @@
     public class FAT_NF_SERVICO_ITEM : IEntidadeBase, IEntidadeDetalhe
     {
         [Key]
-        [Column("COD_FATNFSERVICOITEM")]
+        public int COD_FATNFSERVICOITEM { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Column("COD_FATNFSERVICO")]
         public int id { get; set; }
         [NotMapped]
         public string CEMP { get; set; }
-        public int COD_FATNFSERVICO { get; set; }
         [Required]
         [Display(Name = "Discriminação do Serviço")]
         public string DESCRICAO { get; set; }
         public int? COD_FATMON { get; set; }
-        public string MONTANTE { get; set; }
+        public int? MONTANTE { get; set; }
         [Display(Name = "Quantidade")]
         public decimal? QUANTIDADE { get; set; }
         [Display(Name = "Preço Unitário")]
@@ -33,7 +33,7 @@
         public string FlagExcOrAlter { get; set; }
 
         [JsonIgnore]
-        [ForeignKey("COD_FATNFSERVICO")]
+        [ForeignKey("id")]
         public FAT_NF_SERVICO FAT_NF_SERVICO { get; set; }
     }
 }

@@ -15,6 +15,12 @@
     background: #bcc3ca;
 }
 
+h2 {
+    margin-bottom: 0px;
+    margin-top: 0px;
+
+}
+
 html, body {
     height: 100%;    
 }
@@ -56,6 +62,11 @@ a {
     color: #777;
     font-size: 85%;
     line-height: 20px;
+}
+
+.form-inline .input-group {
+    display: inline-table;
+    vertical-align: top;
 }
 
 /* tabelas */

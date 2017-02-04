@@ -11,10 +11,10 @@ var App;
     var Services;
     (function (Services) {
         "use strict";
-        var CrudFat_ContratoService = (function (_super) {
-            __extends(CrudFat_ContratoService, _super);
+        var CrudFat_MONTANTEService = (function (_super) {
+            __extends(CrudFat_MONTANTEService, _super);
 
-            function CrudFat_ContratoService($q, api, $rootScope) {
+            function CrudFat_MONTANTEService($q, api, $rootScope) {
                 _super.apply(this, arguments);
                 this.cadcolaboradorLook = cadcolaboradorLook;
 
@@ -25,20 +25,20 @@ var App;
                 }
             }
 
-            Object.defineProperty(CrudFat_ContratoService.prototype, "baseEntity", {
+            Object.defineProperty(CrudFat_MONTANTEService.prototype, "baseEntity", {
                 /// @override
                 get: function () {
-                    return 'Fat_Contrato';
+                    return 'Fat_MONTANTE';
                 },
                 enumerable: true,
                 configurable: true
             });            
    
-            return CrudFat_ContratoService;
+            return CrudFat_MONTANTEService;
         })(Services.CrudBaseService);
-        Services.CrudFat_ContratoService = CrudFat_ContratoService;
+        Services.CrudFat_MONTANTEService = CrudFat_MONTANTEService;
         App.modules.Services
-            .service('CrudFat_ContratoService', CrudFat_ContratoService);
+            .service('CrudFat_MONTANTEService', CrudFat_MONTANTEService);
     })(Services = App.Services || (App.Services = {}));
 })(App || (App = {}));
 //# sourceMappingURL=services.js.map

@@ -216,6 +216,7 @@
     <Compile Include="Controllers\CAD\tabela_nomesController.cs" />
     <Compile Include="Controllers\CAD\cad_empresaController.cs" />
     <Compile Include="Controllers\END\END_CIDADES\end_cidadesController.cs" />
+    <Compile Include="Controllers\FAT\ClassDelphiXWeb.cs" />
     <Compile Include="Controllers\FAT\fat_nf_servicoController.cs" />
     <Compile Include="Controllers\FAT\fat_parametroNfsController.cs" />
     <Compile Include="Controllers\FAT\fat_contratoController.cs" />
@@ -240,13 +241,14 @@
     <Compile Include="Models\CAD\CAD_BANCO.cs" />
     <Compile Include="Models\CAD\CAD_SERVICO.cs" />
     <Compile Include="Models\CAD\CAD_SERVICO_IMPOSTO.cs" />
+    <Compile Include="Models\CAD\VIEW_CADCLI.cs" />
     <Compile Include="Models\CAD\TABELA_NOMES.cs" />
     <Compile Include="Models\CAD\CAD_EMPRESA.cs" />
     <Compile Include="Models\END\END_CIDADES\END_CIDADES.cs" />
     <Compile Include="Models\FAT\FAT_NF_SERVICO_ITEM.cs" />
     <Compile Include="Models\FAT\FAT_NF_SERVICO.cs" />
     <Compile Include="Models\FAT\FAT_PARAMETRO_NFS.cs" />
-    <Compile Include="Models\FAT\FAT_CONTRATO.cs" />
+    <Compile Include="Models\FAT\FAT_MONTANTE.cs" />
     <Compile Include="Models\SIS\SIS_MENU.cs" />
     <Compile Include="Models\SIS\SIS_USUARIO.cs" />
     <Compile Include="Models\SIS\SIS_USUARIO_EMPRESA.cs" />
@@ -298,9 +300,9 @@
     <Content Include="features\FAT\fat_nf_servico\ctrl.js" />
     <Content Include="features\FAT\fat_nf_servico\edit.html" />
     <Content Include="features\FAT\fat_nf_servico\services.js" />
-    <Content Include="features\FAT\fat_contrato\ctrl.js" />
-    <Content Include="features\FAT\fat_contrato\edit.html" />
-    <Content Include="features\FAT\fat_contrato\services.js" />
+    <Content Include="features\FAT\fat_montante\ctrl.js" />
+    <Content Include="features\FAT\fat_montante\edit.html" />
+    <Content Include="features\FAT\fat_montante\services.js" />
     <Content Include="features\FAT\fat_parametro_nfs\ctrl.js" />
     <Content Include="features\FAT\fat_parametro_nfs\edit.html" />
     <Content Include="features\FAT\fat_parametro_nfs\services.js" />
