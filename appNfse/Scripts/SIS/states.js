@@ -105,7 +105,7 @@
             controllerAs: 'ctrl',
             resolve: {
                 lista: function (Crudsis_menuService) {
-                    return Crudsis_menuService.buscar('', 1, 'GRUPO', false, 15, '');
+                    return Crudsis_menuService.buscar('', 1, 'GRUPO', true, 15, '');
                 }
             }
         }).state('cad_servico_imposto', {
@@ -115,7 +115,7 @@
             controllerAs: 'ctrl',
             resolve: {
                 lista: function (Crudcad_servico_impostoService) {
-                    return Crudcad_servico_impostoService.buscar('', 1, 'CODIGO_CIDADE', false, 15, '');
+                    return Crudcad_servico_impostoService.buscar('', 1, 'NOME_CIDADE', true, 15, '');
                 }
             }
         }).state('cad_banco', {
@@ -125,7 +125,7 @@
             controllerAs: 'ctrl',
             resolve: {
                 lista: function (Crudcad_bancoService) {
-                    return Crudcad_bancoService.buscar('', 1, 'CODIGO', false, 15, '');
+                    return Crudcad_bancoService.buscar('', 1, 'CODIGO', true, 15, '');
                 }
             }
         }).state('fat_nf_servico', {

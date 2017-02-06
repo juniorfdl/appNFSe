@@ -28,6 +28,14 @@ var App;
                 _this.selectedItemChange = selectedItemChange;
 
                 function selectedItemChange(item) {
+                    debugger
+                    if (_this.currentRecord != null) {
+                        if (item == null) {
+                            _this.currentRecord.CODIGO_CIDADE = null;
+                        } else {
+                            _this.currentRecord.CODIGO_CIDADE = item.id;
+                        }
+                    }
 
                 }
 
@@ -48,6 +56,17 @@ var App;
             Crudcad_servico_impostoCtrl.prototype.crud = function () {
                 return "cad_servico_imposto";
             };
+
+            Crudcad_servico_impostoCtrl.prototype.registroAtualizado = function () {
+                if (this.currentRecord != null) {
+                    //this.data = [{ FANTASIA: this.currentRecord.CLIENTE_NOME }];
+                    this.searchText = null;
+
+                    if (this.currentRecord.id == null) {
+
+                    }
+                }
+            }
 
             return Crudcad_servico_impostoCtrl;
         })(Controllers.CrudBaseEditCtrl);
