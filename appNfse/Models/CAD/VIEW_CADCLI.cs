@@ -29,7 +29,7 @@
         [NotMapped]
         public string DESCRICAO {
             get {
-                return this.NOM + " - " + this.COD + " - " + this.CID+'/'+this.EST; 
+                return this.NOM; 
             }
             set { }
         }

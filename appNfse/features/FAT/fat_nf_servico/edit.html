@@ -14,7 +14,7 @@
 
     <luar-main-form ng-show="Cadastro">
 
-        <button type="button" data-action="newRow" class="btn btn-primary btn-sm" 
+        <button type="button" data-action="newRow" class="btn btn-primary btn-sm"
                 ng-click="ctrl.EmitirNFSe()">
             <b>+</b>Novo Item
         </button>
@@ -61,25 +61,39 @@
                     </div>
 
                     <div class="row">
-                        <luar-text container-class="col-md-12" label="Cliente"
+                        <luar-text container-class="col-md-8" label="Cliente"
                                    name="COD_CADCLI" required style="display:none" ng-model="ctrl.currentRecord.COD_CADCLI">
                         </luar-text>
 
-                        <div class="col-md-12 ng-scope" name="cliente">
+                        <luar-text container-class="col-md-2" label="Cidade"
+                                   name="CID" required style="display:none" ng-model="ctrl.currentRecord.CID">
+                        </luar-text>
+
+                        <luar-text container-class="col-md-2" label="Estado"
+                                   name="EST" required style="display:none" ng-model="ctrl.currentRecord.EST">
+                        </luar-text>
+
+                        <div class="col-md-8 ng-scope" name="cliente">
                             <md-autocomplete flex
                                              md-selected-item="ctrl.selectedItem"
                                              md-search-text="ctrl.searchText"
                                              md-selected-item-change="ctrl.selectedItemChange(item)"
                                              md-items="item in ctrl.querySearch(ctrl.searchText)"
-                                             md-item-text="item.DESCRICAO"
+                                             md-item-text="item.NOM"
                                              md-delay="300"
                                              md-min-length="2"
                                              placeholder="Pesquisar Clientes">
                                 <div layout="row" class="item" layout-align="start center">
-                                    <span md-highlight-text="ctrl.searchText">{{item.DESCRICAO}}</span>
-                                    
+                                    <span md-highlight-text="ctrl.searchText">{{item.NOM}}</span>
                                 </div>
                             </md-autocomplete>
+                        </div>
+
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" ng-model="ctrl.currentRecord.CID">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" ng-model="ctrl.currentRecord.EST">
                         </div>
                     </div>
 
@@ -167,7 +181,7 @@
                                             </td>
                                             <td class="text-right">
                                                 {{item.PRECO_UNITARIO}}
-                                            </td>                                            
+                                            </td>
                                             <td>
                                                 <button data-action="removeRow" class="btn btn-danger btn-sm hidden-print"
                                                         ng-click="formitens.$setDirty(); ctrl.removeItens(item,ctrl.SweetAlert)">
@@ -201,8 +215,7 @@
                             <fieldset>
                                 <div class="row">
                                     <luar-textvalor container-class="col-md-2" label="ISSQN Base" name="ISSQN_BASE"
-                                                    ng-model="ctrl.currentRecord.ISSQN_BASE"
-                                                    >
+                                                    ng-model="ctrl.currentRecord.ISSQN_BASE">
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Alíquota" name="ISSQN_ALIQUOTA"
