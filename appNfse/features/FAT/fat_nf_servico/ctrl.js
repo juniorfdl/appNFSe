@@ -12,7 +12,7 @@ var App;
         var Crudfat_nf_servicoCtrl = (function (_super) {
 
             __extends(Crudfat_nf_servicoCtrl, _super);
-            function Crudfat_nf_servicoCtrl($rootScope, api, Crudfat_nf_servicoService, lista, $q, $scope, CrudTabela_NomesService) {
+            function Crudfat_nf_servicoCtrl($rootScope, api, Crudfat_nf_servicoService, lista, $q, $scope, CrudTabela_NomesService, $window, luarApp) {
                 var _this = this;
                 _super.call(this);
 
@@ -237,7 +237,6 @@ var App;
                     }
                 }
 
-
                 this.MontaDescricao = MontaDescricao;
 
                 function MontaDescricao() {
@@ -247,9 +246,33 @@ var App;
 
                 function CalculaCOFINS() {
                     if (_this.currentRecord.COFINS_ALIQUOTA > 0)
-                     _this.currentRecord.COFINS_VALOR = _this.currentRecord.COFINS_BASE * _this.currentRecord.COFINS_ALIQUOTA / 100;
+                        _this.currentRecord.COFINS_VALOR = _this.currentRecord.COFINS_BASE * _this.currentRecord.COFINS_ALIQUOTA / 100;
                 }
 
+                this.EmitirNFSe = EmitirNFSe;                
+                function EmitirNFSe() {
+
+                    debugger;
+
+                    //var oDynaWrap = new ActiveXObject("DynamicWrapper")
+
+                    //// to call MessageBoxA(), first register the API function
+                    //oDynaWrap.Register("NfseWebXDelphi.DLL", "emitir", "I=HsSu", "f=s", "R=l")
+
+                    //// now call the function
+                    //var teste = oDynaWrap.emitir(null, "emitir()", "1", 3)                                       
+                    
+                    if (_this.currentRecord.id > 0) {
+                        _this.crudSvc.EmitirNFSe(_this.currentRecord.id).then(function (dados) {
+
+                            if (dados.OBSERVACAO = '0') {                                
+                                var pdf = luarApp.CaminhoPDF + _this.currentRecord.NUMERO + '-nfse.pdf';
+                                $window.location.assign(pdf);
+                            }
+
+                        });
+                    }
+                }
             }
 
             Crudfat_nf_servicoCtrl.prototype.crud = function () {

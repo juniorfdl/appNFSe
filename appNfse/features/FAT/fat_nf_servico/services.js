@@ -55,6 +55,17 @@ var App;
                     var params = { COD_CADSERVICO: COD_CADSERVICO , CID: CID, EST: EST};
                     return this.api.allLook(params, 'fat_nf_servico/GetValoresImpostos');
                 }
+
+                this.EmitirNFSe = EmitirNFSe;
+                function EmitirNFSe(COD_CADSERVICO) {
+                    var params = { COD_CADSERVICO: COD_CADSERVICO };
+                    return this.api.allLook(params, 'fat_nf_servico/EmitirNFSe');
+                    //debugger;
+                    //var delphi = loadLibrary("NfseWebXDelphi.dll");
+                    //var emitir = delphi.getProc("emitir", "id", "stdcall");
+                    //var teste = emitir(COD_CADSERVICO);
+                    //return teste;
+                }
             }
 
             Object.defineProperty(Crudfat_nf_servicoService.prototype, "baseEntity", {

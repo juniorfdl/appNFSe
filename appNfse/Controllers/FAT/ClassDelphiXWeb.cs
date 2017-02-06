@@ -8,18 +8,14 @@ namespace appNfse.Controllers.FAT
 {
     public class ClassDelphiXWeb
     {
-        [DllImport(@"NfseWebXDelphi.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi)]
-        public static extern
-            string emitir(int inputInt, string inputString,
-                                  out int outputInt, out string outputString);
+        [DllImport(@"NfseWebXDelphi.dll")]
+        //[return: MarshalAs(UnmanagedType.BStr)]
+        private static extern int emitir(int id);
 
-        public string EmitirNFSe(string id)
-        {
-            int ret1;
-            string ret2;
-            var ret = emitir(1,id, out ret1, out ret2);
-
-            return ret + ret2;
+        public int EmitirNFSe(int id)
+        {            
+            var ret = emitir(id);
+            return ret;
         }
 
     }

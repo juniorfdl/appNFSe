@@ -6,7 +6,8 @@ var App;
     {        
         BASEURL: document.baseURI,
         WEBAPI: document.baseURI,
-        ITENS_POR_PAGINA: '15'
+        ITENS_POR_PAGINA: '15',
+        CaminhoPDF: 'Xml-Nfs/PDF/'
         //ISDEBUG: true
     });
 

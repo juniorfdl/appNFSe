@@ -13,6 +13,13 @@
     </luar-list>
 
     <luar-main-form ng-show="Cadastro">
+
+        <button type="button" data-action="newRow" class="btn btn-primary btn-sm" 
+                ng-click="ctrl.EmitirNFSe()">
+            <b>+</b>Novo Item
+        </button>
+        <!--<a href="{{ctrl.AbrirPdfNFSe()}}" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-download"></i></a>-->
+
         <tabset>
             <tab heading="Dados Gerais">
                 <tab-heading> Dados Gerais </tab-heading>

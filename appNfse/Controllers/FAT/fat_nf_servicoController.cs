@@ -75,9 +75,8 @@
         public dynamic EmitirNFSe([FromUri]FAT_NF_SERVICO filtros)
         {
             FAT_NF_SERVICO item = new FAT_NF_SERVICO();
-
             ClassDelphiXWeb d = new ClassDelphiXWeb();
-            item.OBSERVACAO = d.EmitirNFSe(filtros.COD_CADSERVICO.ToString());
+            item.OBSERVACAO = d.EmitirNFSe(filtros.COD_CADSERVICO).ToString();
             return Ok(item);
         }
 

@@ -15,50 +15,67 @@
 
         <nav class="collapse navbar-collapse" collapse="navData.isCollapsed()">
             <ul class="nav navbar-nav">
-                <li ng-if="ADMIN">
-                    <a ui-sref="usuario" menu-item="Usuario">Usuários</a>
+
+                <li class="dropdown" dropdown>
+                    <a href="#" class="dropdown-toggle" dropdown-toggle>Configurações<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-if="ADMIN">
+                            <a ui-sref="usuario" menu-item="Usuario">Usuários</a>
+                        </li>
+
+                        <li>
+                            <a ui-sref="sis_menu" menu-item="sis_menu">Menu</a>
+                        </li>
+
+                        <li>
+                            <a ui-sref="tabela_nomes" menu-item="tabela_nomes">Tabela Nomes</a>
+                        </li>
+                    </ul>
                 </li>
 
-                <li>
-                    <a ui-sref="sis_menu" menu-item="sis_menu">Menu</a>
+                <li class="dropdown" dropdown>
+                    <a href="#" class="dropdown-toggle" dropdown-toggle>Cadastros<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a ui-sref="cad_colaborador" menu-item="cad_banco">Colaboradores</a>
+                        </li>
+
+                        <li>
+                            <a ui-sref="cad_banco" menu-item="cad_banco">Bancos</a>
+                        </li>
+
+                        <li>
+                            <a ui-sref="cad_servico" menu-item="cad_servico">Serviço</a>
+                        </li>
+
+                        <li>
+                            <a ui-sref="cad_servico_imposto" menu-item="cad_servico_imposto">Serviço Imposto</a>
+                        </li>
+
+                        <li>
+                            <a ui-sref="cad_empresa" menu-item="cad_empresa">Empresas</a>
+                        </li>
+
+                        <li>
+                            <a ui-sref="cad_cond_pagamento" menu-item="cad_cond_pagamento">Condição de Pagamento</a>
+                        </li>
+                    </ul>
                 </li>
 
-                <li>
-                    <a ui-sref="tabela_nomes" menu-item="tabela_nomes">Tabela Nomes</a>
-                </li>
-
-                <li>
-                    <a ui-sref="cad_colaborador" menu-item="cad_banco">Colaboradores</a>
-                </li>
-
-                <li>
-                    <a ui-sref="cad_banco" menu-item="cad_banco">Bancos</a>
-                </li>
-
-                <li>
-                    <a ui-sref="cad_servico" menu-item="cad_servico">Serviço</a>
-                </li>
-
-                <li>
-                    <a ui-sref="cad_servico_imposto" menu-item="cad_servico_imposto">Serviço Imposto</a>
-                </li>
-
-                <li>
-                    <a ui-sref="cad_empresa" menu-item="cad_empresa">Empresas</a>
-                </li>
-
-                <li>
-                    <a ui-sref="cad_cond_pagamento" menu-item="cad_cond_pagamento">Condição de Pagamento</a>
-                </li>
-                <li>
-                    <a ui-sref="fat_montante" menu-item="fat_montante">Contratos</a>
-                </li>
-                <li>
-                    <a ui-sref="fat_parametro_nfs" menu-item="fat_parametro_nfs">Parâmetro NFS-e</a>
-                </li>
-                <li>
-                    <a ui-sref="fat_nf_servico" menu-item="fat_nf_servico">NFS-e</a>
-                </li>
+                <li class="dropdown" dropdown>
+                    <a href="#" class="dropdown-toggle" dropdown-toggle>Vendas<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a ui-sref="fat_montante" menu-item="fat_montante">Contratos</a>
+                        </li>
+                        <li>
+                            <a ui-sref="fat_parametro_nfs" menu-item="fat_parametro_nfs">Parâmetro NFS-e</a>
+                        </li>
+                        <li>
+                            <a ui-sref="fat_nf_servico" menu-item="fat_nf_servico">NFS-e</a>
+                        </li>
+                    </ul>
+                </li>               
 
             </ul>
 
