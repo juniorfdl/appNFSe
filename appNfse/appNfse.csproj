@@ -212,6 +212,7 @@
     <Compile Include="Controllers\CAD\cad_cond_pagamentoController.cs" />
     <Compile Include="Controllers\CAD\cad_bancoController.cs" />
     <Compile Include="Controllers\CAD\cad_servicoController.cs" />
+    <Compile Include="Controllers\CAD\v_cons_cad_servico_impostoController.cs" />
     <Compile Include="Controllers\CAD\cad_servico_impostoController.cs" />
     <Compile Include="Controllers\CAD\tabela_nomesController.cs" />
     <Compile Include="Controllers\CAD\cad_empresaController.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Models\CAD\CAD_COND_PAGAMENTO.cs" />
     <Compile Include="Models\CAD\CAD_BANCO.cs" />
     <Compile Include="Models\CAD\CAD_SERVICO.cs" />
+    <Compile Include="Models\CAD\V_CONS_CAD_SERVICO_IMPOSTO.cs" />
     <Compile Include="Models\CAD\CAD_SERVICO_IMPOSTO.cs" />
     <Compile Include="Models\CAD\VIEW_CADCLI.cs" />
     <Compile Include="Models\CAD\TABELA_NOMES.cs" />

@@ -1,11 +1,9 @@
 ﻿<luar-crud crud="ctrl" title="Cadastro de Serviço">
 
     <luar-list list="ctrl.lista" ng-show="!Cadastro">
+        <column id="NOME_CIDADE" title="Nome Cidade" searchable="true"></column>
         <column id="CODIGO_SERVICO" title="Código Serviço" searchable="true"></column>
-        <column id="NOME" title="Nome" searchable="true"></column>
-        <column id="DESCRICAO_NOTA" title="Descrição Nota" searchable="true"></column>
-        <column id="REGIMEESPECIALTRIBUTACAO" title="Regime Especial Tributário"></column>
-        <column id="CODIGOTRIBUTACAOMUNICIPIO" title="Cód. Tributação Município"></column>
+        <column id="NOME" title="Nome Serviço" searchable="true"></column>
         <luar-table></luar-table>
     </luar-list>
 
@@ -16,7 +14,7 @@
                 <fieldset>
                     <div class="row">
                         <luar-text container-class="col-md-12" label="Cidade"
-                                   name="CODIGO_CIDADE" required style="display:none" ng-model="ctrl.currentRecord.CODIGO_CIDADE">
+                                   name="CODIGO_CIDADE" style="display:none" required ng-model="ctrl.currentRecord.CODIGO_CIDADE">
                         </luar-text>
 
                         <div class="col-md-12 ng-scope" name="CODIGO_CIDADE">

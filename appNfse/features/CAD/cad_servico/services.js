@@ -14,7 +14,7 @@ var App;
         var Crudcad_servicoService = (function (_super) {
             __extends(Crudcad_servicoService, _super);
 
-            function Crudcad_servicoService($q, api) {
+            function Crudcad_servicoService($q, api, $rootScope) {
                 _super.apply(this, arguments);
                 this.tabelanomeLook = tabelanomeLook;
 

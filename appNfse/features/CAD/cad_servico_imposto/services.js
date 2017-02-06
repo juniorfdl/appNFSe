@@ -14,7 +14,7 @@ var App;
         var Crudcad_servico_impostoService = (function (_super) {
             __extends(Crudcad_servico_impostoService, _super);
 
-            function Crudcad_servico_impostoService($q, api) {
+            function Crudcad_servico_impostoService($q, api, $rootScope) {
                 _super.apply(this, arguments);
                 this.servicoLook = servicoLook;
                 this.endcidadesLook = endcidadesLook;
@@ -39,6 +39,15 @@ var App;
                 configurable: true
             });            
    
+            Object.defineProperty(Crudcad_servico_impostoService.prototype, "baseEntityConsulta", {
+                /// @override
+                get: function () {
+                    return 'v_cons_cad_servico_imposto';
+                },
+                enumerable: true,
+                configurable: true
+            });
+
             return Crudcad_servico_impostoService;
         })(Services.CrudBaseService);
         Services.Crudcad_servico_impostoService = Crudcad_servico_impostoService;
