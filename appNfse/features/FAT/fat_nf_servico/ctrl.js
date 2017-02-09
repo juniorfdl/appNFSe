@@ -251,28 +251,121 @@ var App;
 
                 this.EmitirNFSe = EmitirNFSe;                
                 function EmitirNFSe() {
-
-                    debugger;
-
-                    //var oDynaWrap = new ActiveXObject("DynamicWrapper")
-
-                    //// to call MessageBoxA(), first register the API function
-                    //oDynaWrap.Register("NfseWebXDelphi.DLL", "emitir", "I=HsSu", "f=s", "R=l")
-
-                    //// now call the function
-                    //var teste = oDynaWrap.emitir(null, "emitir()", "1", 3)                                       
-                    
                     if (_this.currentRecord.id > 0) {
-                        _this.crudSvc.EmitirNFSe(_this.currentRecord.id).then(function (dados) {
+                        _this.crudSvc.EmitirNFSe(_this.currentRecord.id, 'EMI').then(function (dados) {
+                            debugger;
+                            if (dados.Retorno == '0') {
+                                if (dados.OperacaoSilenciosa == '1') {
+                                    var pdf = luarApp.CaminhoPDF + _this.currentRecord.NUMERO
+                                        + _this.currentRecord.SERIE + '-nfse.pdf';
 
-                            if (dados.OBSERVACAO = '0') {                                
-                                var pdf = luarApp.CaminhoPDF + _this.currentRecord.NUMERO + '-nfse.pdf';
-                                $window.location.assign(pdf);
+                                    _this.SweetAlert.swal({
+                                        title: 'Visualizar PDF da NFS-e?',
+                                        text: 'Operação executada com sucesso!',
+                                        type: "success",
+                                        showCancelButton: true,
+                                        confirmButtonColor: "#DD6B55",
+                                        confirmButtonText: "Sim",
+                                        cancelButtonText: "Não"
+                                    }, function (isConfirm) {
+                                        if (isConfirm) {
+                                            window.open(pdf, '_blank');
+                                        }
+                                    });
+                                    
+                                }
+                            } else {
+                                _this.SweetAlert.swal({
+                                    title: dados.Retorno,
+                                    type: "warning",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "OK"
+                                });
                             }
 
                         });
                     }
                 }
+
+                this.ConsultarNFSe = ConsultarNFSe;
+                function ConsultarNFSe() {
+                    if (_this.currentRecord.id > 0) {
+                        _this.crudSvc.EmitirNFSe(_this.currentRecord.id, 'CON').then(function (dados) {
+                            debugger;
+                            if (dados.Retorno == '0') {
+                                if (dados.OperacaoSilenciosa == '1') {
+                                    var pdf = luarApp.CaminhoPDF + _this.currentRecord.NUMERO
+                                        + _this.currentRecord.SERIE + '-nfse.pdf';
+
+                                    _this.SweetAlert.swal({
+                                        title: 'Visualizar PDF da NFS-e?',
+                                        text: 'Operação executada com sucesso!',
+                                        type: "success",
+                                        showCancelButton: true,
+                                        confirmButtonColor: "#DD6B55",
+                                        confirmButtonText: "Sim",
+                                        cancelButtonText: "Não"
+                                    }, function (isConfirm) {
+                                        if (isConfirm) {
+                                            window.open(pdf, '_blank');
+                                        }
+                                    });
+
+                                }
+                            } else {
+                                _this.SweetAlert.swal({
+                                    title: dados.Retorno,
+                                    type: "warning",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "OK"
+                                });
+                            }
+
+                        });
+                    }
+                }
+
+                this.CancelarNFSe = CancelarNFSe;
+                function CancelarNFSe() {
+                    if (_this.currentRecord.id > 0) {
+                        _this.crudSvc.EmitirNFSe(_this.currentRecord.id, 'CAN').then(function (dados) {
+                            debugger;
+                            if (dados.Retorno == '0') {
+                                if (dados.OperacaoSilenciosa == '1') {
+                                    var pdf = luarApp.CaminhoPDF + _this.currentRecord.NUMERO
+                                        + _this.currentRecord.SERIE + '-nfse.pdf';
+
+                                    _this.SweetAlert.swal({
+                                        title: 'Visualizar PDF da NFS-e?',
+                                        text: 'Operação executada com sucesso!',
+                                        type: "success",
+                                        showCancelButton: true,
+                                        confirmButtonColor: "#DD6B55",
+                                        confirmButtonText: "Sim",
+                                        cancelButtonText: "Não"
+                                    }, function (isConfirm) {
+                                        if (isConfirm) {
+                                            window.open(pdf, '_blank');
+                                        }
+                                    });
+
+                                }
+                            } else {
+                                _this.SweetAlert.swal({
+                                    title: dados.Retorno,
+                                    type: "warning",
+                                    showCancelButton: false,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "OK"
+                                });
+                            }
+
+                        });
+                    }
+                }
+
             }
 
             Crudfat_nf_servicoCtrl.prototype.crud = function () {

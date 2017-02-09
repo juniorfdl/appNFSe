@@ -217,7 +217,6 @@
     <Compile Include="Controllers\CAD\tabela_nomesController.cs" />
     <Compile Include="Controllers\CAD\cad_empresaController.cs" />
     <Compile Include="Controllers\END\END_CIDADES\end_cidadesController.cs" />
-    <Compile Include="Controllers\FAT\ClassDelphiXWeb.cs" />
     <Compile Include="Controllers\FAT\fat_nf_servicoController.cs" />
     <Compile Include="Controllers\FAT\fat_parametroNfsController.cs" />
     <Compile Include="Controllers\FAT\fat_contratoController.cs" />

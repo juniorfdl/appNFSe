@@ -99,6 +99,11 @@ var App;
             ApiService.prototype.allLook = function (params, look) {
                 return this.fetch(this.apibase + '/' + look, params);
             };
+
+            ApiService.prototype.allExterna = function (params, api) {
+                return this.fetch(api, params);
+            };
+
             /**
              * Obtem um registro através do seu identificador.
              *

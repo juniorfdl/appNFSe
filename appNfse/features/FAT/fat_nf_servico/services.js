@@ -14,7 +14,7 @@ var App;
         var Crudfat_nf_servicoService = (function (_super) {
             __extends(Crudfat_nf_servicoService, _super);
 
-            function Crudfat_nf_servicoService($q, api, $rootScope) {
+            function Crudfat_nf_servicoService($q, api, $rootScope, luarApp) {
                 _super.apply(this, arguments);
                 this.cadcolaboradorLook = cadcolaboradorLook;
                 this.CondPagamentoLook = CondPagamentoLook;
@@ -57,14 +57,14 @@ var App;
                 }
 
                 this.EmitirNFSe = EmitirNFSe;
-                function EmitirNFSe(COD_CADSERVICO) {
-                    var params = { COD_CADSERVICO: COD_CADSERVICO };
-                    return this.api.allLook(params, 'fat_nf_servico/EmitirNFSe');
-                    //debugger;
-                    //var delphi = loadLibrary("NfseWebXDelphi.dll");
-                    //var emitir = delphi.getProc("emitir", "id", "stdcall");
-                    //var teste = emitir(COD_CADSERVICO);
-                    //return teste;
+                function EmitirNFSe(id, Operacao) {
+                    debugger;
+                    var params = { id: id, CEMP: this.$rootScope.currentUser.userCEMP, 
+                        Usuario: this.$rootScope.currentUser.NOME, Operacao: Operacao,
+                        CodigoUsuario: this.$rootScope.currentUser.id
+                    };
+
+                    return this.api.allExterna(params, luarApp.apiDelphi + 'fat_nf_servico/EmitirNFSe');
                 }
             }
 

@@ -23,6 +23,7 @@ var App;
                             localStorage.setItem("luarusr", userName);
                             localStorage.setItem("luarpass", password);
                             localStorage.setItem("ADMIN", response.ADMIN);
+                            localStorage.setItem("CODIGOSISUSUARIO", response.id);
 
                             if (response.COD_CADVENDEDOR != null) {
                                 localStorage.setItem("VENDEDOR", response.VENDEDOR);

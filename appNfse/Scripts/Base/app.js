@@ -56,6 +56,7 @@ var App;
                 security.login(loginusr, loginpass).then(function () {
                     $rootScope.currentUser.userEmpresa = localStorage.getItem("userEmpresa");
                     $rootScope.currentUser.userCEMP = localStorage.getItem("userCEMP");
+                    $rootScope.currentUser.CODIGOSISUSUARIO = localStorage.getItem("CODIGOSISUSUARIO");
                 });
             }
         }

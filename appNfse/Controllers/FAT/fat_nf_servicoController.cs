@@ -14,7 +14,7 @@
     using System.Net.Http;
     using System.Web.Http;
     using System.Web.Http.Description;
-    using appNfse.Controllers.FAT;
+    using Controllers.FAT;
 
     public class Fat_nf_servicoController : CrudControllerBase<FAT_NF_SERVICO>
     {
@@ -68,17 +68,7 @@
                       w.COD_CADSERVICO == filtros.COD_CADSERVICO).FirstOrDefault();
                         
             return Ok(item);
-        }
-
-        [Route("api/fat_nf_servico/EmitirNFSe")]
-        [HttpGet]
-        public dynamic EmitirNFSe([FromUri]FAT_NF_SERVICO filtros)
-        {
-            FAT_NF_SERVICO item = new FAT_NF_SERVICO();
-            ClassDelphiXWeb d = new ClassDelphiXWeb();
-            item.OBSERVACAO = d.EmitirNFSe(filtros.COD_CADSERVICO).ToString();
-            return Ok(item);
-        }
+        }        
 
     }
 

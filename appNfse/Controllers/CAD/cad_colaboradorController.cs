@@ -19,7 +19,6 @@
             return query.OrderBy(e => e.id);
         }
 
-
         [Route("api/cad_colaborador/ClientesLook")]
         [HttpGet]
         public dynamic ClientesLook([FromUri]CAD_COLABORADOR filtros)

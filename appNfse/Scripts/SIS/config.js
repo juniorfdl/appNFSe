@@ -7,7 +7,8 @@ var App;
         BASEURL: document.baseURI,
         WEBAPI: document.baseURI,
         ITENS_POR_PAGINA: '15',
-        CaminhoPDF: 'Xml-Nfs/PDF/'
+        CaminhoPDF: 'http://localhost/PDFNfse/',
+        apiDelphi: 'http://localhost:1234/api/'
         //ISDEBUG: true
     });
 
