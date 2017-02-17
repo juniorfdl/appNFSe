@@ -66,9 +66,37 @@
             CAD_SERVICO_IMPOSTO item = db.Set<CAD_SERVICO_IMPOSTO>()
                 .Where(w => w.CODIGO_CIDADE == cid.id &
                       w.COD_CADSERVICO == filtros.COD_CADSERVICO).FirstOrDefault();
-                        
+
             return Ok(item);
-        }        
+        }
+
+        [Route("api/fat_nf_servico/Start")]
+        [HttpGet]
+        public IHttpActionResult Start(string CEMP)
+        {
+            FAT_PARAMETRO_NFS param = db.Set<FAT_PARAMETRO_NFS>().Where(f => f.CEMP == CEMP).FirstOrDefault();
+            FAT_NF_SERVICO_START item = new FAT_NF_SERVICO_START();
+            item.COD_CADBANCO = param.COD_CADBANCO;
+            item.COD_CADCPAG_PADRAO = param.COD_CADCPAG_PADRAO;
+            item.ISS_RETIDO = param.ISS_RETIDO;
+            item.NATUREZA_PADRAO = param.NATUREZA_PADRAO;
+            item.SERIE_PADRAO = param.SERIE_PADRAO;
+            item.TIPO_SERVICO = param.TIPO_SERVICO;
+            item.DATA_EMISSAO = DateTime.Now;
+            item.ANO_COMPETENCIA = DateTime.Now.Year;
+
+            var Bancos = db.Set<CAD_BANCO>().Where(f => f.CEMP == CEMP || f.CEMP == "0");            
+            item.lista_Bancos = Bancos;
+            
+            item.Lista_Natureza = db.Set<TABELA_NOMES>().Where(f => f.SISTEMA == "FAT" && f.TIPO == "01");
+                        
+            item.lista_CondPagamento = db.Set<CAD_COND_PAGAMENTO>().Where(f => f.CEMP == CEMP || f.CEMP == "0");
+
+            item.lista_CadServico = db.Set<CAD_SERVICO>().Where(f => f.CEMP == CEMP || f.CEMP == "0");
+
+            return Ok(item);
+        }
+
 
     }
 

@@ -112,6 +112,7 @@ var App;
             CrudBaseCtrl.prototype.overridePodeExcluir = function () {
                 return undefined;
             };
+            
             return CrudBaseCtrl;
         })();
         Controllers.CrudBaseCtrl = CrudBaseCtrl;
@@ -126,7 +127,7 @@ var App;
                 this.$q = this.injector.get('$q');
                 this.intercept = this.injector.get('intercept');
                 this.termoDigitado = "";
-                this.campoSelecionado = "";
+                this.campoSelecionado = "";               
             }
             /**
              * Método utilitário para aplicar um mixin nesta instância do controller.
@@ -269,6 +270,7 @@ var App;
                     var result = this.internalSalvar();
                 }
             };
+
             CrudBaseEditCtrl.prototype.tratarErros = function (form, erros) {
                 var _this = this;
                 this.mensagens.remover('API');
@@ -425,7 +427,7 @@ var App;
                 this.buscar();
                 return this._direcaoAsc;
             };
-
+                        
             return CrudBaseEditCtrl;
         })(CrudBaseCtrl);
         Controllers.CrudBaseEditCtrl = CrudBaseEditCtrl;

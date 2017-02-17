@@ -109,11 +109,9 @@ var App;
             });
         };
         var setupTitle = function () {
-            return $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-                // Sets the layout name, which can be used to display different layouts (header, footer etc.)
-                // based on which page the user is located
+            return $rootScope.$on('$stateChangeSuccess', function (event, toState) {                
                 $rootScope.layout = toState.layout;
-                var title = "Nota de Serviço";
+                var title = "Nota de Servi&ccedil;o";
                 if (toState.data && toState.data.title) {
                     title += " | " + toState.data.title;
                 }

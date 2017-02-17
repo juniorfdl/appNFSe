@@ -135,7 +135,7 @@
             controllerAs: 'ctrl',
             resolve: {
                 lista: function (Crudfat_nf_servicoService) {
-                    return Crudfat_nf_servicoService.buscar('', 1, 'NUMERO', false, 15, '');
+                    return Crudfat_nf_servicoService.buscar('', 1, 'DATA_EMISSAO', false, 15, '');
                 }
             }
         }).state("otherwise",

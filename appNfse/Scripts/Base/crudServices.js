@@ -148,8 +148,7 @@ var App;
             CrudBaseService.prototype.lookupapi = function (params, look) {               
                 return this.api.all(params, look);
             };
-
-
+            
             /**
              * Busca um registro no back-end através de seu [[ApiEntity.id]].
              *
@@ -159,6 +158,10 @@ var App;
             CrudBaseService.prototype.buscarPorId = function (id) {
                 return this.api.get(id);
             };
+
+            CrudBaseService.prototype.ExecutaStart = function (CEMP) {
+                return this.api.get('Start?CEMP='+CEMP);
+            }
 
             CrudBaseService.prototype.buscarConsultaPorId = function (id) {
                 if (this.apiConsulta != null)

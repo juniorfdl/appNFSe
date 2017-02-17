@@ -121,6 +121,7 @@ var App;
                     return response.data;
                 });
             };
+
             /**
              * Obtem uma lista de registros através de um comando específico da entidade.
              *

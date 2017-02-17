@@ -20,7 +20,19 @@ var App;
                 this.api = api;
                 this.crudSvc = Crudfat_nf_servicoService;
                 this.crudSvcTabelaNomes = CrudTabela_NomesService;
-                this.lista = lista;
+                this.lista = lista; 
+                
+                ExecutaStart();
+                function ExecutaStart() {
+                    _this.crudSvc.ExecutaStart('01').then(function (lista) {
+                        _this.dadosStart = lista;
+                        _this.CadBancoLook = lista.lista_Bancos;
+                        _this.NaturezaLook = lista.Lista_Natureza;
+                        _this.CondPagamentoLook = lista.lista_CondPagamento;
+                        _this.CadServicoLook = lista.lista_CadServico;
+                    });
+                }
+                
                 _this.data = [];
                 _this.selectedItem = null;
                 _this.searchText = null;
@@ -43,14 +55,19 @@ var App;
                             _this.currentRecord.CLIENTE_CODIGO = null;
                             _this.currentRecord.CLIENTE_NOME = null;
                             _this.currentRecord.COD_CADCLI = null;
-                            this.FatMontanteLook = null;
-                            this.DesabilitaServico = true;
+                            _this.currentRecord.CID = null;
+                            _this.currentRecord.EST = null;
+                            _this.FatMontanteLook = null;
+                            _this.DesabilitaServico = true;
                         } else {
                             _this.currentRecord.CLIENTE_CODIGO = item.COD;
                             _this.currentRecord.CLIENTE_NOME = item.NOM;
                             _this.currentRecord.COD_CADCLI = item.id;
-                            this.FatMontanteLook = null;
-                            this.DesabilitaServico = false;
+                            _this.currentRecord.CID = item.CID;
+                            _this.currentRecord.EST = item.EST;
+
+                            _this.FatMontanteLook = null;
+                            _this.DesabilitaServico = false;
                             BuscarMontantes();
                         }
                     }
@@ -62,35 +79,7 @@ var App;
                         return response;
                     })
                 }
-
-                CondPagamentoLook();
-                function CondPagamentoLook() {
-                    _this.crudSvc.CondPagamentoLook().then(function (lista) {
-                        _this.CondPagamentoLook = lista;
-                    });
-                }
-
-                CadBancoLook();
-                function CadBancoLook() {
-                    _this.crudSvc.CadBancoLook().then(function (lista) {
-                        _this.CadBancoLook = lista;
-                    });
-                }
-
-                NaturezaLook();
-                function NaturezaLook() {
-                    _this.crudSvcTabelaNomes.tabelanomeLook('01', 'FAT').then(function (lista) {
-                        _this.NaturezaLook = lista;
-                    });
-                }
-
-                CadServicoLook();
-                function CadServicoLook() {
-                    _this.crudSvc.CadServicoLook().then(function (lista) {
-                        _this.CadServicoLook = lista;
-                    });
-                }
-
+                                
                 this.removeItens = removeItens;
                 this.AddItem = AddItem;
                 this.ConfirmarItem = ConfirmarItem;
@@ -98,7 +87,7 @@ var App;
                 this.ItemOK = ItemOK;
                 this.NovoItem = {};
                 this.EditItem = EditItem;
-                this.bOperacaoItem = 'L' // inicia como lista;                
+                this.bOperacaoItem = 'L'; // inicia como lista;
 
                 function ItemOK() {
                     return _this.NovoItem.DESCRICAO != null && _this.NovoItem.PRECO_UNITARIO > 0;
@@ -140,6 +129,11 @@ var App;
                 function ConfirmarItem() {
 
                     if (_this.bOperacaoItem == 'A') {
+
+                        if (_this.currentRecord.lista_Itens == null) {
+                            _this.currentRecord.lista_Itens = [];
+                        }
+
                         _this.currentRecord.lista_Itens.push(_this.NovoItem);
                     }
                     else {
@@ -242,16 +236,40 @@ var App;
                 function MontaDescricao() {
                 }
 
-                this.CalculaCOFINS = CalculaCOFINS;
+                this.CalculaISSQN = CalculaISSQN;
+                function CalculaISSQN() {
+                    if (_this.currentRecord.ISSQN_ALIQUOTA > 0)
+                        _this.currentRecord.ISSQN_VALOR = _this.currentRecord.ISSQN_BASE * _this.currentRecord.ISSQN_ALIQUOTA / 100;
+                }
 
+                this.CalculaCOFINS = CalculaCOFINS;
                 function CalculaCOFINS() {
                     if (_this.currentRecord.COFINS_ALIQUOTA > 0)
                         _this.currentRecord.COFINS_VALOR = _this.currentRecord.COFINS_BASE * _this.currentRecord.COFINS_ALIQUOTA / 100;
                 }
 
+                this.CalculaIRRF = CalculaIRRF;
+                function CalculaIRRF() {
+                    if (_this.currentRecord.IRRF_ALIQUOTA > 0)
+                        _this.currentRecord.IRRF_VALOR = _this.currentRecord.IRRF_BASE * _this.currentRecord.IRRF_ALIQUOTA / 100;
+                }
+
+                this.CalculaCSLL = CalculaCSLL;
+                function CalculaCSLL() {
+                    if (_this.currentRecord.CSLL_ALIQUOTA > 0)
+                        _this.currentRecord.CSLL_VALOR = _this.currentRecord.CSLL_BASE * _this.currentRecord.CSLL_ALIQUOTA / 100;
+                }
+
+                this.CalculaINSS = CalculaINSS;
+                function CalculaINSS() {
+                    if (_this.currentRecord.INSS_ALIQUOTA > 0)
+                        _this.currentRecord.INSS_VALOR = _this.currentRecord.INSS_BASE * _this.currentRecord.INSS_ALIQUOTA / 100;
+                }
+
                 this.EmitirNFSe = EmitirNFSe;                
                 function EmitirNFSe() {
-                    if (_this.currentRecord.id > 0) {
+                    if (_this.currentRecord.id > 0) {                      
+
                         _this.crudSvc.EmitirNFSe(_this.currentRecord.id, 'EMI').then(function (dados) {
                             debugger;
                             if (dados.Retorno == '0') {
@@ -382,6 +400,18 @@ var App;
 
                     if (this.currentRecord.id == null) {
                         this.DesabilitaServico = true;
+                                                
+                        this.currentRecord.COD_CADBANCO = this.dadosStart.COD_CADBANCO;
+                        this.currentRecord.SERIE = this.dadosStart.SERIE_PADRAO;
+                        this.currentRecord.COD_CADSERVICO = this.dadosStart.TIPO_SERVICO;
+                        this.currentRecord.NATUREZA_OPERACAO = this.dadosStart.NATUREZA_PADRAO;
+                        this.currentRecord.COD_CADCPAG = this.dadosStart.COD_CADCPAG_PADRAO;
+                        this.currentRecord.ISS_RETIDO = this.dadosStart.ISS_RETIDO;
+
+                        this.currentRecord.DATA_EMISSAO = this.dadosStart.DATA_EMISSAO;
+                        this.currentRecord.DATA_VENCIMENTO = this.dadosStart.DATA_EMISSAO;
+                        this.currentRecord.ANO_COMPETENCIA = this.dadosStart.ANO_COMPETENCIA;
+
                     } else {
                         this.DesabilitaServico = false;
                     }
@@ -391,7 +421,7 @@ var App;
             Crudfat_nf_servicoCtrl.prototype.prepararParaSalvar = function () {
                 this.currentRecord.CFIL = '01';
             };
-
+            
             return Crudfat_nf_servicoCtrl;
         })(Controllers.CrudBaseEditCtrl);
         Controllers.Crudfat_nf_servicoCtrl = Crudfat_nf_servicoCtrl;

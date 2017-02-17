@@ -1,13 +1,13 @@
-﻿<luar-crud crud="ctrl" title="Nota de Serviço - NFS-e">
+﻿<luar-crud crud="ctrl" title="Nota de Servi&ccedil;o - NFS-e">
 
     <luar-list list="ctrl.lista" ng-show="!Cadastro">
         <column id="NUMERO" title="Nro Nota" searchable="true"></column>
         <column id="SERIE" title="Série" searchable="false"></column>
         <column id="DATA_EMISSAO" title="Data Emissão" searchable="true" type="date"></column>
         <column id="DATA_VENCIMENTO" title="Data Vencimento" searchable="true" type="date"></column>
-        <column id="VALOR_TOTAL" title="Valor Total" searchable="false"></column>
-        <column id="VALOR_LIQUIDO" title="Valor Liquido" searchable="false"></column>
-        <column id="SITUACAO" title="Situação" searchable="true"></column>
+        <column id="VALOR_TOTAL" title="Valor Total" searchable="false" type="currency"></column>
+        <column id="VALOR_LIQUIDO" title="Valor Liquido" searchable="false" type="currency"></column>
+        <column id="SITUACAO" title="Situação" searchable="true" ></column>
         <column id="COD_CADCLI" title="Cliente" searchable="true"></column>
         <luar-table></luar-table>
     </luar-list>
@@ -170,7 +170,7 @@
                                 <table class="table" ng-form="formitens" ng-if="ctrl.bOperacaoItem == 'L'">
                                     <thead>
                                         <tr>
-                                            <th class="text-left">MONTANTE</th>
+                                            <th class="text-left">Contrato</th>
                                             <th class="text-left" width="60%">Discriminação do Serviço</th>
                                             <th class="text-right">Quantidade</th>
                                             <th class="text-right">Preço Unitário</th>
@@ -189,7 +189,7 @@
                                                 {{item.QUANTIDADE}}
                                             </td>
                                             <td class="text-right">
-                                                {{item.PRECO_UNITARIO}}
+                                                {{item.PRECO_UNITARIO  | currency:'':2}}
                                             </td>
                                             <td>
                                                 <button data-action="removeRow" class="btn btn-danger btn-sm hidden-print"
@@ -222,13 +222,16 @@
                         <tab heading="Impostos">
                             <tab-heading> Impostos </tab-heading>
                             <fieldset>
+                                <!--ISSQN-->
                                 <div class="row">
                                     <luar-textvalor container-class="col-md-2" label="ISSQN Base" name="ISSQN_BASE"
-                                                    ng-model="ctrl.currentRecord.ISSQN_BASE">
+                                                    ng-model="ctrl.currentRecord.ISSQN_BASE"
+                                                    ng-change="ctrl.CalculaISSQN()">
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Alíquota" name="ISSQN_ALIQUOTA"
-                                                    ng-model="ctrl.currentRecord.ISSQN_ALIQUOTA">
+                                                    ng-model="ctrl.currentRecord.ISSQN_ALIQUOTA"
+                                                    ng-change="ctrl.CalculaISSQN()">
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Valor" readonly name="ISSQN_VALOR"
@@ -244,13 +247,16 @@
                                     </luar-check-group>
                                 </div>
 
+                                <!--IRRF-->
                                 <div class="row">
                                     <luar-textvalor container-class="col-md-2" label="IRRF Base" name="IRRF_BASE"
-                                                    ng-model="ctrl.currentRecord.IRRF_BASE">
+                                                    ng-model="ctrl.currentRecord.IRRF_BASE"
+                                                    ng-change="ctrl.CalculaIRRF()">
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Alíquota" name="IRRF_ALIQUOTA"
-                                                    ng-model="ctrl.currentRecord.IRRF_ALIQUOTA">
+                                                    ng-model="ctrl.currentRecord.IRRF_ALIQUOTA"
+                                                    ng-change="ctrl.CalculaIRRF()">
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Valor" readonly name="IRRF_VALOR"
@@ -258,13 +264,16 @@
                                     </luar-textvalor>
                                 </div>
 
+                                <!--CSLL-->
                                 <div class="row">
                                     <luar-textvalor container-class="col-md-2" label="CSLL Base" name="CSLL_BASE"
-                                                    ng-model="ctrl.currentRecord.CSLL_BASE">
+                                                    ng-model="ctrl.currentRecord.CSLL_BASE"
+                                                    ng-change="ctrl.CalculaCSLL()">
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Alíquota" name="CSLL_ALIQUOTA"
-                                                    ng-model="ctrl.currentRecord.CSLL_ALIQUOTA">
+                                                    ng-model="ctrl.currentRecord.CSLL_ALIQUOTA"
+                                                    ng-change="ctrl.CalculaCSLL()">
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Valor" readonly name="CSLL_VALOR"
@@ -272,7 +281,8 @@
                                     </luar-textvalor>
                                 </div>
 
-                                <div class="row">
+                                <!--Cofins-->
+                                <div class="row"> 
                                     <luar-textvalor container-class="col-md-2" label="COFINS Base" name="COFINS_BASE"
                                                     ng-model="ctrl.currentRecord.COFINS_BASE"
                                                     ng-change="ctrl.CalculaCOFINS()">
@@ -288,13 +298,16 @@
                                     </luar-textvalor>
                                 </div>
 
+                                <!--INSS-->
                                 <div class="row">
                                     <luar-textvalor container-class="col-md-2" label="INSS Base" name="INSS_BASE"
-                                                    ng-model="ctrl.currentRecord.INSS_BASE">
+                                                    ng-model="ctrl.currentRecord.INSS_BASE"
+                                                    ng-change="ctrl.CalculaINSS()">
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Alíquota" name="INSS_ALIQUOTA"
-                                                    ng-model="ctrl.currentRecord.INSS_ALIQUOTA">
+                                                    ng-model="ctrl.currentRecord.INSS_ALIQUOTA"
+                                                    ng-change="ctrl.CalculaINSS()">
                                     </luar-textvalor>
 
                                     <luar-textvalor container-class="col-md-2" label="Valor" readonly name="INSS_VALOR"

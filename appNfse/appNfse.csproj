@@ -246,6 +246,7 @@
     <Compile Include="Models\CAD\TABELA_NOMES.cs" />
     <Compile Include="Models\CAD\CAD_EMPRESA.cs" />
     <Compile Include="Models\END\END_CIDADES\END_CIDADES.cs" />
+    <Compile Include="Models\FAT\FAT_NF_SERVICO_START.cs" />
     <Compile Include="Models\FAT\FAT_NF_SERVICO_ITEM.cs" />
     <Compile Include="Models\FAT\FAT_NF_SERVICO.cs" />
     <Compile Include="Models\FAT\FAT_PARAMETRO_NFS.cs" />

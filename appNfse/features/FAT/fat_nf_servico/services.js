@@ -17,34 +17,13 @@ var App;
             function Crudfat_nf_servicoService($q, api, $rootScope, luarApp) {
                 _super.apply(this, arguments);
                 this.cadcolaboradorLook = cadcolaboradorLook;
-                this.CondPagamentoLook = CondPagamentoLook;
-                this.CadBancoLook = CadBancoLook;
-                this.CadServicoLook = CadServicoLook;
                 this.FatMontanteLook = FatMontanteLook;
 
                 function cadcolaboradorLook(query) {                    
                     var param = { NOM: query };
                     return this.api.allLook(param, 'cad_colaborador/VIEW_CADCLI');
                 }
-
-                function CondPagamentoLook() {
-                    var params = { Empresa: this.$rootScope.currentUser.userCEMP, campoOrdenacao: 'id', direcaoAsc: true };
-
-                    return this.api.allLook(params, 'cad_cond_pagamento');
-                }
-
-                function CadBancoLook() {
-                    var params = { Empresa: this.$rootScope.currentUser.userCEMP, campoOrdenacao: 'id', direcaoAsc: true };
-
-                    return this.api.allLook(params, 'cad_banco');
-                }
-
-                function CadServicoLook() {
-                    var params = { Empresa: this.$rootScope.currentUser.userCEMP, campoOrdenacao: 'NOME', direcaoAsc: true };
-
-                    return this.api.allLook(params, 'cad_servico');
-                }
-
+                               
                 function FatMontanteLook(COD_CADCLI) {
                     var params = { Empresa: this.$rootScope.currentUser.userCEMP, campoOrdenacao: 'DESCRICAO', direcaoAsc: true, termo: COD_CADCLI, campoPesquisa: 'COD_CADCOLABORADOR' };
                     return this.api.allLook(params, 'fat_montante');
@@ -76,7 +55,7 @@ var App;
                 enumerable: true,
                 configurable: true
             });
-
+            
             return Crudfat_nf_servicoService;
         })(Services.CrudBaseService);
         Services.Crudfat_nf_servicoService = Crudfat_nf_servicoService;
