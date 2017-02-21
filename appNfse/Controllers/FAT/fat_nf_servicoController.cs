@@ -63,9 +63,15 @@
         public IHttpActionResult GetValoresImpostos([FromUri]FAT_NF_SERVICO filtros)
         {
             END_CIDADES cid = db.Set<END_CIDADES>().Where(f => f.NOME_CIDADE == filtros.CID).FirstOrDefault();
-            CAD_SERVICO_IMPOSTO item = db.Set<CAD_SERVICO_IMPOSTO>()
-                .Where(w => w.CODIGO_CIDADE == cid.id &
-                      w.COD_CADSERVICO == filtros.COD_CADSERVICO).FirstOrDefault();
+
+            CAD_SERVICO_IMPOSTO item = null;
+
+            if (cid.id > 0 && filtros.COD_CADSERVICO > 0)
+            {
+                item = db.Set<CAD_SERVICO_IMPOSTO>()
+                    .Where(w => w.CODIGO_CIDADE == cid.id &
+                          w.COD_CADSERVICO == filtros.COD_CADSERVICO).FirstOrDefault();
+            }         
 
             return Ok(item);
         }
@@ -97,7 +103,15 @@
             return Ok(item);
         }
 
-
+        protected override string ValidarEntidade(FAT_NF_SERVICO item)
+        {
+            if (item.SITUACAO == "C")
+            {
+                return "NFS-e esta cancelada!";
+            }
+            else
+                return null;
+        }
     }
 
 }

@@ -54,13 +54,18 @@ var App;
                     }
 
                     crudCtrl.edit = function (item) {
-                        this.crud.$rootScope.Cadastro = !this.crud.$rootScope.Cadastro;
-                        this.crud.descricao = 'Alterar';                         
+                        debugger;
                         var _crud = this.crud;
+                        var _this = this;
 
                         this.crud.crudSvc.api.get(item.id).then(function (response) {
                             _crud.currentRecord = response;
-                        });
+
+                            if (_this.crud.execAntesEdit(_crud.currentRecord)) {
+                                _this.crud.$rootScope.Cadastro = !_this.crud.$rootScope.Cadastro;
+                                _this.crud.descricao = 'Alterar';
+                            }
+                        });                        
                     };
                 }
 
@@ -237,12 +242,12 @@ var App;
                     this.submit = function () {
                         _this.listCtrl.buscar(_this.listCtrl.termoDigitado, _this.listCtrl.campoSelecionado);
                     };
-
                     
                     this.novo = function () {
                         _this.listCtrl.$rootScope.Cadastro = !_this.listCtrl.$rootScope.Cadastro;
                         _this.crudCtrl.crud.descricao = 'Novo';
                         _this.crudCtrl.crud.currentRecord = {};
+                        _this.crudCtrl.crud.novoRecord = true;
                     };
                 },
                 link: function (scope, iElement, iAttrs, ctrls) {

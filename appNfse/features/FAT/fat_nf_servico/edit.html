@@ -7,35 +7,18 @@
         <column id="DATA_VENCIMENTO" title="Data Vencimento" searchable="true" type="date"></column>
         <column id="VALOR_TOTAL" title="Valor Total" searchable="false" type="currency"></column>
         <column id="VALOR_LIQUIDO" title="Valor Liquido" searchable="false" type="currency"></column>
-        <column id="SITUACAO" title="Situação" searchable="true" ></column>
+        <column id="SITUACAO" title="Situação" searchable="true"></column>
         <column id="COD_CADCLI" title="Cliente" searchable="true"></column>
         <luar-table></luar-table>
     </luar-list>
 
     <luar-main-form ng-show="Cadastro">
 
-        <button type="button" data-action="newRow" class="btn btn-primary btn-sm"
-                ng-click="ctrl.EmitirNFSe()">
-            Emitir NFS-e
-        </button>
-
-        <button type="button" data-action="newRow" class="btn btn-primary btn-sm"
-                ng-click="ctrl.CancelarNFSe()">
-            Cancelar NFS-e
-        </button>
-
-        <button type="button" data-action="newRow" class="btn btn-primary btn-sm"
-                ng-click="ctrl.ConsultarNFSe()">
-            Consultar NFS-e
-        </button>
-      
         <tabset>
             <tab heading="Dados Gerais">
                 <tab-heading> Dados Gerais </tab-heading>
-                <fieldset>
+                <fieldset ng-disabled="!ctrl.podeEditar">
                     <div class="row">
-                        <luar-text container-class="col-md-1" label="Série" maxlength="5" required name="serie" ng-model="ctrl.currentRecord.SERIE">
-                        </luar-text>
                         <luar-text container-class="col-md-2" label="Nro Nota" readonly name="codigo" ng-model="ctrl.currentRecord.NUMERO">
                         </luar-text>
                         <luar-textdata required container-class="col-md-2" label="Data Emissão"
@@ -47,83 +30,31 @@
                     </div>
 
                     <div class="row">
-                        <luar-select container-class="col-md-3" label="Condição de Pagamento" name="COD_CADCPAG" required
-                                     ng-options="item.id as item.NOME for item in ::ctrl.CondPagamentoLook"
-                                     ng-model="ctrl.currentRecord.COD_CADCPAG">
-                        </luar-select>
-
-                        <luar-select container-class="col-md-3" label="Local Cobrança" name="COD_CADBANCO" required
-                                     ng-options="item.id as item.NOME for item in ::ctrl.CadBancoLook"
-                                     ng-model="ctrl.currentRecord.COD_CADBANCO">
-                        </luar-select>
-
-                        <luar-select container-class="col-md-2" label="Mês Competência" name="MES_COMPETENCIA"
-                                     ng-options="item.id as item.NOME for item in ::ctrl.MesesLook"
-                                     ng-model="ctrl.currentRecord.MES_COMPETENCIA">
-                        </luar-select>
-
-                        <luar-select container-class="col-md-2" label="Ano Competência" name="ANO_COMPETENCIA"
-                                     ng-options="item.id as item.NOME for item in ::ctrl.AnosLook"
-                                     ng-model="ctrl.currentRecord.ANO_COMPETENCIA">
-                        </luar-select>
-
-                    </div>
-
-                    <div class="row">
                         <luar-text container-class="col-md-8" label="Cliente"
-                                   name="COD_CADCLI" required style="display:none" ng-model="ctrl.currentRecord.COD_CADCLI">
+                                   name="CLIENTE_NOME" required readonly ng-model="ctrl.currentRecord.CLIENTE_NOME">
                         </luar-text>
 
-                        <luar-text container-class="col-md-2" label="Cidade"
-                                   name="CID" required style="display:none" ng-model="ctrl.currentRecord.CID">
+                        <luar-text container-class="col-md-3" label="Cidade"
+                                   name="CID" required readonly ng-model="ctrl.currentRecord.CID">
                         </luar-text>
 
-                        <luar-text container-class="col-md-2" label="Estado"
-                                   name="EST" required style="display:none" ng-model="ctrl.currentRecord.EST">
+                        <luar-text container-class="col-md-1" label="Estado"
+                                   name="EST" required readonly ng-model="ctrl.currentRecord.EST">
                         </luar-text>
-
-                        <div class="col-md-8 ng-scope" name="cliente">
-                            <md-autocomplete flex
-                                             md-selected-item="ctrl.selectedItem"
-                                             md-search-text="ctrl.searchText"
-                                             md-selected-item-change="ctrl.selectedItemChange(item)"
-                                             md-items="item in ctrl.querySearch(ctrl.searchText)"
-                                             md-item-text="item.NOM"
-                                             md-delay="300"
-                                             md-min-length="2"
-                                             placeholder="Pesquisar Clientes">
-                                <div layout="row" class="item" layout-align="start center">
-                                    <span md-highlight-text="ctrl.searchText">{{item.NOM}}</span>
-                                </div>
-                            </md-autocomplete>
-                        </div>
-
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" ng-model="ctrl.currentRecord.CID">
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" ng-model="ctrl.currentRecord.EST">
-                        </div>
                     </div>
 
                     <div class="row">
                         <luar-textvalor container-class="col-md-2" label="Valor Total" required name="valorTotal"
-                                        ng-model="ctrl.currentRecord.VALOR_TOTAL">
+                                        ng-model="ctrl.currentRecord.VALOR_TOTAL" readonly>
                         </luar-textvalor>
                         <luar-textvalor container-class="col-md-2" label="Valor Liquido" required name="valorLiquido"
-                                        ng-model="ctrl.currentRecord.VALOR_LIQUIDO">
+                                        ng-model="ctrl.currentRecord.VALOR_LIQUIDO" readonly>
                         </luar-textvalor>
-                        <luar-textvalor container-class="col-md-2" label="Valor Desconto" name="valorDesconto"
-                                        ng-model="ctrl.currentRecord.VALOR_DESCONTO">
+                        <luar-textvalor container-class="col-md-2" label="Valor Desconto" name="valorDesconto"                                        
+                                        ng-model="ctrl.currentRecord.VALOR_DESCONTO"
+                                        ng-change="ctrl.CalculaValorTotal()">
                         </luar-textvalor>
 
-                        <luar-select container-class="col-md-6" label="Natureza" name="NATUREZA_OPERACAO"
-                                     ng-options="item.id as item.DESCRICAO for item in ::ctrl.NaturezaLook"
-                                     ng-model="ctrl.currentRecord.NATUREZA_OPERACAO">
-                        </luar-select>
-                    </div>
-
-                    <div class="row">
                         <luar-select container-class="col-md-6" label="Tipo de Serviço" name="COD_CADSERVICO" ng-disabled="ctrl.DesabilitaServico"
                                      ng-options="item.id as item.NOME for item in ::ctrl.CadServicoLook"
                                      ng-model="ctrl.currentRecord.COD_CADSERVICO" ng-change="ctrl.ChangeCOD_CADSERVICO()">
@@ -206,125 +137,262 @@
                                 </table>
                             </fieldset>
                         </tab>
-
-                        <tab heading="Observações">
-                            <tab-heading> Observações </tab-heading>
-                            <fieldset>
-                                <luar-textarea container-class="col-md-12" label="Descriminação" name="DISCRIMINACAO"
-                                               ng-model="ctrl.currentRecord.DISCRIMINACAO">
-                                </luar-textarea>
-                                <luar-textarea container-class="col-md-12" style="height: 150px" readonly name="OBS_MONTADA"
-                                               ng-model="ctrl.currentRecord.OBS_MONTADA">
-                                </luar-textarea>
-                            </fieldset>
-                        </tab>
-
-                        <tab heading="Impostos">
-                            <tab-heading> Impostos </tab-heading>
-                            <fieldset>
-                                <!--ISSQN-->
-                                <div class="row">
-                                    <luar-textvalor container-class="col-md-2" label="ISSQN Base" name="ISSQN_BASE"
-                                                    ng-model="ctrl.currentRecord.ISSQN_BASE"
-                                                    ng-change="ctrl.CalculaISSQN()">
-                                    </luar-textvalor>
-
-                                    <luar-textvalor container-class="col-md-2" label="Alíquota" name="ISSQN_ALIQUOTA"
-                                                    ng-model="ctrl.currentRecord.ISSQN_ALIQUOTA"
-                                                    ng-change="ctrl.CalculaISSQN()">
-                                    </luar-textvalor>
-
-                                    <luar-textvalor container-class="col-md-2" label="Valor" readonly name="ISSQN_VALOR"
-                                                    ng-model="ctrl.currentRecord.ISSQN_VALOR">
-                                    </luar-textvalor>
-
-                                    <luar-check-group class="col-md-2">
-                                        <input luar-check label="ISSQN Retido" ng-false-value="'N'" ng-true-value="'S'" name="ISS_RETIDO"
-                                               ng-model="ctrl.currentRecord.ISS_RETIDO" />
-
-                                        <input luar-check label="Rps Substituido" ng-false-value="'N'" ng-true-value="'S'" name="RPSSUBSTITUIDO"
-                                               ng-model="ctrl.currentRecord.RPSSUBSTITUIDO" />
-                                    </luar-check-group>
-                                </div>
-
-                                <!--IRRF-->
-                                <div class="row">
-                                    <luar-textvalor container-class="col-md-2" label="IRRF Base" name="IRRF_BASE"
-                                                    ng-model="ctrl.currentRecord.IRRF_BASE"
-                                                    ng-change="ctrl.CalculaIRRF()">
-                                    </luar-textvalor>
-
-                                    <luar-textvalor container-class="col-md-2" label="Alíquota" name="IRRF_ALIQUOTA"
-                                                    ng-model="ctrl.currentRecord.IRRF_ALIQUOTA"
-                                                    ng-change="ctrl.CalculaIRRF()">
-                                    </luar-textvalor>
-
-                                    <luar-textvalor container-class="col-md-2" label="Valor" readonly name="IRRF_VALOR"
-                                                    ng-model="ctrl.currentRecord.IRRF_VALOR">
-                                    </luar-textvalor>
-                                </div>
-
-                                <!--CSLL-->
-                                <div class="row">
-                                    <luar-textvalor container-class="col-md-2" label="CSLL Base" name="CSLL_BASE"
-                                                    ng-model="ctrl.currentRecord.CSLL_BASE"
-                                                    ng-change="ctrl.CalculaCSLL()">
-                                    </luar-textvalor>
-
-                                    <luar-textvalor container-class="col-md-2" label="Alíquota" name="CSLL_ALIQUOTA"
-                                                    ng-model="ctrl.currentRecord.CSLL_ALIQUOTA"
-                                                    ng-change="ctrl.CalculaCSLL()">
-                                    </luar-textvalor>
-
-                                    <luar-textvalor container-class="col-md-2" label="Valor" readonly name="CSLL_VALOR"
-                                                    ng-model="ctrl.currentRecord.CSLL_VALOR">
-                                    </luar-textvalor>
-                                </div>
-
-                                <!--Cofins-->
-                                <div class="row"> 
-                                    <luar-textvalor container-class="col-md-2" label="COFINS Base" name="COFINS_BASE"
-                                                    ng-model="ctrl.currentRecord.COFINS_BASE"
-                                                    ng-change="ctrl.CalculaCOFINS()">
-                                    </luar-textvalor>
-
-                                    <luar-textvalor container-class="col-md-2" label="Alíquota" name="COFINS_ALIQUOTA"
-                                                    ng-model="ctrl.currentRecord.COFINS_ALIQUOTA"
-                                                    ng-change="ctrl.CalculaCOFINS()">
-                                    </luar-textvalor>
-
-                                    <luar-textvalor container-class="col-md-2" label="Valor" readonly name="COFINS_VALOR"
-                                                    ng-model="ctrl.currentRecord.COFINS_VALOR">
-                                    </luar-textvalor>
-                                </div>
-
-                                <!--INSS-->
-                                <div class="row">
-                                    <luar-textvalor container-class="col-md-2" label="INSS Base" name="INSS_BASE"
-                                                    ng-model="ctrl.currentRecord.INSS_BASE"
-                                                    ng-change="ctrl.CalculaINSS()">
-                                    </luar-textvalor>
-
-                                    <luar-textvalor container-class="col-md-2" label="Alíquota" name="INSS_ALIQUOTA"
-                                                    ng-model="ctrl.currentRecord.INSS_ALIQUOTA"
-                                                    ng-change="ctrl.CalculaINSS()">
-                                    </luar-textvalor>
-
-                                    <luar-textvalor container-class="col-md-2" label="Valor" readonly name="INSS_VALOR"
-                                                    ng-model="ctrl.currentRecord.INSS_VALOR">
-                                    </luar-textvalor>
-                                </div>
-
-                            </fieldset>
-                        </tab>
                     </tabset>
                 </fieldset>
             </tab>
+
+            <tab heading="Outros Dados">
+                <tab-heading> Outros Dados </tab-heading>
+                <fieldset ng-disabled="!ctrl.podeEditar">
+                    <div class="row">
+                        <luar-text container-class="col-md-1" label="Série" maxlength="5" required name="serie" ng-model="ctrl.currentRecord.SERIE">
+                        </luar-text>
+
+                        <luar-select container-class="col-md-3" label="Condição de Pagamento" name="COD_CADCPAG" required
+                                     ng-options="item.id as item.NOME for item in ::ctrl.CondPagamentoLook"
+                                     ng-model="ctrl.currentRecord.COD_CADCPAG">
+                        </luar-select>
+
+                        <luar-select container-class="col-md-3" label="Local Cobrança" name="COD_CADBANCO" required
+                                     ng-options="item.id as item.NOME for item in ::ctrl.CadBancoLook"
+                                     ng-model="ctrl.currentRecord.COD_CADBANCO">
+                        </luar-select>
+
+                        <luar-select container-class="col-md-2" label="Mês Competência" name="MES_COMPETENCIA"
+                                     ng-options="item.id as item.NOME for item in ::ctrl.MesesLook"
+                                     ng-model="ctrl.currentRecord.MES_COMPETENCIA">
+                        </luar-select>
+
+                        <luar-select container-class="col-md-2" label="Ano Competência" name="ANO_COMPETENCIA"
+                                     ng-options="item.id as item.NOME for item in ::ctrl.AnosLook"
+                                     ng-model="ctrl.currentRecord.ANO_COMPETENCIA">
+                        </luar-select>
+
+                    </div>
+
+                    <div class="row">
+                        <luar-select container-class="col-md-12" label="Natureza" name="NATUREZA_OPERACAO"
+                                     ng-options="item.id as item.DESCRICAO for item in ::ctrl.NaturezaLook"
+                                     ng-model="ctrl.currentRecord.NATUREZA_OPERACAO">
+                        </luar-select>
+                    </div>
+
+                    <div class="row">
+                        <luar-textarea container-class="col-md-12" label="Descriminação" name="DISCRIMINACAO"
+                                       ng-model="ctrl.currentRecord.DISCRIMINACAO">
+                        </luar-textarea>
+                    </div>
+                    <!--<div class="row">
+                        <luar-textarea container-class="col-md-12" style="height: 150px" readonly name="OBS_MONTADA"
+                                       ng-model="ctrl.currentRecord.OBS_MONTADA">
+                        </luar-textarea>
+                    </div>-->
+
+                </fieldset>
+            </tab>
+
+            <tab heading="Impostos">
+                <tab-heading> Impostos </tab-heading>
+                <fieldset ng-disabled="!ctrl.podeEditar">
+                    <!--ISSQN-->
+                    <div class="row">
+                        <luar-textvalor container-class="col-md-2" label="ISSQN Base" name="ISSQN_BASE"
+                                        ng-model="ctrl.currentRecord.ISSQN_BASE"
+                                        ng-change="ctrl.CalculaISSQN()">
+                        </luar-textvalor>
+
+                        <luar-textvalor container-class="col-md-2" label="Alíquota" name="ISSQN_ALIQUOTA"
+                                        ng-model="ctrl.currentRecord.ISSQN_ALIQUOTA"
+                                        ng-change="ctrl.CalculaISSQN()">
+                        </luar-textvalor>
+
+                        <luar-textvalor container-class="col-md-2" label="Valor" readonly name="ISSQN_VALOR"
+                                        ng-model="ctrl.currentRecord.ISSQN_VALOR">
+                        </luar-textvalor>
+
+                        <luar-check-group class="col-md-2">
+                            <input luar-check label="ISSQN Retido" ng-false-value="'N'" ng-true-value="'S'" name="ISS_RETIDO"
+                                   ng-model="ctrl.currentRecord.ISS_RETIDO" />
+
+                            <input luar-check label="Rps Substituido" ng-false-value="'N'" ng-true-value="'S'" name="RPSSUBSTITUIDO"
+                                   ng-model="ctrl.currentRecord.RPSSUBSTITUIDO" />
+                        </luar-check-group>
+                    </div>
+
+                    <!--IRRF-->
+                    <div class="row">
+                        <luar-textvalor container-class="col-md-2" label="IRRF Base" name="IRRF_BASE"
+                                        ng-model="ctrl.currentRecord.IRRF_BASE"
+                                        ng-change="ctrl.CalculaIRRF()">
+                        </luar-textvalor>
+
+                        <luar-textvalor container-class="col-md-2" label="Alíquota" name="IRRF_ALIQUOTA"
+                                        ng-model="ctrl.currentRecord.IRRF_ALIQUOTA"
+                                        ng-change="ctrl.CalculaIRRF()">
+                        </luar-textvalor>
+
+                        <luar-textvalor container-class="col-md-2" label="Valor" readonly name="IRRF_VALOR"
+                                        ng-model="ctrl.currentRecord.IRRF_VALOR">
+                        </luar-textvalor>
+                    </div>
+
+                    <!--CSLL-->
+                    <div class="row">
+                        <luar-textvalor container-class="col-md-2" label="CSLL Base" name="CSLL_BASE"
+                                        ng-model="ctrl.currentRecord.CSLL_BASE"
+                                        ng-change="ctrl.CalculaCSLL()">
+                        </luar-textvalor>
+
+                        <luar-textvalor container-class="col-md-2" label="Alíquota" name="CSLL_ALIQUOTA"
+                                        ng-model="ctrl.currentRecord.CSLL_ALIQUOTA"
+                                        ng-change="ctrl.CalculaCSLL()">
+                        </luar-textvalor>
+
+                        <luar-textvalor container-class="col-md-2" label="Valor" readonly name="CSLL_VALOR"
+                                        ng-model="ctrl.currentRecord.CSLL_VALOR">
+                        </luar-textvalor>
+                    </div>
+
+                    <!--Cofins-->
+                    <div class="row">
+                        <luar-textvalor container-class="col-md-2" label="COFINS Base" name="COFINS_BASE"
+                                        ng-model="ctrl.currentRecord.COFINS_BASE"
+                                        ng-change="ctrl.CalculaCOFINS()">
+                        </luar-textvalor>
+
+                        <luar-textvalor container-class="col-md-2" label="Alíquota" name="COFINS_ALIQUOTA"
+                                        ng-model="ctrl.currentRecord.COFINS_ALIQUOTA"
+                                        ng-change="ctrl.CalculaCOFINS()">
+                        </luar-textvalor>
+
+                        <luar-textvalor container-class="col-md-2" label="Valor" readonly name="COFINS_VALOR"
+                                        ng-model="ctrl.currentRecord.COFINS_VALOR">
+                        </luar-textvalor>
+                    </div>
+
+                    <!--INSS-->
+                    <div class="row">
+                        <luar-textvalor container-class="col-md-2" label="INSS Base" name="INSS_BASE"
+                                        ng-model="ctrl.currentRecord.INSS_BASE"
+                                        ng-change="ctrl.CalculaINSS()">
+                        </luar-textvalor>
+
+                        <luar-textvalor container-class="col-md-2" label="Alíquota" name="INSS_ALIQUOTA"
+                                        ng-model="ctrl.currentRecord.INSS_ALIQUOTA"
+                                        ng-change="ctrl.CalculaINSS()">
+                        </luar-textvalor>
+
+                        <luar-textvalor container-class="col-md-2" label="Valor" readonly name="INSS_VALOR"
+                                        ng-model="ctrl.currentRecord.INSS_VALOR">
+                        </luar-textvalor>
+                    </div>
+
+                </fieldset>
+            </tab>
+
+            <tab heading="Comunicação">
+                <tab-heading> Comunicação </tab-heading>
+
+                <div >
+                    <button type="button" data-action="newRow" class="btn btn-primary btn-sm"
+                            ng-click="ctrl.EmitirNFSe()">
+                        Emitir NFS-e
+                    </button>
+                </div>
+                <br />
+                <div >
+                    <button type="button" data-action="newRow" class="btn btn-danger btn-sm"
+                            ng-click="ctrl.CancelarNFSe()">
+                        Cancelar NFS-e
+                    </button>
+                </div>
+                <br />
+
+                <div >
+                    <button type="button" data-action="newRow" class="btn btn-info btn-sm"
+                            ng-click="ctrl.ConsultarNFSe()">
+                        Consultar NFS-e
+                    </button>
+                </div>
+
+            </tab>
+
         </tabset>
 
     </luar-main-form>
 
 </luar-crud>
+
+
+<script type="text/ng-template" id="nfseNovo.html">
+    <form name="formnfseNovo">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Emissão NFS-e</h3>
+        </div>
+
+        <div class="modal-body" id="modal-body">
+
+            <fieldset>
+
+                <div class="row">
+                    <luar-text container-class="col-md-11" label="Cliente"
+                               name="COD_CADCLI" required style="display:none" ng-model="ctrl.currentRecord.COD_CADCLI">
+                    </luar-text>
+                    <div class="col-md-11 ng-scope" name="cliente">
+                        <md-autocomplete flex
+                                         md-selected-item="ctrl.selectedItem"
+                                         md-search-text="ctrl.searchText"
+                                         md-selected-item-change="ctrl.selectedItemChange(item)"
+                                         md-items="item in ctrl.querySearch(ctrl.searchText)"
+                                         md-item-text="item.NOM"
+                                         md-delay="300"
+                                         md-min-length="2"
+                                         placeholder="Pesquisar Clientes">
+                            <div layout="row" class="item" layout-align="start center">
+                                <span md-highlight-text="ctrl.searchText">{{item.NOM}}</span>
+                            </div>
+                        </md-autocomplete>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <luar-textdata required container-class="col-md-4" label="Data Emissão"
+                                   name="dataemissao" ng-model="ctrl.currentRecord.DATA_EMISSAO">
+                    </luar-textdata>
+                    <luar-textdata required container-class="col-md-4" label="Data Vencimento"
+                                   name="datavencimento" ng-model="ctrl.currentRecord.DATA_VENCIMENTO">
+                    </luar-textdata>
+                </div>
+
+                <div class="row">
+
+                    <luar-text container-class="col-md-6" label="Cidade"
+                               name="CID" required ng-model="ctrl.currentRecord.CID">
+                    </luar-text>
+
+                    <luar-text container-class="col-md-2" label="Estado"
+                               name="EST" required ng-model="ctrl.currentRecord.EST">
+                    </luar-text>
+                </div>
+
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+
+            </fieldset>
+
+        </div>
+        <div class="modal-footer">
+            <span class="pull-right">
+                <button class="btn btn-sm btn-primary hidden-print" ng-disabled="!ctrl.IniciarNFSeOK()" ng-click="IniciarNFSe()"><span class="glyphicon glyphicon-floppy-disk"></span> Iniciar</button>
+                <button class="btn btn-sm btn-warning hidden-print" ng-click="FecharIniciarNFSe()"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+            </span>
+        </div>
+    </form>
+</script>
+
 
 
 

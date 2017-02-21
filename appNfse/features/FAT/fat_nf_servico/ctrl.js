@@ -12,16 +12,60 @@ var App;
         var Crudfat_nf_servicoCtrl = (function (_super) {
 
             __extends(Crudfat_nf_servicoCtrl, _super);
-            function Crudfat_nf_servicoCtrl($rootScope, api, Crudfat_nf_servicoService, lista, $q, $scope, CrudTabela_NomesService, $window, luarApp) {
+            function Crudfat_nf_servicoCtrl($rootScope, api, $modal, Crudfat_nf_servicoService, lista, $q, $scope, CrudTabela_NomesService, $window, luarApp) {
                 var _this = this;
                 _super.call(this);
 
                 this.$rootScope = $rootScope;
                 this.api = api;
                 this.crudSvc = Crudfat_nf_servicoService;
+                this.$modal = $modal;
                 this.crudSvcTabelaNomes = CrudTabela_NomesService;
-                this.lista = lista; 
-                
+                this.lista = lista;                 
+                this.podeEditar = true;
+
+                this.CalculaValorTotal = function () {
+                    var VALOR_TOTAL = parseFloat("0");
+
+                    if (_this.currentRecord.lista_Itens != null) {
+
+                        for (var i = 0; i < _this.currentRecord.lista_Itens.length; i++) {
+                            if (_this.currentRecord.lista_Itens[i].FlagExcOrAlter != "E")
+                              VALOR_TOTAL = VALOR_TOTAL + _this.currentRecord.lista_Itens[i].PRECO_UNITARIO;
+                        }
+                    }
+
+                    this.currentRecord.VALOR_TOTAL = VALOR_TOTAL;
+                    
+                    this.CalculaValorLiquido();
+                }
+
+                this.CalculaValorLiquido = function () {
+
+                    if (this.currentRecord.VALOR_TOTAL > 0) {
+                        var valor = parseFloat("0");
+
+                        if (this.currentRecord.ISSQN_VALOR > 0)
+                            valor = valor + this.currentRecord.ISSQN_VALOR;
+                        if (this.currentRecord.IRRF_VALOR > 0)
+                            valor = valor + this.currentRecord.IRRF_VALOR;
+                        if (this.currentRecord.CSLL_VALOR > 0)
+                            valor = valor + this.currentRecord.CSLL_VALOR;
+                        if (this.currentRecord.COFINS_VALOR > 0)
+                            valor = valor + this.currentRecord.COFINS_VALOR;
+                        if (this.currentRecord.PIS_VALOR > 0)
+                            valor = valor + this.currentRecord.PIS_VALOR;
+                        if (this.currentRecord.INSS_VALOR > 0)
+                            valor = valor + this.currentRecord.INSS_VALOR;
+
+                        this.currentRecord.VALOR_LIQUIDO = this.currentRecord.VALOR_TOTAL - valor;
+
+                        if (this.currentRecord.VALOR_DESCONTO > 0)
+                            this.currentRecord.VALOR_LIQUIDO = this.currentRecord.VALOR_LIQUIDO - this.currentRecord.VALOR_DESCONTO;
+                    }
+                    else this.currentRecord.VALOR_LIQUIDO = 0;
+                }
+
                 ExecutaStart();
                 function ExecutaStart() {
                     _this.crudSvc.ExecutaStart('01').then(function (lista) {
@@ -31,11 +75,8 @@ var App;
                         _this.CondPagamentoLook = lista.lista_CondPagamento;
                         _this.CadServicoLook = lista.lista_CadServico;
                     });
-                }
+                }                
                 
-                _this.data = [];
-                _this.selectedItem = null;
-                _this.searchText = null;
                 _this.selectedItemChange = selectedItemChange;
 
                 _this.MesesLook = [{ id: 1, NOME: 'Janeiro' }, { id: 2, NOME: 'Fevereiro' }, { id: 3, NOME: 'Março' },
@@ -73,7 +114,9 @@ var App;
                     }
                 }
 
-                this.querySearch = function (query) {
+                this.querySearch = null;//querySearch;
+
+                function querySearch(query) {
                     return _this.crudSvc.cadcolaboradorLook(query).then(function (response) {
                         debugger;
                         return response;
@@ -88,6 +131,11 @@ var App;
                 this.NovoItem = {};
                 this.EditItem = EditItem;
                 this.bOperacaoItem = 'L'; // inicia como lista;
+
+                this.IniciarNFSeOK = function() {
+                    return _this.currentRecord.CLIENTE_CODIGO > 0 && _this.currentRecord.CID != null
+                        && _this.currentRecord.EST != null && _this.currentRecord.DATA_EMISSAO != null;
+                }
 
                 function ItemOK() {
                     return _this.NovoItem.DESCRICAO != null && _this.NovoItem.PRECO_UNITARIO > 0;
@@ -106,6 +154,7 @@ var App;
                     }, function (isConfirm) {
                         if (isConfirm) {
                             item.FlagExcOrAlter = "E";
+                            _this.CalculaValorTotal();
                         }
                     });
                 }
@@ -113,6 +162,7 @@ var App;
                 function AddItem() {
                     _this.bOperacaoItem = 'A';
                     _this.NovoItem = {};
+
                 }
 
                 function EditItem(ITEM) {
@@ -145,6 +195,8 @@ var App;
                     }
 
                     _this.bOperacaoItem = 'L';
+
+                    _this.CalculaValorTotal();
                 }
 
                 function CancelarItem() {
@@ -240,30 +292,40 @@ var App;
                 function CalculaISSQN() {
                     if (_this.currentRecord.ISSQN_ALIQUOTA > 0)
                         _this.currentRecord.ISSQN_VALOR = _this.currentRecord.ISSQN_BASE * _this.currentRecord.ISSQN_ALIQUOTA / 100;
+
+                    this.CalculaValorTotal();
                 }
 
                 this.CalculaCOFINS = CalculaCOFINS;
                 function CalculaCOFINS() {
                     if (_this.currentRecord.COFINS_ALIQUOTA > 0)
                         _this.currentRecord.COFINS_VALOR = _this.currentRecord.COFINS_BASE * _this.currentRecord.COFINS_ALIQUOTA / 100;
+
+                    this.CalculaValorTotal();
                 }
 
                 this.CalculaIRRF = CalculaIRRF;
                 function CalculaIRRF() {
                     if (_this.currentRecord.IRRF_ALIQUOTA > 0)
                         _this.currentRecord.IRRF_VALOR = _this.currentRecord.IRRF_BASE * _this.currentRecord.IRRF_ALIQUOTA / 100;
+
+                    this.CalculaValorTotal();
                 }
 
                 this.CalculaCSLL = CalculaCSLL;
                 function CalculaCSLL() {
                     if (_this.currentRecord.CSLL_ALIQUOTA > 0)
                         _this.currentRecord.CSLL_VALOR = _this.currentRecord.CSLL_BASE * _this.currentRecord.CSLL_ALIQUOTA / 100;
+
+                    this.CalculaValorTotal();
                 }
 
                 this.CalculaINSS = CalculaINSS;
                 function CalculaINSS() {
                     if (_this.currentRecord.INSS_ALIQUOTA > 0)
                         _this.currentRecord.INSS_VALOR = _this.currentRecord.INSS_BASE * _this.currentRecord.INSS_ALIQUOTA / 100;
+
+                    this.CalculaValorTotal();
                 }
 
                 this.EmitirNFSe = EmitirNFSe;                
@@ -384,6 +446,23 @@ var App;
                     }
                 }
 
+                this.AbrirModalIniciarNFSe = function () {
+
+                    this.data = [];
+                    this.selectedItem = null;
+                    this.searchText = null;
+                    this.querySearch = querySearch;
+                    this.$rootScope.Cadastro = false;
+
+                    var modalInstance = $modal.open({
+                        templateUrl: 'nfseNovo.html',
+                        scope: $scope,
+                        rootScope: $rootScope,
+                        controller: 'ModalIniciarNFSeCtrl',
+                        controllerAs: 'Ctrl'
+                    });
+
+                }
             }
 
             Crudfat_nf_servicoCtrl.prototype.crud = function () {
@@ -393,9 +472,9 @@ var App;
             Crudfat_nf_servicoCtrl.prototype.registroAtualizado = function () {
 
                 this.FatMontanteLook = null;
+                this.bOperacaoItem = 'L';
 
                 if (this.currentRecord != null) {
-                    this.searchText = this.currentRecord.CLIENTE_NOME;
                     this.BuscarMontantes();
 
                     if (this.currentRecord.id == null) {
@@ -414,6 +493,11 @@ var App;
 
                     } else {
                         this.DesabilitaServico = false;
+
+                        if (this.currentRecord.SITUACAO == "C")
+                            this.podeEditar = false;
+                        else 
+                            this.podeEditar = true;
                     }
                 }
             }
@@ -421,11 +505,47 @@ var App;
             Crudfat_nf_servicoCtrl.prototype.prepararParaSalvar = function () {
                 this.currentRecord.CFIL = '01';
             };
-            
+
+            Crudfat_nf_servicoCtrl.prototype.execAposNovo = function () {
+                this.AbrirModalIniciarNFSe();
+            };
+
+            Crudfat_nf_servicoCtrl.prototype.execAntesExcluir = function (item) {
+                if (item.SITUACAO == "C") {
+                    this.toaster.warning("Atenção", "NFS-e esta cancelada!");                    
+                    return false;
+                }
+                else return true;
+            }
+
+            Crudfat_nf_servicoCtrl.prototype.execAntesEdit = function (item) {               
+                if (item.SITUACAO == "C") {
+                    this.toaster.warning("Atenção", "NFS-e esta cancelada!");                    
+                    return false;
+                }
+                else return true;
+            }
+                        
             return Crudfat_nf_servicoCtrl;
         })(Controllers.CrudBaseEditCtrl);
         Controllers.Crudfat_nf_servicoCtrl = Crudfat_nf_servicoCtrl;
 
+        var ModalIniciarNFSeCtrl = function ($scope, $modalInstance, $q, $timeout, $rootScope) {
+                        
+            $scope.IniciarNFSe = function () {                
+                $modalInstance.close();
+                $rootScope.Cadastro = true;
+                $scope.$parent.ctrl.querySearch = null;
+                $scope.$parent.ctrl.AddItem();
+            };
+
+            $scope.FecharIniciarNFSe = function () {
+                $modalInstance.dismiss('cancel');
+                $scope.$parent.ctrl.querySearch = null;
+            };
+        };
+
+        App.modules.Controllers.controller('ModalIniciarNFSeCtrl', ModalIniciarNFSeCtrl);
         App.modules.Controllers.controller('Crudfat_nf_servicoCtrl', Crudfat_nf_servicoCtrl);
 
 
