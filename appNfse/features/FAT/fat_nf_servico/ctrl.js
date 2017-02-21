@@ -132,6 +132,42 @@ var App;
                 this.EditItem = EditItem;
                 this.bOperacaoItem = 'L'; // inicia como lista;
 
+                this.PodeEmitirNFSe = function () {
+                    return _this.currentRecord != null && _this.currentRecord.id > 0
+                                && _this.currentRecord.SITUACAO != "C";
+                }
+                
+                addAcoes();
+                function addAcoes() {
+                    
+                    _this.acoes.push(new Object({
+                        titulo: 'Emitir NFS-e',
+                        iconeCls: '',
+                        onClick: function () { _this.EmitirNFSe(); },
+                        disabled: function () {
+                            return !_this.PodeEmitirNFSe();
+                        }
+                    }));
+
+                    _this.acoes.push(new Object({
+                        titulo: 'Cancelar NFS-e',
+                        iconeCls: '',
+                        onClick: function () { _this.CancelarNFSe(); },
+                        disabled: function () {
+                            return !_this.PodeEmitirNFSe();
+                        }
+                    }));
+
+                    _this.acoes.push(new Object({
+                        titulo: 'Consultar NFS-e',
+                        iconeCls: '',
+                        onClick: function () { _this.ConsultarNFSe(); },
+                        disabled: function () {
+                            return !_this.PodeEmitirNFSe();
+                        }
+                    }));
+                }                
+
                 this.IniciarNFSeOK = function() {
                     return _this.currentRecord.CLIENTE_CODIGO > 0 && _this.currentRecord.CID != null
                         && _this.currentRecord.EST != null && _this.currentRecord.DATA_EMISSAO != null;
@@ -330,8 +366,7 @@ var App;
 
                 this.EmitirNFSe = EmitirNFSe;                
                 function EmitirNFSe() {
-                    if (_this.currentRecord.id > 0) {                      
-
+                    if (_this.PodeEmitirNFSe()) {
                         _this.crudSvc.EmitirNFSe(_this.currentRecord.id, 'EMI').then(function (dados) {
                             debugger;
                             if (dados.Retorno == '0') {
@@ -370,7 +405,7 @@ var App;
 
                 this.ConsultarNFSe = ConsultarNFSe;
                 function ConsultarNFSe() {
-                    if (_this.currentRecord.id > 0) {
+                    if (_this.PodeEmitirNFSe()) {
                         _this.crudSvc.EmitirNFSe(_this.currentRecord.id, 'CON').then(function (dados) {
                             debugger;
                             if (dados.Retorno == '0') {
@@ -409,7 +444,7 @@ var App;
 
                 this.CancelarNFSe = CancelarNFSe;
                 function CancelarNFSe() {
-                    if (_this.currentRecord.id > 0) {
+                    if (_this.PodeEmitirNFSe()) {
                         _this.crudSvc.EmitirNFSe(_this.currentRecord.id, 'CAN').then(function (dados) {
                             debugger;
                             if (dados.Retorno == '0') {
@@ -524,6 +559,12 @@ var App;
                     return false;
                 }
                 else return true;
+            }
+
+            Crudfat_nf_servicoCtrl.prototype.execAposReplicarRegistro = function () {
+                this.currentRecord.NUMERO = 0;
+                this.currentRecord.DATA_EMISSAO = null;
+                this.currentRecord.DATA_VENCIMENTO = null;
             }
                         
             return Crudfat_nf_servicoCtrl;

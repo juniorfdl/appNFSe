@@ -268,8 +268,8 @@ var App;
                 restrict: 'E',
                 require: '^^luarCrud',
                 template: [
-                    '<a class="btn btn-primary btn-sm" ng-disabled="!luarCrudCtrl.podeVisualizar" ng-click="luarCrudCtrl.edit({id: ctrl.key})"><span class="glyphicon glyphicon-edit"></span></a> ',
-                    '<button class="btn btn-danger btn-sm" ng-disabled="!luarCrudCtrl.podeExcluir" ng-click="ctrl.excluir()"><span class="glyphicon glyphicon-trash"></span></button>'
+                    '<a class="btn btn-primary btn-sm" ng-disabled="!luarCrudCtrl.podeVisualizar" title="Alterar Registro" ng-click="luarCrudCtrl.edit({id: ctrl.key})"><span class="glyphicon glyphicon-edit"></span></a> ',
+                    '<button class="btn btn-danger btn-sm" ng-disabled="!luarCrudCtrl.podeExcluir" title="Excluir Registro"  ng-click="ctrl.excluir()"><span class="glyphicon glyphicon-trash"></span></button>'
                 ].join(""),
                 scope: {
                     key: '=',

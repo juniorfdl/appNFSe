@@ -22,12 +22,23 @@ var App;
          */
         var CrudBaseCtrl = (function () {
             function CrudBaseCtrl() {
+                var _this = this;
+
                 this.crudConfig = {
                     mostraExcluir: true
                 };
+
                 this.SweetAlert = this.injector.get('SweetAlert');
                 this.toaster = this.injector.get('toaster');
                 this.luarApp = this.injector.get('luarApp');
+                this.acoes = [{
+                    titulo: 'Replicar Registro',
+                    iconeCls: '',
+                    onClick: function () { _this.ReplicarRegistro(); }, //_this.EmitirNFSe(); 
+                    disabled: function () {
+                        return _this.currentRecord == null || _this.currentRecord.id == null;
+                    }
+                }];
             }
             Object.defineProperty(CrudBaseCtrl.prototype, "injector", {
                 /**
@@ -111,6 +122,18 @@ var App;
              */
             CrudBaseCtrl.prototype.overridePodeExcluir = function () {
                 return undefined;
+            };
+
+            CrudBaseCtrl.prototype.ReplicarRegistro = function () {
+                if (this.currentRecord != null && this.currentRecord.id > 0) {
+                    this.currentRecord = angular.copy(this.currentRecord);
+                    this.currentRecord.id = null;
+                    this.execAposReplicarRegistro();
+                }
+            }
+
+            CrudBaseCtrl.prototype.execAposReplicarRegistro = function () {
+
             };
             
             return CrudBaseCtrl;
