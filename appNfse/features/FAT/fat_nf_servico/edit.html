@@ -2,14 +2,15 @@
 
     <luar-list list="ctrl.lista" ng-show="!Cadastro">
         <column id="NUMERO" title="Nro Nota" searchable="true"></column>
-        <column id="SERIE" title="Série" searchable="false"></column>
+        <column id="CODIGO_CLIENTE" title="Cliente" searchable="true"></column>
+        <column id="NOME_CLIENTE" title="Nome Cliente" searchable="true"></column>
         <column id="DATA_EMISSAO" title="Data Emissão" searchable="true" type="date"></column>
-        <column id="DATA_VENCIMENTO" title="Data Vencimento" searchable="true" type="date"></column>
         <column id="VALOR_TOTAL" title="Valor Total" searchable="false" type="currency"></column>
         <column id="VALOR_LIQUIDO" title="Valor Liquido" searchable="false" type="currency"></column>
-        <column id="SITUACAO" title="Situação" searchable="true"></column>
-        <column id="COD_CADCLI" title="Cliente" searchable="true"></column>
-        <luar-table></luar-table>
+        <column id="SITUACAO" title="Situação" searchable="true"></column>    
+        <column id="NFSE_NUMERO" title="Nro NFS-e" searchable="true"></column>
+        <column id="CODIGOVERIFICACAO" title="Cód. Verificação" searchable="true"></column>
+        <luar-table></luar-table>       
     </luar-list>
 
     <luar-main-form ng-show="Cadastro">

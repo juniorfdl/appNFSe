@@ -21,8 +21,9 @@ var App;
                 this.crudSvc = Crudfat_nf_servicoService;
                 this.$modal = $modal;
                 this.crudSvcTabelaNomes = CrudTabela_NomesService;
-                this.lista = lista;                 
+                this.lista = lista;
                 this.podeEditar = true;
+                this.AtualizarConsultaPorId = true; //Apos conformar um registro ele atualiza a consulta executendo uma pesquisa
 
                 this.CalculaValorTotal = function () {
                     var VALOR_TOTAL = parseFloat("0");
@@ -31,12 +32,12 @@ var App;
 
                         for (var i = 0; i < _this.currentRecord.lista_Itens.length; i++) {
                             if (_this.currentRecord.lista_Itens[i].FlagExcOrAlter != "E")
-                              VALOR_TOTAL = VALOR_TOTAL + _this.currentRecord.lista_Itens[i].PRECO_UNITARIO;
+                                VALOR_TOTAL = VALOR_TOTAL + _this.currentRecord.lista_Itens[i].PRECO_UNITARIO;
                         }
                     }
 
                     this.currentRecord.VALOR_TOTAL = VALOR_TOTAL;
-                    
+
                     this.CalculaValorLiquido();
                 }
 
@@ -75,8 +76,8 @@ var App;
                         _this.CondPagamentoLook = lista.lista_CondPagamento;
                         _this.CadServicoLook = lista.lista_CadServico;
                     });
-                }                
-                
+                }
+
                 _this.selectedItemChange = selectedItemChange;
 
                 _this.MesesLook = [{ id: 1, NOME: 'Janeiro' }, { id: 2, NOME: 'Fevereiro' }, { id: 3, NOME: 'Março' },
@@ -122,7 +123,7 @@ var App;
                         return response;
                     })
                 }
-                                
+
                 this.removeItens = removeItens;
                 this.AddItem = AddItem;
                 this.ConfirmarItem = ConfirmarItem;
@@ -133,13 +134,12 @@ var App;
                 this.bOperacaoItem = 'L'; // inicia como lista;
 
                 this.PodeEmitirNFSe = function () {
-                    return _this.currentRecord != null && _this.currentRecord.id > 0
-                                && _this.currentRecord.SITUACAO != "C";
+                    return _this.currentRecord != null && _this.currentRecord.id > 0;
                 }
-                
+
                 addAcoes();
                 function addAcoes() {
-                    
+
                     _this.acoes.push(new Object({
                         titulo: 'Emitir NFS-e',
                         iconeCls: '',
@@ -166,9 +166,9 @@ var App;
                             return !_this.PodeEmitirNFSe();
                         }
                     }));
-                }                
+                }
 
-                this.IniciarNFSeOK = function() {
+                this.IniciarNFSeOK = function () {
                     return _this.currentRecord.CLIENTE_CODIGO > 0 && _this.currentRecord.CID != null
                         && _this.currentRecord.EST != null && _this.currentRecord.DATA_EMISSAO != null;
                 }
@@ -364,7 +364,7 @@ var App;
                     this.CalculaValorTotal();
                 }
 
-                this.EmitirNFSe = EmitirNFSe;                
+                this.EmitirNFSe = EmitirNFSe;
                 function EmitirNFSe() {
                     if (_this.PodeEmitirNFSe()) {
                         _this.crudSvc.EmitirNFSe(_this.currentRecord.id, 'EMI').then(function (dados) {
@@ -387,7 +387,7 @@ var App;
                                             window.open(pdf, '_blank');
                                         }
                                     });
-                                    
+
                                 }
                             } else {
                                 _this.SweetAlert.swal({
@@ -514,7 +514,7 @@ var App;
 
                     if (this.currentRecord.id == null) {
                         this.DesabilitaServico = true;
-                                                
+
                         this.currentRecord.COD_CADBANCO = this.dadosStart.COD_CADBANCO;
                         this.currentRecord.SERIE = this.dadosStart.SERIE_PADRAO;
                         this.currentRecord.COD_CADSERVICO = this.dadosStart.TIPO_SERVICO;
@@ -529,9 +529,9 @@ var App;
                     } else {
                         this.DesabilitaServico = false;
 
-                        if (this.currentRecord.SITUACAO == "C")
+                        if (this.currentRecord.SITUACAO == "C" || this.currentRecord.CODIGOVERIFICACAO != null)
                             this.podeEditar = false;
-                        else 
+                        else
                             this.podeEditar = true;
                     }
                 }
@@ -547,33 +547,43 @@ var App;
 
             Crudfat_nf_servicoCtrl.prototype.execAntesExcluir = function (item) {
                 if (item.SITUACAO == "C") {
-                    this.toaster.warning("Atenção", "NFS-e esta cancelada!");                    
+                    this.toaster.warning("Atenção", "NFS-e esta cancelada!");
                     return false;
-                }
-                else return true;
+                } else
+                    if (item.CODIGOVERIFICACAO != null) {
+                        this.toaster.warning("Atenção", "NFS-e foi enviada!");
+                        return false;
+                    }
+                    else return true;
             }
 
-            Crudfat_nf_servicoCtrl.prototype.execAntesEdit = function (item) {               
+            Crudfat_nf_servicoCtrl.prototype.execAntesEdit = function (item) {
                 if (item.SITUACAO == "C") {
-                    this.toaster.warning("Atenção", "NFS-e esta cancelada!");                    
+                    this.toaster.warning("Atenção", "NFS-e esta cancelada!");
                     return false;
-                }
-                else return true;
+                } else
+                    if (item.CODIGOVERIFICACAO != null) {
+                        this.toaster.warning("Atenção", "NFS-e foi enviada!");
+                        return false;
+                    }
+                    else return true;
             }
 
             Crudfat_nf_servicoCtrl.prototype.execAposReplicarRegistro = function () {
                 this.currentRecord.NUMERO = 0;
                 this.currentRecord.DATA_EMISSAO = null;
                 this.currentRecord.DATA_VENCIMENTO = null;
+                this.currentRecord.SITUACAO = null;
+                this.podeEditar = true;
             }
-                        
+
             return Crudfat_nf_servicoCtrl;
         })(Controllers.CrudBaseEditCtrl);
         Controllers.Crudfat_nf_servicoCtrl = Crudfat_nf_servicoCtrl;
 
         var ModalIniciarNFSeCtrl = function ($scope, $modalInstance, $q, $timeout, $rootScope) {
-                        
-            $scope.IniciarNFSe = function () {                
+
+            $scope.IniciarNFSe = function () {
                 $modalInstance.close();
                 $rootScope.Cadastro = true;
                 $scope.$parent.ctrl.querySearch = null;

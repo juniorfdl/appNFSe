@@ -55,7 +55,16 @@ var App;
                 enumerable: true,
                 configurable: true
             });
-            
+
+            Object.defineProperty(Crudfat_nf_servicoService.prototype, "baseEntityConsulta", {
+                /// @override
+                get: function () {
+                    return 'V_FAT_NF_SERVICO';
+                },
+                enumerable: true,
+                configurable: true
+            });
+                                   
             return Crudfat_nf_servicoService;
         })(Services.CrudBaseService);
         Services.Crudfat_nf_servicoService = Crudfat_nf_servicoService;

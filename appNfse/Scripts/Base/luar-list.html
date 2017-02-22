@@ -2,7 +2,7 @@
 <table class="table">
     <thead>
         <tr order-by-click="ctrl.ordenar(column)">
-            <th ng-repeat="col in listCtrl.columns track by col.id" order-by="{{col.sortBy || col.id}}">{{col.title}}</th>
+            <th ng-repeat="col in listCtrl.columns track by col.id" order-by="{{col.sortBy || col.id}}" class="{{col.divClass}}">{{col.title}}</th>
             <th class="hidden-print" ng-if="listCtrl.config.rowActions">Ações</th>
         </tr>
     </thead>

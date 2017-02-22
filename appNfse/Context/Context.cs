@@ -62,6 +62,8 @@ namespace Infra.Base
         public virtual DbSet<FAT_PARAMETRO_NFS> FAT_PARAMETRO_NFS { get; set; }
         public virtual DbSet<FAT_NF_SERVICO> FAT_NF_SERVICO { get; set; }
         public virtual DbSet<FAT_NF_SERVICO_ITEM> FAT_NF_SERVICO_ITEM { get; set; }
+        public virtual DbSet<V_FAT_NF_SERVICO> V_FAT_NF_SERVICO { get; set; }
+        public virtual DbSet<FAT_NF_SERVICO_COMUNICACAO> FAT_NF_SERVICO_COMUNICACAO { get; set; }
         #endregion
 
         #region

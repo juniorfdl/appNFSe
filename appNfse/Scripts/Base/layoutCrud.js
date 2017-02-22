@@ -100,6 +100,10 @@ var App;
             }
             ListCtrl.prototype.addColumn = function (id, title, searchable, type, filter, sortBy, divClass) {
                 var $filter = this.$filter;
+
+                if (type == 'currency')
+                  divClass = 'text-right';
+
                 var newCol = {
                     id: id, title: title, searchable: searchable, type: type, filter: filter, sortBy: sortBy, divClass: divClass, format: function (data) {
                         var value = data[this.id];
@@ -140,7 +144,7 @@ var App;
                                         return $filter('date')(date, 'shortDate');
                                     }
                                 }
-                            case 'currency': return $filter('currency')(value);
+                            case 'currency': return $filter('currency')(value, '', '2');
                             default: break;
                         }
                         return value;

@@ -101,6 +101,11 @@
         [Display(Name = "Cliente")]
         public int? CLIENTE_CODIGO { get; set; }
 
+        [NotMapped]
+        public string CODIGOVERIFICACAO { get; set; }
+        [NotMapped]
+        public string NFSE_NUMERO { get; set; }
+
         public virtual ICollection<FAT_NF_SERVICO_ITEM> lista_Itens { get; set; }
     }
 }

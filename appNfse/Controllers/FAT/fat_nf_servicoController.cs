@@ -46,6 +46,15 @@
 
             item.CLIENTE_NOME = cli.DESCRICAO;
             item.CLIENTE_CODIGO = cli.COD;
+
+
+            var comun = db.FAT_NF_SERVICO_COMUNICACAO.Where(b => b.COD_FATNFSERVICO == item.id && b.TIPO == "1").FirstOrDefault();
+
+            if (comun != null)
+            {
+                item.CODIGOVERIFICACAO = comun.CODIGOVERIFICACAO;
+                item.NFSE_NUMERO = comun.NFSE_NUMERO;
+            }
         }
 
         protected override IQueryable<FAT_NF_SERVICO> TrazerDadosParaEdicao(IQueryable<FAT_NF_SERVICO> query)
